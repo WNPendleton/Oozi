@@ -15,6 +15,12 @@ run/main_scene="res://scenes/sandbox.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+mouse_cursor/custom_image="res://sprites/Crosshair.png"
+mouse_cursor/custom_image_hotspot=Vector2(16, 16)
+mouse_cursor/tooltip_position_offset=Vector2(16, 16)
+
 [input]
 
 pause={
