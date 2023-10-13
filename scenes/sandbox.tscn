@@ -29,7 +29,7 @@ transform = Transform3D(0.881204, 0.132016, -0.453928, 0, 0.960216, 0.279259, 0.
 [node name="Player" type="CharacterBody3D" parent="3DWorld"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51102, 0)
 script = ExtResource("1_gn5a0")
-arm_range = Vector2(1.25, 1.25)
+arm_range = Vector2(1.25, 0.625)
 arm_base = Vector2(-0.5, 0)
 
 [node name="Camera" type="Camera3D" parent="3DWorld/Player"]
@@ -75,34 +75,34 @@ damping_coefficient = 0.0
 pinned_points = [744, 94, 650, 568, 1302, 821, 562, 1056, 1091, 1057]
 attachments/0/point_index = 744
 attachments/0/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Back")
-attachments/0/offset = Vector3(-1.43359, -0.332572, 0.309493)
+attachments/0/offset = Vector3(-1.25505, -0.0872414, 0.456197)
 attachments/1/point_index = 94
 attachments/1/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Back")
-attachments/1/offset = Vector3(-1.64112, -0.343565, 0.702788)
+attachments/1/offset = Vector3(-1.67397, -0.16844, 0.551881)
 attachments/2/point_index = 650
 attachments/2/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Back")
-attachments/2/offset = Vector3(-1.43359, -0.332572, 0.309493)
+attachments/2/offset = Vector3(-1.26489, -0.57381, 0.380916)
 attachments/3/point_index = 568
 attachments/3/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Tip")
-attachments/3/offset = Vector3(1.56541, -0.333572, 0.303493)
+attachments/3/offset = Vector3(1.21349, 0.115961, -0.19416)
 attachments/4/point_index = 1302
 attachments/4/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Tip")
-attachments/4/offset = Vector3(1.56541, -0.333572, 0.303493)
+attachments/4/offset = Vector3(1.58377, 0.157154, -0.324716)
 attachments/5/point_index = 821
 attachments/5/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Tip")
-attachments/5/offset = Vector3(1.56541, -0.333572, 0.303493)
+attachments/5/offset = Vector3(1.35314, -0.25841, -0.279395)
 attachments/6/point_index = 562
 attachments/6/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/6/offset = Vector3(0.398913, -0.333572, 0.272418)
+attachments/6/offset = Vector3(0.169951, 0.213357, -0.0664346)
 attachments/7/point_index = 1056
 attachments/7/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/7/offset = Vector3(0.398913, -0.333572, 0.272418)
+attachments/7/offset = Vector3(0.223372, 0.208783, -0.067336)
 attachments/8/point_index = 1091
 attachments/8/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/8/offset = Vector3(0.398913, -0.333572, 0.272418)
+attachments/8/offset = Vector3(0.243473, 0.212429, -0.116845)
 attachments/9/point_index = 1057
 attachments/9/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/9/offset = Vector3(0.398913, -0.333572, 0.272418)
+attachments/9/offset = Vector3(0.183038, 0.227494, -0.128877)
 
 [node name="Terrain" type="Node3D" parent="3DWorld"]
 
