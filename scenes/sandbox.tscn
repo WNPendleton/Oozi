@@ -44,7 +44,7 @@ shape = SubResource("CapsuleShape3D_x0st1")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, -0.56492)
 
 [node name="Uzi" type="MeshInstance3D" parent="3DWorld/Player/ArmAnchor"]
-transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0, 0, -0.25)
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0, -0.0460963, -0.25)
 mesh = ExtResource("3_22wcl")
 
 [node name="Line Markers" type="Node3D" parent="3DWorld/Player/ArmAnchor"]
