@@ -93,16 +93,16 @@ attachments/5/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Marke
 attachments/5/offset = Vector3(1.35314, -0.25841, -0.279395)
 attachments/6/point_index = 562
 attachments/6/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/6/offset = Vector3(0.169951, 0.213357, -0.0664346)
+attachments/6/offset = Vector3(0.169951, 0.259453, -0.0664346)
 attachments/7/point_index = 1056
 attachments/7/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/7/offset = Vector3(0.223372, 0.208783, -0.067336)
+attachments/7/offset = Vector3(0.223372, 0.25488, -0.067336)
 attachments/8/point_index = 1091
 attachments/8/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/8/offset = Vector3(0.243473, 0.212429, -0.116845)
+attachments/8/offset = Vector3(0.243473, 0.258525, -0.116845)
 attachments/9/point_index = 1057
 attachments/9/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/9/offset = Vector3(0.183038, 0.227494, -0.128877)
+attachments/9/offset = Vector3(0.183038, 0.273591, -0.128877)
 
 [node name="Terrain" type="Node3D" parent="3DWorld"]
 
