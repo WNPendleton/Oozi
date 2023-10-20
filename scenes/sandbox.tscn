@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cb3nflt43qrgo"]
+[gd_scene load_steps=12 format=3 uid="uid://cb3nflt43qrgo"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_gn5a0"]
 [ext_resource type="ArrayMesh" uid="uid://bk7f1p5blvqe" path="res://models/viewmodel.obj" id="2_7ub2u"]
@@ -9,11 +9,6 @@
 [ext_resource type="Shader" path="res://shaders/goo.gdshader" id="5_svjfo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x0st1"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_gr3n5"]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 3.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_njgvg"]
 size = Vector3(20, 0.1, 20)
@@ -33,10 +28,50 @@ shader = ExtResource("5_svjfo")
 transform = Transform3D(0.881204, 0.132016, -0.453928, 0, 0.960216, 0.279259, 0.472735, -0.246084, 0.846146, 0, 6.58646, 0)
 
 [node name="Player" type="CharacterBody3D" parent="3DWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.51102, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48014, 0)
 script = ExtResource("1_gn5a0")
 arm_range = Vector2(1.25, 0.625)
 arm_base = Vector2(-0.5, 0)
+
+[node name="Viewmodel" type="SoftBody3D" parent="3DWorld/Player"]
+transform = Transform3D(0.544639, -0.393732, -0.740503, 0, 0.882947, -0.469472, 0.838671, 0.255692, 0.480888, 0.428, -0.3, -0.416)
+material_override = ExtResource("3_e55gt")
+mesh = ExtResource("2_7ub2u")
+skeleton = NodePath("../Camera")
+collision_layer = 3
+collision_mask = 3
+parent_collision_ignore = NodePath("..")
+linear_stiffness = 0.4
+pressure_coefficient = 10.0
+drag_coefficient = 1.0
+pinned_points = [980, 53, 158, 1246, 1057, 608, 1272, 560, 1092]
+attachments/0/point_index = 980
+attachments/0/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Tip")
+attachments/0/offset = Vector3(1.30501, 0.0224758, -0.00716949)
+attachments/1/point_index = 53
+attachments/1/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Back")
+attachments/1/offset = Vector3(-1.43817, -0.580219, -0.0953217)
+attachments/2/point_index = 158
+attachments/2/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Back")
+attachments/2/offset = Vector3(-1.35213, -0.24344, 0.184775)
+attachments/3/point_index = 1246
+attachments/3/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
+attachments/3/offset = Vector3(0.357747, -0.0238527, 0.211393)
+attachments/4/point_index = 1057
+attachments/4/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
+attachments/4/offset = Vector3(0.136709, 0.143001, -0.215188)
+attachments/5/point_index = 608
+attachments/5/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
+attachments/5/offset = Vector3(0.256963, 0.108849, 0.141167)
+attachments/6/point_index = 1272
+attachments/6/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
+attachments/6/offset = Vector3(0.304988, 0.0929061, 0.322905)
+attachments/7/point_index = 560
+attachments/7/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
+attachments/7/offset = Vector3(0.0913343, 0.279893, -0.131847)
+attachments/8/point_index = 1092
+attachments/8/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
+attachments/8/offset = Vector3(0.227882, 0.277671, -0.219239)
 
 [node name="Camera" type="Camera3D" parent="3DWorld/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -53,65 +88,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, -0.56492)
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0, -0.0460963, -0.25)
 mesh = ExtResource("3_22wcl")
 
-[node name="Line Markers" type="Node3D" parent="3DWorld/Player/ArmAnchor"]
+[node name="Markers" type="Node3D" parent="3DWorld/Player/ArmAnchor"]
 transform = Transform3D(0.95882, 0, 0.284015, 0, 1, 0, -0.284015, 0, 0.95882, 0, 0, 0)
 
-[node name="Tip" type="Node3D" parent="3DWorld/Player/ArmAnchor/Line Markers"]
-transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0, 0, -1.5)
+[node name="Tip" type="Node3D" parent="3DWorld/Player/ArmAnchor/Markers"]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0.502319, 0, -1.5)
 
-[node name="Back" type="Node3D" parent="3DWorld/Player/ArmAnchor/Line Markers"]
-transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0.006, -0.001, 1.499)
+[node name="Back" type="Node3D" parent="3DWorld/Player/ArmAnchor/Markers"]
+transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, -0.504279, -0.00100005, 1.499)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/Player/ArmAnchor/Line Markers"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-visible = false
-mesh = SubResource("CylinderMesh_gr3n5")
+[node name="Trigger" type="Node3D" parent="3DWorld/Player/ArmAnchor/Markers"]
+transform = Transform3D(0.999999, 0, -3.8743e-07, 0, 1, 0, 3.8743e-07, 0, 0.999999, 0.0966836, 0.12842, -0.327205)
+
+[node name="skeleton2" parent="3DWorld" instance=ExtResource("3_ls557")]
+transform = Transform3D(-0.663097, 0, 0.447551, 0, 0.8, 0, -0.447551, 0, -0.663097, 4.62374, 0.375478, -6.96303)
 
 [node name="skeleton" parent="3DWorld" instance=ExtResource("3_ls557")]
-transform = Transform3D(-0.891339, 0, -0.453337, 0, 1, 0, 0.453337, 0, -0.891339, -1.71171, 0.180128, -4.18885)
-
-[node name="Viewmodel" type="SoftBody3D" parent="3DWorld"]
-transform = Transform3D(0.559193, -0.414519, -0.717968, 0, 0.866025, -0.5, 0.829038, 0.279596, 0.484276, 0.427582, 1.17745, -0.416007)
-material_override = ExtResource("3_e55gt")
-mesh = ExtResource("2_7ub2u")
-skeleton = NodePath("../Player/Camera")
-collision_layer = 3
-collision_mask = 3
-parent_collision_ignore = NodePath("../Player")
-linear_stiffness = 0.25
-pressure_coefficient = 2.0
-damping_coefficient = 0.0
-pinned_points = [744, 94, 650, 568, 1302, 821, 562, 1056, 1091, 1057]
-attachments/0/point_index = 744
-attachments/0/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Back")
-attachments/0/offset = Vector3(-1.25505, -0.0872414, 0.456197)
-attachments/1/point_index = 94
-attachments/1/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Back")
-attachments/1/offset = Vector3(-1.67397, -0.16844, 0.551881)
-attachments/2/point_index = 650
-attachments/2/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Back")
-attachments/2/offset = Vector3(-1.26489, -0.57381, 0.380916)
-attachments/3/point_index = 568
-attachments/3/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Tip")
-attachments/3/offset = Vector3(1.21349, 0.115961, -0.19416)
-attachments/4/point_index = 1302
-attachments/4/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Tip")
-attachments/4/offset = Vector3(1.58377, 0.157154, -0.324716)
-attachments/5/point_index = 821
-attachments/5/spatial_attachment_path = NodePath("../Player/ArmAnchor/Line Markers/Tip")
-attachments/5/offset = Vector3(1.35314, -0.25841, -0.279395)
-attachments/6/point_index = 562
-attachments/6/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/6/offset = Vector3(0.169951, 0.259453, -0.0664346)
-attachments/7/point_index = 1056
-attachments/7/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/7/offset = Vector3(0.223372, 0.25488, -0.067336)
-attachments/8/point_index = 1091
-attachments/8/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/8/offset = Vector3(0.243473, 0.258525, -0.116845)
-attachments/9/point_index = 1057
-attachments/9/spatial_attachment_path = NodePath("../Player/ArmAnchor/Uzi")
-attachments/9/offset = Vector3(0.183038, 0.273591, -0.128877)
+transform = Transform3D(-0.713071, 0, -0.36267, 0, 0.8, 0, 0.36267, 0, -0.713071, -1.71171, 0.180128, -4.18885)
 
 [node name="Terrain" type="Node3D" parent="3DWorld"]
 
