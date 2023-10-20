@@ -21,6 +21,10 @@ mouse_cursor/custom_image="res://sprites/Crosshair.png"
 mouse_cursor/custom_image_hotspot=Vector2(16, 16)
 mouse_cursor/tooltip_position_offset=Vector2(16, 16)
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [input]
 
 pause={
