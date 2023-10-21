@@ -6,7 +6,6 @@
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="3_e55gt"]
 [ext_resource type="PackedScene" uid="uid://vs4nd4kgcowt" path="res://prefabs/skeleton.tscn" id="3_ls557"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="3_o84eb"]
-[ext_resource type="Shader" path="res://shaders/goo.gdshader" id="5_svjfo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x0st1"]
 
@@ -16,9 +15,17 @@ size = Vector3(20, 0.1, 20)
 [sub_resource type="BoxMesh" id="BoxMesh_3oyeb"]
 size = Vector3(20, 0.1, 20)
 
+[sub_resource type="Shader" id="Shader_5vaxa"]
+code = "shader_type spatial;
+
+void fragment() {
+	// Place fragment code here.
+}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_noepv"]
 render_priority = 0
-shader = ExtResource("5_svjfo")
+shader = SubResource("Shader_5vaxa")
 
 [node name="Sandbox" type="Node"]
 
@@ -41,37 +48,34 @@ skeleton = NodePath("../Camera")
 collision_layer = 3
 collision_mask = 3
 parent_collision_ignore = NodePath("..")
-linear_stiffness = 0.4
+linear_stiffness = 0.7
 pressure_coefficient = 10.0
 drag_coefficient = 1.0
-pinned_points = [980, 53, 158, 1246, 1057, 608, 1272, 560, 1092]
-attachments/0/point_index = 980
-attachments/0/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Tip")
-attachments/0/offset = Vector3(1.30501, 0.0224758, -0.00716949)
-attachments/1/point_index = 53
-attachments/1/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Back")
-attachments/1/offset = Vector3(-1.43817, -0.580219, -0.0953217)
-attachments/2/point_index = 158
-attachments/2/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Back")
-attachments/2/offset = Vector3(-1.35213, -0.24344, 0.184775)
-attachments/3/point_index = 1246
-attachments/3/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/3/offset = Vector3(0.357747, -0.0238527, 0.211393)
-attachments/4/point_index = 1057
-attachments/4/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
-attachments/4/offset = Vector3(0.136709, 0.143001, -0.215188)
-attachments/5/point_index = 608
+pinned_points = [60, 1006, 1248, 1059, 608, 1274, 560, 1094]
+attachments/0/point_index = 60
+attachments/0/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Back")
+attachments/0/offset = Vector3(-1.48917, -0.29245, -0.230785)
+attachments/1/point_index = 1006
+attachments/1/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Tip")
+attachments/1/offset = Vector3(1.46866, -0.0552672, 0.162607)
+attachments/2/point_index = 1248
+attachments/2/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
+attachments/2/offset = Vector3(0.357747, -0.0238527, 0.211393)
+attachments/3/point_index = 1059
+attachments/3/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
+attachments/3/offset = Vector3(0.136709, 0.143001, -0.215188)
+attachments/4/point_index = 608
+attachments/4/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
+attachments/4/offset = Vector3(0.256963, 0.108849, 0.141167)
+attachments/5/point_index = 1274
 attachments/5/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/5/offset = Vector3(0.256963, 0.108849, 0.141167)
-attachments/6/point_index = 1272
-attachments/6/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/6/offset = Vector3(0.304988, 0.0929061, 0.322905)
-attachments/7/point_index = 560
+attachments/5/offset = Vector3(0.304988, 0.0929061, 0.322905)
+attachments/6/point_index = 560
+attachments/6/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
+attachments/6/offset = Vector3(0.0913343, 0.279893, -0.131847)
+attachments/7/point_index = 1094
 attachments/7/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
-attachments/7/offset = Vector3(0.0913343, 0.279893, -0.131847)
-attachments/8/point_index = 1092
-attachments/8/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
-attachments/8/offset = Vector3(0.227882, 0.277671, -0.219239)
+attachments/7/offset = Vector3(0.227882, 0.277671, -0.219239)
 
 [node name="Camera" type="Camera3D" parent="3DWorld/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
