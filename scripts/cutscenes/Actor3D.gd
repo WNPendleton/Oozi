@@ -8,6 +8,9 @@ var next_event
 func _ready():
 	ready_next_event()
 
+func _process(delta):
+	script_process(delta)
+
 func script_process(delta):
 	
 	elapsed_time += delta
