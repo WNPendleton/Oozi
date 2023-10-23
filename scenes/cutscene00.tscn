@@ -1,17 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://d3wytdcg2ka0w"]
+[gd_scene load_steps=21 format=3 uid="uid://d3wytdcg2ka0w"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_53w72"]
 [ext_resource type="ArrayMesh" uid="uid://cnb0jsea733p6" path="res://models/blob.obj" id="2_12f10"]
-[ext_resource type="Script" path="res://scripts/cutscenes/00/Oozi.gd" id="2_28cks"]
+[ext_resource type="Script" path="res://scripts/cutscenes/CutsceneOozi.gd" id="2_c4nsj"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="2_ogr3q"]
 [ext_resource type="Script" path="res://scripts/cutscenes/ScriptEvent.gd" id="3_jbdmh"]
 [ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="4_vdl50"]
+[ext_resource type="Script" path="res://scripts/cutscenes/CutsceneSkeleton.gd" id="6_cofvn"]
+[ext_resource type="PackedScene" uid="uid://ccqgj44hdrmuc" path="res://models/skeleton.gltf" id="7_5sjnn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3bl63"]
 size = Vector3(5, 1, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_e4x0k"]
-size = Vector3(5, 1, 5)
+size = Vector3(5.2, 1, 5.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2b3dt"]
+albedo_color = Color(0, 0.435294, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_80tqy"]
 shader = ExtResource("1_53w72")
@@ -25,26 +30,6 @@ sky_material = SubResource("ShaderMaterial_80tqy")
 background_mode = 2
 sky = SubResource("Sky_vmk5g")
 
-[sub_resource type="Resource" id="Resource_v2nam"]
-script = ExtResource("3_jbdmh")
-time = 3.0
-duration = 2.0
-location = Vector3(2, 0, 1)
-rotation = Vector3(0, 0, 0)
-size = Vector3(1, 1, 1)
-start_action = ""
-end_action = ""
-
-[sub_resource type="Resource" id="Resource_sqnqa"]
-script = ExtResource("3_jbdmh")
-time = 6.0
-duration = 2.0
-location = Vector3(0, 0, 1)
-rotation = Vector3(0, 0, 0)
-size = Vector3(1, 1, 1)
-start_action = ""
-end_action = ""
-
 [sub_resource type="SphereMesh" id="SphereMesh_52id3"]
 radius = 0.05
 height = 0.2
@@ -54,6 +39,46 @@ material = ExtResource("4_vdl50")
 radius = 0.2
 height = 0.2
 
+[sub_resource type="Resource" id="Resource_vmxlj"]
+script = ExtResource("3_jbdmh")
+time = 0.0
+duration = 0.0
+location = Vector3(-1.7, 0, -2.6)
+rotation = Vector3(0, 75, 0)
+size = Vector3(1, 1, 1)
+start_action = "show"
+end_action = "do_spawn"
+
+[sub_resource type="Resource" id="Resource_buswg"]
+script = ExtResource("3_jbdmh")
+time = 1.0
+duration = 2.0
+location = Vector3(-1.7, 0, -2.6)
+rotation = Vector3(0, 75, 0)
+size = Vector3(1, 1, 1)
+start_action = "do_attack"
+end_action = ""
+
+[sub_resource type="Resource" id="Resource_dv4ju"]
+script = ExtResource("3_jbdmh")
+time = 3.0
+duration = 1.0
+location = Vector3(-1.7, 0, -2.6)
+rotation = Vector3(0, 244, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = ""
+
+[sub_resource type="Resource" id="Resource_iyd1p"]
+script = ExtResource("3_jbdmh")
+time = 4.1
+duration = 0.0
+location = Vector3(4, 0, 0)
+rotation = Vector3(0, 244, 0)
+size = Vector3(1, 1, 1)
+start_action = "do_smoke_puff_and_hide"
+end_action = "do_smoke_puff_and_show"
+
 [node name="scene" type="Node"]
 
 [node name="World" type="Node3D" parent="."]
@@ -61,6 +86,7 @@ height = 0.2
 [node name="Set" type="Node3D" parent="World"]
 
 [node name="Bounds" type="Node3D" parent="World/Set"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 
 [node name="Floor" type="StaticBody3D" parent="World/Set/Bounds"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
@@ -113,8 +139,13 @@ size = Vector3(0.1, 1, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
 size = Vector3(0.1, 3, 2)
 
+[node name="Ground" type="CSGBox3D" parent="World/Set"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.386102, 0)
+size = Vector3(50, 0.1, 50)
+material = SubResource("StandardMaterial3D_2b3dt")
+
 [node name="Camera3D" type="Camera3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44529, 4.25607)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44529, 5.74273)
 current = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World"]
@@ -127,9 +158,8 @@ environment = SubResource("Environment_i2t3u")
 transform = Transform3D(0.984057, 0.134254, -0.116652, -0.0456839, 0.824687, 0.563741, 0.171886, -0.549424, 0.817672, 0, 4.95604, 0)
 
 [node name="Oozi" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00512701, 0)
-script = ExtResource("2_28cks")
-eventList = Array[ExtResource("3_jbdmh")]([SubResource("Resource_v2nam"), SubResource("Resource_sqnqa")])
+transform = Transform3D(0.759896, 0, 0.650045, 0, 1, 0, -0.650045, 0, 0.759896, -3.07358, -0.00512701, -3.05179)
+script = ExtResource("2_c4nsj")
 
 [node name="SoftBody3D" type="SoftBody3D" parent="World/Oozi"]
 material_override = ExtResource("2_ogr3q")
@@ -139,7 +169,7 @@ pressure_coefficient = 20.0
 pinned_points = [47, 119, 30, 37, 130, 88]
 attachments/0/point_index = 47
 attachments/0/spatial_attachment_path = NodePath("../Face/Eye1")
-attachments/0/offset = Vector3(0.148346, -0.103132, -0.191323)
+attachments/0/offset = Vector3(0.148345, -0.103132, -0.191323)
 attachments/1/point_index = 119
 attachments/1/spatial_attachment_path = NodePath("../Face/Eye2")
 attachments/1/offset = Vector3(-0.179495, -0.0976466, -0.227053)
@@ -177,3 +207,11 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.948, 0)
 mesh = SubResource("SphereMesh_wicw4")
 skeleton = NodePath("../..")
+
+[node name="Skeleton1" type="Node3D" parent="World"]
+transform = Transform3D(0.0334867, 0, -0.99944, 0, 1, 0, 0.99944, 0, 0.0334867, 4.66409, 0, -0.310563)
+visible = false
+script = ExtResource("6_cofvn")
+eventList = Array[ExtResource("3_jbdmh")]([SubResource("Resource_vmxlj"), SubResource("Resource_buswg"), SubResource("Resource_dv4ju"), SubResource("Resource_iyd1p")])
+
+[node name="Model" parent="World/Skeleton1" instance=ExtResource("7_5sjnn")]
