@@ -1,5 +1,11 @@
 class_name Actor3D extends Node3D
 
+@export_category("Dialog")
+@export var chat_head_camera : Camera3D
+@export var chat_box : TextureRect
+@export var chat_head_index : int
+
+@export_category("Actions")
 @export var eventList : Array[ScriptEvent]
 
 @onready var smoke_puff_prefab = preload("res://prefabs/smoke_puff.tscn")
@@ -23,7 +29,12 @@ func script_process(delta):
 			call(next_event.start_action)
 		elif next_event.start_action:
 			printerr("Invalid start action given: ", next_event.start_action)
-			
+		
+		if next_event.dialog_line:
+			chat_box.get_node("Text").text = next_event.dialog_line
+			chat_head_camera.transform.origin.x = chat_head_index
+			chat_box.show()
+		
 		var position_tween = get_tree().create_tween()
 		position_tween.tween_property(self, "position", next_event.location, next_event.duration)
 		
@@ -35,14 +46,19 @@ func script_process(delta):
 		scale_tween.tween_property(self, "scale", next_event.size, next_event.duration)
 		
 		if has_method(next_event.end_action):
-			scale_tween.tween_callback(Callable(self, next_event.end_action)).set_delay(.1)
+			scale_tween.tween_callback(Callable(self, next_event.end_action))
 		elif next_event.end_action:
 			printerr("Invalid end action given: ", next_event.end_action)
+		
+		scale_tween.tween_callback(Callable(self, "hide_chat_box"))
 		
 		ready_next_event()
 
 func ready_next_event():
 	next_event = eventList.pop_front()
+
+func hide_chat_box():
+	chat_box.hide()
 
 func do_smoke_puff():
 	var new_smoke_puff = smoke_puff_prefab.instantiate()

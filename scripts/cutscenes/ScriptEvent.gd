@@ -14,3 +14,5 @@ class_name ScriptEvent extends Resource
 @export var start_action : String
 ## Name of function the actor should call when it finishes its action (Useful for triggering animations and effects)
 @export var end_action : String
+## Line of dialog for this character to say during the action
+@export var dialog_line : String

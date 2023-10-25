@@ -1,13 +1,19 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3wytdcg2ka0w"]
+[gd_scene load_steps=28 format=3 uid="uid://d3wytdcg2ka0w"]
 
+[ext_resource type="ArrayMesh" uid="uid://d1egwtyee1vws" path="res://models/chatheads/monopoly_man_chathead.obj" id="1_0hfti"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_53w72"]
+[ext_resource type="ArrayMesh" uid="uid://dewl0h7xvebx3" path="res://models/chatheads/scientist_chathead.obj" id="2_1rj47"]
 [ext_resource type="ArrayMesh" uid="uid://cnb0jsea733p6" path="res://models/blob.obj" id="2_12f10"]
 [ext_resource type="Script" path="res://scripts/cutscenes/CutsceneOozi.gd" id="2_c4nsj"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="2_ogr3q"]
+[ext_resource type="ArrayMesh" uid="uid://fhtxtays12yj" path="res://models/chatheads/skeleton_chathead.obj" id="3_bw5m3"]
 [ext_resource type="Script" path="res://scripts/cutscenes/ScriptEvent.gd" id="3_jbdmh"]
 [ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="4_vdl50"]
 [ext_resource type="Script" path="res://scripts/cutscenes/CutsceneSkeleton.gd" id="6_cofvn"]
 [ext_resource type="PackedScene" uid="uid://ccqgj44hdrmuc" path="res://models/skeleton.gltf" id="7_5sjnn"]
+[ext_resource type="Texture2D" uid="uid://c3e6i8awlcdm0" path="res://sprites/Chatbox.png" id="9_lis40"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqn7a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3bl63"]
 size = Vector3(5, 1, 5)
@@ -48,6 +54,7 @@ rotation = Vector3(0, 75, 0)
 size = Vector3(1, 1, 1)
 start_action = "show"
 end_action = "do_spawn"
+dialog_line = ""
 
 [sub_resource type="Resource" id="Resource_buswg"]
 script = ExtResource("3_jbdmh")
@@ -58,6 +65,7 @@ rotation = Vector3(0, 75, 0)
 size = Vector3(1, 1, 1)
 start_action = "do_attack"
 end_action = ""
+dialog_line = "MUAHAHA!"
 
 [sub_resource type="Resource" id="Resource_dv4ju"]
 script = ExtResource("3_jbdmh")
@@ -68,6 +76,7 @@ rotation = Vector3(0, 244, 0)
 size = Vector3(1, 1, 1)
 start_action = ""
 end_action = ""
+dialog_line = ""
 
 [sub_resource type="Resource" id="Resource_iyd1p"]
 script = ExtResource("3_jbdmh")
@@ -76,12 +85,49 @@ duration = 0.0
 location = Vector3(4, 0, 0)
 rotation = Vector3(0, 244, 0)
 size = Vector3(1, 1, 1)
-start_action = "do_smoke_puff_and_hide"
-end_action = "do_smoke_puff_and_show"
+start_action = "do_smoke_puff"
+end_action = "do_smoke_puff"
+dialog_line = ""
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_q3req"]
+viewport_path = NodePath("World/Chathead set/Viewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_i5p28"]
+line_spacing = 0.0
+font_size = 24
 
 [node name="scene" type="Node"]
 
 [node name="World" type="Node3D" parent="."]
+
+[node name="Chathead set" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="Viewport" type="SubViewport" parent="World/Chathead set"]
+transparent_bg = true
+
+[node name="Camera3D" type="Camera3D" parent="World/Chathead set/Viewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, -17.911, 1.416)
+
+[node name="MonopolyManChathead" type="MeshInstance3D" parent="World/Chathead set"]
+transform = Transform3D(0.965926, 0.0669873, 0.25, 0, 0.965926, -0.258819, -0.258819, 0.25, 0.933013, -0.17, 0, 2)
+mesh = ExtResource("1_0hfti")
+skeleton = NodePath("../../..")
+
+[node name="ScientistChathead" type="MeshInstance3D" parent="World/Chathead set"]
+transform = Transform3D(0.965926, 0.0669873, 0.25, 0, 0.965926, -0.258819, -0.258819, 0.25, 0.933013, 1.9, 0.2, 2)
+mesh = ExtResource("2_1rj47")
+skeleton = NodePath("../../..")
+
+[node name="SkeletonChathead" type="MeshInstance3D" parent="World/Chathead set"]
+transform = Transform3D(0.965926, 0.0669873, 0.25, 0, 0.965926, -0.258819, -0.258819, 0.25, 0.933013, 3.9, 0.2, 2)
+mesh = ExtResource("3_bw5m3")
+skeleton = NodePath("../../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/Chathead set"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.04775)
+material_override = SubResource("StandardMaterial3D_pqn7a")
+size = Vector3(30, 10, 1)
 
 [node name="Set" type="Node3D" parent="World"]
 
@@ -208,10 +254,65 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.9
 mesh = SubResource("SphereMesh_wicw4")
 skeleton = NodePath("../..")
 
-[node name="Skeleton1" type="Node3D" parent="World"]
+[node name="Skeleton1" type="Node3D" parent="World" node_paths=PackedStringArray("chat_head_camera", "chat_box")]
 transform = Transform3D(0.0334867, 0, -0.99944, 0, 1, 0, 0.99944, 0, 0.0334867, 4.66409, 0, -0.310563)
 visible = false
 script = ExtResource("6_cofvn")
+chat_head_camera = NodePath("../Chathead set/Viewport/Camera3D")
+chat_box = NodePath("../../UI/VBoxContainer/MarginContainer/Chatbox")
+chat_head_index = 4
 eventList = Array[ExtResource("3_jbdmh")]([SubResource("Resource_vmxlj"), SubResource("Resource_buswg"), SubResource("Resource_dv4ju"), SubResource("Resource_iyd1p")])
 
 [node name="Model" parent="World/Skeleton1" instance=ExtResource("7_5sjnn")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -144.0
+offset_right = 512.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 20
+
+[node name="Chatbox" type="TextureRect" parent="UI/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("9_lis40")
+
+[node name="Chathead" type="TextureRect" parent="UI/VBoxContainer/MarginContainer/Chatbox"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 25.0
+offset_right = 151.0
+offset_bottom = 121.0
+texture = SubResource("ViewportTexture_q3req")
+expand_mode = 1
+
+[node name="Text" type="Label" parent="UI/VBoxContainer/MarginContainer/Chatbox"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 23.0
+offset_right = 971.0
+offset_bottom = 125.0
+text = "Hello. I am here to kidnap you! I am going to put you in a cage and take you back to the MONOPOLY MAN!! Once you are kidnapped you will be made to do EVIL SCIENCE  for us!!!"
+label_settings = SubResource("LabelSettings_i5p28")
+autowrap_mode = 2
