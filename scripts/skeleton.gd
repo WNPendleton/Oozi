@@ -1,4 +1,4 @@
-extends CharacterBody3D
+extends Enemy
 
 @onready var anim = $Armature/AnimationPlayer
 
@@ -22,10 +22,14 @@ func throw_bone():
 	#Spawn a bone projectile
 	pass
 
+func die():
+	do_pre_death()
+
 func do_pre_death():
 	anim.play("Die")
 	#Become encase in goo
 
 func do_post_death():
 	#Slowly Fade Away and then queue_free()
+	queue_free()
 	pass
