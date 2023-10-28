@@ -17,7 +17,7 @@ func ready_next_animation():
 	if list_index >= animations.size():
 		list_index = 0
 
-func play_next(thething):
+func play_next(_thething):
 	ready_next_animation()
 	if animations.size() > list_index:
 		anim.play(animations[list_index])
