@@ -1,13 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://cb3nflt43qrgo"]
 
+[ext_resource type="Script" path="res://scenes/PathTest.gd" id="1_1w76q"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_gn5a0"]
 [ext_resource type="ArrayMesh" uid="uid://bk7f1p5blvqe" path="res://models/viewmodel.obj" id="2_7ub2u"]
 [ext_resource type="ArrayMesh" uid="uid://dxot1ygcupbaj" path="res://models/uzi.obj" id="3_22wcl"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="3_e55gt"]
 [ext_resource type="PackedScene" uid="uid://vs4nd4kgcowt" path="res://prefabs/skeleton.tscn" id="3_ls557"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="3_o84eb"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x0st1"]
+[ext_resource type="Script" path="res://scenes/PathFollow3D.gd" id="3_xq3rn"]
+[ext_resource type="Script" path="res://scenes/EnemyEncounter.gd" id="8_8n1wm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_njgvg"]
 size = Vector3(20, 0.1, 20)
@@ -36,6 +37,7 @@ shader = SubResource("Shader_5vaxa")
 [node name="Sandbox" type="Node"]
 
 [node name="3DWorld" type="Node3D" parent="."]
+script = ExtResource("1_1w76q")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DWorld"]
 transform = Transform3D(0.881204, 0.132016, -0.453928, 0, 0.960216, 0.279259, 0.472735, -0.246084, 0.846146, 0, 6.58646, 0)
