@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://sdb3ffo6ooum"
+path="res://.godot/imported/LHouse.obj-e5d84394956a38f69028aeade081adae.mesh"
+
+[deps]
+
+files=["res://.godot/imported/LHouse.obj-e5d84394956a38f69028aeade081adae.mesh"]
+
+source_file="res://models/LHouse.obj"
+dest_files=["res://.godot/imported/LHouse.obj-e5d84394956a38f69028aeade081adae.mesh", "res://.godot/imported/LHouse.obj-e5d84394956a38f69028aeade081adae.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(2.5, 2.5, 2.5)
+offset_mesh=Vector3(20, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ires3x7ilo82"
+path="res://.godot/imported/WillowTree.obj-a7641f329977e74d2d374c2ea4b595fc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/WillowTree.obj-a7641f329977e74d2d374c2ea4b595fc.mesh"]
+
+source_file="res://models/WillowTree.obj"
+dest_files=["res://.godot/imported/WillowTree.obj-a7641f329977e74d2d374c2ea4b595fc.mesh", "res://.godot/imported/WillowTree.obj-a7641f329977e74d2d374c2ea4b595fc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dewl0h7xvebx3"
+path="res://.godot/imported/scientist_chathead.obj-a04b4a81c4dcdff3749803b8b039e2c6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/scientist_chathead.obj-a04b4a81c4dcdff3749803b8b039e2c6.mesh"]
+
+source_file="res://models/chatheads/scientist_chathead.obj"
+dest_files=["res://.godot/imported/scientist_chathead.obj-a04b4a81c4dcdff3749803b8b039e2c6.mesh", "res://.godot/imported/scientist_chathead.obj-a04b4a81c4dcdff3749803b8b039e2c6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

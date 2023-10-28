@@ -1,16 +1,19 @@
 extends CharacterBody3D
 
+@onready var anim = $Armature/AnimationPlayer
+
 func _ready():
-	$AnimationPlayer.play("Spawn")
+	anim.connect("animation_finished", Callable(self, "_on_animation_player_animation_finished"))
+	anim.play("Spawn")
 
 func _on_animation_player_animation_finished(anim_name):
 	
 	if anim_name == "Throw":
 		throw_bone()
-		$AnimationPlayer.play("Throw")
+		anim.play("Throw")
 		return
 	if anim_name == "Spawn":
-		$AnimationPlayer.play("Throw")
+		anim.play("Throw")
 		return
 	if anim_name == "Die":
 		do_post_death()
@@ -20,7 +23,7 @@ func throw_bone():
 	pass
 
 func do_pre_death():
-	$AnimationPlayer.play("Die")
+	anim.play("Die")
 	#Become encase in goo
 
 func do_post_death():

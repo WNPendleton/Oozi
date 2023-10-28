@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://7ig5cmew7ixk"]
+
+[ext_resource type="Material" uid="uid://8tnskundsiv3" path="res://materials/smoke.tres" id="1_x3m3l"]
+[ext_resource type="Script" path="res://scripts/smoke_puff.gd" id="2_eouke"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hu7jt"]
+material = ExtResource("1_x3m3l")
+radius = 0.3
+height = 0.6
+
+[node name="Smoke Puff" type="CPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13761, 0)
+emitting = false
+amount = 32
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.99
+lifetime_randomness = 0.2
+mesh = SubResource("SphereMesh_hu7jt")
+emission_shape = 2
+emission_sphere_radius = 1.0
+spread = 180.0
+flatness = 1.0
+gravity = Vector3(0, 2.3, 0)
+initial_velocity_max = 2.0
+linear_accel_min = -2.0
+linear_accel_max = -2.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+script = ExtResource("2_eouke")
