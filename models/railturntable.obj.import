@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c43mc8vv43hnp"
+path="res://.godot/imported/railturntable.obj-a2d7b4d889fd83a55a5016e2146aa8fe.mesh"
+
+[deps]
+
+files=["res://.godot/imported/railturntable.obj-a2d7b4d889fd83a55a5016e2146aa8fe.mesh"]
+
+source_file="res://models/railturntable.obj"
+dest_files=["res://.godot/imported/railturntable.obj-a2d7b4d889fd83a55a5016e2146aa8fe.mesh", "res://.godot/imported/railturntable.obj-a2d7b4d889fd83a55a5016e2146aa8fe.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(0.1, 0.1, 0.1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

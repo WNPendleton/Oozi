@@ -1,0 +1,154 @@
+[gd_scene load_steps=30 format=3 uid="uid://b1bgobfvmxwol"]
+
+[ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_8ok1h"]
+[ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="2_njed2"]
+[ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="4_7u3gh"]
+[ext_resource type="ArrayMesh" uid="uid://cnb0jsea733p6" path="res://models/blob.obj" id="5_vaqhd"]
+[ext_resource type="ArrayMesh" uid="uid://8wy36guu3vjd" path="res://models/boulder.obj" id="6_xg3s2"]
+[ext_resource type="ArrayMesh" uid="uid://d5nh6l4uodt3" path="res://models/cart.obj" id="7_1lvet"]
+[ext_resource type="ArrayMesh" uid="uid://cr84ps7ab0ivp" path="res://models/cashbundle.obj" id="8_nne5b"]
+[ext_resource type="ArrayMesh" uid="uid://bii7l2kobh76b" path="res://models/10rails.obj" id="8_rnt63"]
+[ext_resource type="ArrayMesh" uid="uid://bonu13c2tv6ul" path="res://models/cave.obj" id="9_m7kgn"]
+[ext_resource type="PackedScene" uid="uid://hlnp0b47p6d3" path="res://models/demonopoly_man.gltf" id="10_4q1jk"]
+[ext_resource type="Script" path="res://scripts/AnimationGallery.gd" id="11_oaier"]
+[ext_resource type="ArrayMesh" uid="uid://dd1dtu8vvkbdc" path="res://models/House.obj" id="11_u0teu"]
+[ext_resource type="ArrayMesh" uid="uid://b7iu0pj67pc1i" path="res://models/lamppost.obj" id="12_e1l38"]
+[ext_resource type="ArrayMesh" uid="uid://sdb3ffo6ooum" path="res://models/LHouse.obj" id="13_113dp"]
+[ext_resource type="ArrayMesh" uid="uid://cbkxg0hicrysi" path="res://models/monopoly_man.obj" id="14_v2pi0"]
+[ext_resource type="ArrayMesh" uid="uid://b1a7lwjuw0vkf" path="res://models/OakTree.obj" id="15_f3qld"]
+[ext_resource type="ArrayMesh" uid="uid://d3a12gxexvvvc" path="res://models/PineTree.obj" id="16_r1ui8"]
+[ext_resource type="ArrayMesh" uid="uid://6inmhw2fckcg" path="res://models/railbutton.obj" id="17_esfok"]
+[ext_resource type="ArrayMesh" uid="uid://c43mc8vv43hnp" path="res://models/railturntable.obj" id="18_jmw4e"]
+[ext_resource type="ArrayMesh" uid="uid://bmhnfq7u3r3n7" path="res://models/scientist.obj" id="19_wt4ik"]
+[ext_resource type="PackedScene" uid="uid://ccqgj44hdrmuc" path="res://models/skeleton.gltf" id="20_wptlp"]
+[ext_resource type="PackedScene" uid="uid://dvgemsbqgc22m" path="res://models/skeleviathan.gltf" id="21_3i4l2"]
+[ext_resource type="ArrayMesh" uid="uid://l3ob6gklaanc" path="res://models/stalactite.obj" id="22_gyqsl"]
+[ext_resource type="ArrayMesh" uid="uid://crawvo0qi2qhk" path="res://models/Uhouse.obj" id="23_gnqtx"]
+[ext_resource type="ArrayMesh" uid="uid://dx861sqjexh8l" path="res://models/THouse.obj" id="24_1wuwe"]
+[ext_resource type="ArrayMesh" uid="uid://ires3x7ilo82" path="res://models/WillowTree.obj" id="25_vajqc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fyc3x"]
+shader = ExtResource("1_8ok1h")
+shader_parameter/skyColor = Color(0.301961, 0.54902, 1, 1)
+shader_parameter/horizonColor = Color(0.701961, 0.803922, 1, 1)
+
+[sub_resource type="Sky" id="Sky_vmk5g"]
+sky_material = SubResource("ShaderMaterial_fyc3x")
+
+[sub_resource type="Environment" id="Environment_uonbw"]
+background_mode = 2
+sky = SubResource("Sky_vmk5g")
+
+[node name="Game" type="Node"]
+
+[node name="3DWorld" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="3DWorld"]
+environment = SubResource("Environment_uonbw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DWorld/WorldEnvironment"]
+transform = Transform3D(0.984057, 0.134254, -0.116652, -0.0456839, 0.824687, 0.563741, 0.171886, -0.549424, 0.817672, 0, 4.95604, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="3DWorld"]
+material_override = ExtResource("2_njed2")
+size = Vector3(100, 0.1, 100)
+
+[node name="Camera3D" type="Camera3D" parent="3DWorld"]
+transform = Transform3D(0.866025, -0.12941, 0.482963, 0, 0.965926, 0.258819, -0.5, -0.224144, 0.836516, 6.76395, 10.2966, 16.2946)
+current = true
+
+[node name="Blob" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.23729, 0, 11.8164)
+material_override = ExtResource("4_7u3gh")
+mesh = ExtResource("5_vaqhd")
+
+[node name="Boulder" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.62373, 0, 9.3562)
+mesh = ExtResource("6_xg3s2")
+
+[node name="Cashbundle" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.830002, 0, 0.55776, 0, 1, 0, -0.55776, 0, 0.830002, 1.25317, 0.799924, 10.8873)
+mesh = ExtResource("8_nne5b")
+
+[node name="Cave" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.641249, 0, 0.767333, 0, 1, 0, -0.767333, 0, -0.641249, 21.8793, 0.204968, -22.0248)
+mesh = ExtResource("9_m7kgn")
+
+[node name="10Rails" type="MeshInstance3D" parent="Cave"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -0.108894, 0.0208161, -1.73169)
+mesh = ExtResource("8_rnt63")
+skeleton = NodePath("../..")
+
+[node name="Cart" type="MeshInstance3D" parent="Cave/10Rails"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0.0255394, -0.0118346, -1.66604)
+mesh = ExtResource("7_1lvet")
+skeleton = NodePath("../../..")
+
+[node name="Railbutton" type="MeshInstance3D" parent="Cave"]
+transform = Transform3D(0.961502, 0, 0.274798, 0, 1, 0, -0.274798, 0, 0.961502, -4.35232, -0.204968, -5.33546)
+mesh = ExtResource("17_esfok")
+skeleton = NodePath("../..")
+
+[node name="Railturntable" type="MeshInstance3D" parent="Cave"]
+transform = Transform3D(-1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, -1, -0.100425, 0.0428313, -9.14304)
+mesh = ExtResource("18_jmw4e")
+skeleton = NodePath("../..")
+
+[node name="demonopoly_man" parent="." instance=ExtResource("10_4q1jk")]
+transform = Transform3D(-0.734855, 0, -0.678224, 0, 1, 0, 0.678224, 0, -0.734855, 0.48878, 0, 1.49107)
+script = ExtResource("11_oaier")
+animations = Array[String](["Transform", "AttackRight", "AttackLeft", "AttackHead", "Idle"])
+
+[node name="House" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.94302, 0, -0.332737, 0, 1, 0, 0.332737, 0, -0.94302, -6.83267, 0, -30.3192)
+mesh = ExtResource("11_u0teu")
+
+[node name="Lamppost" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.35623, 0, 0.713736)
+mesh = ExtResource("12_e1l38")
+
+[node name="LHouse" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999485, 0, -0.0320911, 0, 1, 0, 0.0320911, 0, 0.999485, -26.2383, 0, 16.2353)
+mesh = ExtResource("13_113dp")
+
+[node name="MonopolyMan" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.975477, 0, -0.220102, 0, 1, 0, 0.220102, 0, -0.975477, 5.94944, 0, 4.22217)
+mesh = ExtResource("14_v2pi0")
+
+[node name="OakTree" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.2124, 0, -11.1477)
+mesh = ExtResource("15_f3qld")
+
+[node name="PineTree" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62378, 0, -22.6978)
+mesh = ExtResource("16_r1ui8")
+
+[node name="Scientist" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -3.78418, 0, 4.96803)
+mesh = ExtResource("19_wt4ik")
+
+[node name="skeleton" parent="." instance=ExtResource("20_wptlp")]
+transform = Transform3D(-0.99823, 0, 0.0594805, 0, 1, 0, -0.0594805, 0, -0.99823, 2.64685, 0, 7.16211)
+script = ExtResource("11_oaier")
+animations = Array[String](["Spawn", "Attack", "ThrowRight", "ThrowLeft", "Die"])
+
+[node name="skeleviathan" parent="." instance=ExtResource("21_3i4l2")]
+transform = Transform3D(-0.989974, 0, -0.141247, 0, 1, 0, 0.141247, 0, -0.989974, 6.51311, 5.02367, -2.28363)
+script = ExtResource("11_oaier")
+animations = Array[String](["Laugh", "AttackRight", "AttackLeft", "AttackDual", "Idle"])
+
+[node name="Stalactite" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.03383, 0, 8.1426)
+mesh = ExtResource("22_gyqsl")
+
+[node name="Uhouse" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.205111, 0, -0.978739, 0, 1, 0, 0.978739, 0, -0.205111, -39.6936, 0, -5.0306)
+mesh = ExtResource("23_gnqtx")
+
+[node name="THouse" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.733872, 0, -0.679288, 0, 1, 0, 0.679288, 0, -0.733872, -27.2608, 0, -23.5893)
+mesh = ExtResource("24_1wuwe")
+
+[node name="WillowTree" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0114, 0, 2.78164)
+mesh = ExtResource("25_vajqc")

@@ -1,0 +1,73 @@
+[gd_scene load_steps=15 format=3 uid="uid://b1bgobfvmxwol"]
+
+[ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_8ok1h"]
+[ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="2_njed2"]
+[ext_resource type="ArrayMesh" uid="uid://blskl8xpo7rf8" path="res://models/5rails.obj" id="3_g5lm5"]
+[ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="4_7u3gh"]
+[ext_resource type="ArrayMesh" uid="uid://cnb0jsea733p6" path="res://models/blob.obj" id="5_vaqhd"]
+[ext_resource type="ArrayMesh" uid="uid://8wy36guu3vjd" path="res://models/boulder.obj" id="6_xg3s2"]
+[ext_resource type="ArrayMesh" uid="uid://d5nh6l4uodt3" path="res://models/cart.obj" id="7_1lvet"]
+[ext_resource type="ArrayMesh" uid="uid://cr84ps7ab0ivp" path="res://models/cashbundle.obj" id="8_nne5b"]
+[ext_resource type="ArrayMesh" uid="uid://bonu13c2tv6ul" path="res://models/cave.obj" id="9_m7kgn"]
+[ext_resource type="PackedScene" uid="uid://dyymai8j6axto" path="res://prefabs/demonopoly_man.tscn" id="10_2u8qo"]
+[ext_resource type="Script" path="res://scripts/AnimationGallery.gd" id="11_oaier"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fyc3x"]
+shader = ExtResource("1_8ok1h")
+shader_parameter/skyColor = Color(0.301961, 0.54902, 1, 1)
+shader_parameter/horizonColor = Color(0.701961, 0.803922, 1, 1)
+
+[sub_resource type="Sky" id="Sky_vmk5g"]
+sky_material = SubResource("ShaderMaterial_fyc3x")
+
+[sub_resource type="Environment" id="Environment_uonbw"]
+background_mode = 2
+sky = SubResource("Sky_vmk5g")
+
+[node name="Game" type="Node"]
+
+[node name="3DWorld" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="3DWorld"]
+environment = SubResource("Environment_uonbw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DWorld/WorldEnvironment"]
+transform = Transform3D(0.984057, 0.134254, -0.116652, -0.0456839, 0.824687, 0.563741, 0.171886, -0.549424, 0.817672, 0, 4.95604, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="3DWorld"]
+material_override = ExtResource("2_njed2")
+size = Vector3(30, 0.1, 30)
+
+[node name="Camera3D" type="Camera3D" parent="3DWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.57957, 4.57908)
+
+[node name="Blob" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.23729, 0, 0.385273)
+material_override = ExtResource("4_7u3gh")
+mesh = ExtResource("5_vaqhd")
+
+[node name="Boulder" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.45205, 0, -1.14756)
+mesh = ExtResource("6_xg3s2")
+
+[node name="Cashbundle" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0830003, 0, 0.055776, 0, 0.1, 0, -0.055776, 0, 0.0830003, 1.57359, 0.799924, 2.10929)
+mesh = ExtResource("8_nne5b")
+
+[node name="Cave" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.18621, 0, 2.73416, 0, 5, 0, -2.73416, 0, -4.18621, 6.68547, 0, -7.72938)
+mesh = ExtResource("9_m7kgn")
+
+[node name="5Rails" type="MeshInstance3D" parent="Cave"]
+transform = Transform3D(-0.0199982, 0, -0.00026598, 0, 0.02, 0, 0.00026598, 0, -0.0199982, -0.0404436, 0.0416322, -0.970038)
+mesh = ExtResource("3_g5lm5")
+skeleton = NodePath("../..")
+
+[node name="Cart" type="MeshInstance3D" parent="Cave/5Rails"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.156916, -0.0118346, -13.01)
+mesh = ExtResource("7_1lvet")
+skeleton = NodePath("../../..")
+
+[node name="demonopoly_man" parent="." instance=ExtResource("10_2u8qo")]
+transform = Transform3D(-0.700249, 0, -0.713898, 0, 1, 0, 0.713898, 0, -0.700249, -7.77712, 0, -6.98159)
+script = ExtResource("11_oaier")

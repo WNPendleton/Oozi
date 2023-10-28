@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ccoby5jhioseu"
+path="res://.godot/imported/50rails.obj-ac2a3aed70acb3393d1b82991334df7d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/50rails.obj-ac2a3aed70acb3393d1b82991334df7d.mesh"]
+
+source_file="res://models/50rails.obj"
+dest_files=["res://.godot/imported/50rails.obj-ac2a3aed70acb3393d1b82991334df7d.mesh", "res://.godot/imported/50rails.obj-ac2a3aed70acb3393d1b82991334df7d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(0.1, 0.1, 0.1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

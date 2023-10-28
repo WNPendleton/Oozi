@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://crawvo0qi2qhk"
+path="res://.godot/imported/Uhouse.obj-3a312886f6d8417ce381907bc63b0a8c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Uhouse.obj-3a312886f6d8417ce381907bc63b0a8c.mesh"]
+
+source_file="res://models/Uhouse.obj"
+dest_files=["res://.godot/imported/Uhouse.obj-3a312886f6d8417ce381907bc63b0a8c.mesh", "res://.godot/imported/Uhouse.obj-3a312886f6d8417ce381907bc63b0a8c.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(2.5, 2.5, 2.5)
+offset_mesh=Vector3(-40, 0, 0)
+optimize_mesh=true
