@@ -1,10 +1,10 @@
-extends CharacterBody3D
+extends Enemy
 
-@onready var anim = $Armature/AnimationPlayer
+#@onready var anim = $Armature/AnimationPlayer
 
 func _ready():
 	anim.connect("animation_finished", Callable(self, "_on_animation_player_animation_finished"))
-	anim.play("Spawn")
+	#anim.play("Spawn")
 
 func _on_animation_player_animation_finished(anim_name):
 	
@@ -22,10 +22,14 @@ func throw_bone():
 	#Spawn a bone projectile
 	pass
 
+func die():
+	do_pre_death()
+
 func do_pre_death():
 	anim.play("Die")
 	#Become encase in goo
 
 func do_post_death():
 	#Slowly Fade Away and then queue_free()
+	queue_free()
 	pass
