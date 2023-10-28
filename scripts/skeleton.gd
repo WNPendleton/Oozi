@@ -1,10 +1,10 @@
 extends Enemy
 
-@onready var anim = $Armature/AnimationPlayer
+#@onready var anim = $Armature/AnimationPlayer
 
 func _ready():
 	anim.connect("animation_finished", Callable(self, "_on_animation_player_animation_finished"))
-	anim.play("Spawn")
+	#anim.play("Spawn")
 
 func _on_animation_player_animation_finished(anim_name):
 	

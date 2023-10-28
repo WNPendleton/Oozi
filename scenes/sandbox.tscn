@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cb3nflt43qrgo"]
+[gd_scene load_steps=15 format=3 uid="uid://cb3nflt43qrgo"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_gn5a0"]
 [ext_resource type="ArrayMesh" uid="uid://bk7f1p5blvqe" path="res://models/viewmodel.obj" id="2_7ub2u"]
@@ -30,6 +30,8 @@ shader = SubResource("Shader_5vaxa")
 [sub_resource type="BoxShape3D" id="BoxShape3D_duokt"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1vcqo"]
+
+[sub_resource type="Curve3D" id="Curve3D_w8odi"]
 
 [node name="Sandbox" type="Node"]
 
@@ -116,9 +118,14 @@ transform = Transform3D(0.999999, 0, -3.8743e-07, 0, 1, 0, 3.8743e-07, 0, 0.9999
 
 [node name="skeleton2" parent="3DWorld" instance=ExtResource("3_ls557")]
 transform = Transform3D(-0.663097, 0, 0.447551, 0, 0.8, 0, -0.447551, 0, -0.663097, 4.62374, 0.375478, -6.96303)
+spawn_animation = "Spawn"
+activate_delay = null
 
 [node name="skeleton" parent="3DWorld" instance=ExtResource("3_ls557")]
-transform = Transform3D(-0.713071, 0, -0.36267, 0, 0.8, 0, 0.36267, 0, -0.713071, -1.71171, 0.180128, -4.18885)
+transform = Transform3D(-0.713071, 0, -0.36267, 0, 0.8, 0, 0.36267, 0, -0.713071, -1.71171, 0.215585, -4.18885)
+max_health = 2
+spawn_animation = "Spawn"
+activate_delay = 1.5
 
 [node name="Terrain" type="Node3D" parent="3DWorld"]
 
@@ -148,6 +155,11 @@ shape = SubResource("BoxShape3D_duokt")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/StaticBody3D"]
 mesh = SubResource("BoxMesh_1vcqo")
+
+[node name="Path3D" type="Path3D" parent="3DWorld"]
+curve = SubResource("Curve3D_w8odi")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="3DWorld/Path3D"]
 
 [node name="UI" type="Control" parent="."]
 process_mode = 3
