@@ -3,7 +3,7 @@ extends PathFollow3D
 
 @export var EncounterNode: Node3D
 
-
+var path_end = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,7 +14,8 @@ func _ready():
 func _physics_process(delta):
 	
 	progress_ratio += delta * Path_Speed
-	if progress_ratio == 1:
+	if progress_ratio == 1 && !path_end:
 		print('Path Complete')
 		EncounterNode.activate_encounter()
+		path_end = true
 	pass

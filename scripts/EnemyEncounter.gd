@@ -13,11 +13,13 @@ func _process(delta):
 
 func activate_encounter():
 	for _i in self.get_children():
+		if _i.has_method("activate"):
+			_i.activate()
 		print(_i)
-	print('Running Encounter...')
-	await get_tree().create_timer(1).timeout
-	complete_encounter()
-	pass
+#	print('Running Encounter...')
+#	await get_tree().create_timer(1).timeout
+#	complete_encounter()
+#	pass
 	
 func complete_encounter():
 	print('Encounter Completed')

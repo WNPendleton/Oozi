@@ -33,7 +33,7 @@ shader = SubResource("Shader_5vaxa")
 
 [sub_resource type="Curve3D" id="Curve3D_w8odi"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.41012, 0, 0.178624, 0, 0, 0, 0, 0, 0, -7.41156, 0, -4.78886, 0, 0, 0, 0, 0, 0, -3.6129, 0, -8.29532),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.512, 0, 3.655, 0.440741, 0.12675, 1.0166, -0.440741, -0.12675, -1.0166, -7.28245, -0.157774, -0.145092, 0, 0, 0, 0, 0, 0, -5.95491, -0.236957, -2.67288),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -42,10 +42,10 @@ point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_f1v4f"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 7.06383, 0, -5.53061, 0, 0, 0, 0, 0, 0, 7.26612, 0, 1.79699),
-"tilts": PackedFloat32Array(0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -5.95491, -0.236957, -2.67288, -2.69664, -0.000843048, 0.77015, 2.69664, 0.000843048, -0.77015, -3.23273, 0.00689316, -7.85777, 0, 0, 0, 0, 0, 0, 3.36408, 0.00640202, -7.72741),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 2
+point_count = 3
 
 [node name="Trevor Sandbox" type="Node"]
 
@@ -53,17 +53,6 @@ point_count = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DWorld"]
 transform = Transform3D(0.881204, 0.132016, -0.453928, 0, 0.960216, 0.279259, 0.472735, -0.246084, 0.846146, 0, 6.58646, 0)
-
-[node name="skeleton2" parent="3DWorld" instance=ExtResource("3_ls557")]
-transform = Transform3D(-0.663097, 0, 0.447551, 0, 0.8, 0, -0.447551, 0, -0.663097, 4.62374, 0.375478, -6.96303)
-spawn_animation = "Spawn"
-activate_delay = null
-
-[node name="skeleton" parent="3DWorld" instance=ExtResource("3_ls557")]
-transform = Transform3D(-0.713071, 0, -0.36267, 0, 0.8, 0, 0.36267, 0, -0.713071, -1.71171, 0.215585, -4.18885)
-max_health = 2
-spawn_animation = "Spawn"
-activate_delay = 1.5
 
 [node name="Terrain" type="Node3D" parent="3DWorld"]
 
@@ -86,7 +75,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.25, 0)
 material = SubResource("ShaderMaterial_noepv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="3DWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29684, 1.20293, -2.79218)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00421, 1.1991, -2.53903)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/StaticBody3D"]
 shape = SubResource("BoxShape3D_duokt")
@@ -98,8 +87,10 @@ mesh = SubResource("BoxMesh_1vcqo")
 curve = SubResource("Curve3D_w8odi")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="3DWorld/Path3D" node_paths=PackedStringArray("EncounterNode")]
+transform = Transform3D(0.906451, -0.0158823, 0.422013, -9.31323e-10, 0.999292, 0.0376079, -0.422311, -0.0340898, 0.90581, -5.512, 0, 3.655)
 loop = false
 script = ExtResource("2_xcdaw")
+Path_Speed = 0.5
 EncounterNode = NodePath("../../Node3D")
 
 [node name="Player" type="CharacterBody3D" parent="3DWorld/Path3D/PathFollow3D" node_paths=PackedStringArray("reload_text", "bullet_count")]
@@ -126,13 +117,13 @@ drag_coefficient = 1.0
 pinned_points = [60, 1006, 1248, 1059, 608, 1274, 560, 1094]
 attachments/0/point_index = 60
 attachments/0/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Back")
-attachments/0/offset = Vector3(-1.48917, -0.29245, -0.230785)
+attachments/0/offset = Vector3(-1.48917, -0.29245, -0.230784)
 attachments/1/point_index = 1006
 attachments/1/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Tip")
-attachments/1/offset = Vector3(1.46866, -0.0552672, 0.162607)
+attachments/1/offset = Vector3(1.46866, -0.0552673, 0.162607)
 attachments/2/point_index = 1248
 attachments/2/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/2/offset = Vector3(0.357747, -0.0238527, 0.211393)
+attachments/2/offset = Vector3(0.357747, -0.0238528, 0.211392)
 attachments/3/point_index = 1059
 attachments/3/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
 attachments/3/offset = Vector3(0.136709, 0.143001, -0.215188)
@@ -141,10 +132,10 @@ attachments/4/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
 attachments/4/offset = Vector3(0.256963, 0.108849, 0.141167)
 attachments/5/point_index = 1274
 attachments/5/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/5/offset = Vector3(0.304988, 0.0929061, 0.322905)
+attachments/5/offset = Vector3(0.304987, 0.0929059, 0.322905)
 attachments/6/point_index = 560
 attachments/6/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
-attachments/6/offset = Vector3(0.0913343, 0.279893, -0.131847)
+attachments/6/offset = Vector3(0.0913344, 0.279893, -0.131848)
 attachments/7/point_index = 1094
 attachments/7/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
 attachments/7/offset = Vector3(0.227882, 0.277671, -0.219239)
@@ -185,6 +176,18 @@ curve = SubResource("Curve3D_f1v4f")
 script = ExtResource("7_rq3pd")
 PathFollow = NodePath("../Path3D/PathFollow3D")
 Next_Path = NodePath("../Path3D2")
+
+[node name="skeleton" parent="3DWorld/Node3D" instance=ExtResource("3_ls557")]
+transform = Transform3D(-0.131777, 0, 0.789072, 0, 0.8, 0, -0.789072, 0, -0.131777, -1.71171, 0.215585, -2.93914)
+spawn_animation = "Spawn"
+max_health = 2
+activate_delay = 1.5
+
+[node name="skeleton2" parent="3DWorld/Node3D" instance=ExtResource("3_ls557")]
+transform = Transform3D(-0.663097, 0, 0.447551, 0, 0.8, 0, -0.447551, 0, -0.663097, 4.62374, 0.375478, -6.96303)
+spawn_animation = "Spawn"
+max_health = 3
+activate_delay = 0.0
 
 [node name="UI" type="Control" parent="."]
 process_mode = 3

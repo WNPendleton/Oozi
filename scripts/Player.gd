@@ -14,9 +14,10 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var ray_length = 500.0
 
+var reloading = false
+
 @onready var current_ammo = max_ammo
 
-var reloading = false
 @onready var current_reload_timer = $reload_timer
 
 @onready var camera = get_viewport().get_camera_3d()
