@@ -1,6 +1,6 @@
 extends PathFollow3D
 @export var Path_Speed = 0.1
-@export var New_Path: Path3D
+
 @export var EncounterNode: Node3D
 
 
