@@ -26,4 +26,5 @@ func complete_encounter():
 	PathFollow.get_parent().remove_child(PathFollow)
 	Next_Path.add_child(PathFollow)
 	PathFollow.progress_ratio = 0
+	PathFollow.EncounterNode = Next_Path.path_end_encounter
 	pass

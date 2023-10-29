@@ -3,14 +3,17 @@ extends CharacterBody3D
 @export var arm_range : Vector2
 @export var arm_base : Vector2
 @export var max_ammo : int
+@export var init_counter = 0.2
+@export_category("Path Following")
 @export var chosen_path_follow : PathFollow3D
+@export var path_follow_offset : Vector3
+@export var follow_speed = 10
 @export_category("Reload Bullshit")
 @export var reload_timer : float
 @export var reload_text : Label
 @export var bullet_count : Label
 
 
-var init_counter = 0.2
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -18,7 +21,6 @@ var ray_length = 500.0
 
 var reloading = false
 
-var follow_speed = 10
 
 @onready var current_ammo = max_ammo
 
@@ -51,9 +53,10 @@ func _physics_process(delta):
 	
 	if init_counter <= 0:
 		if chosen_path_follow != null:
-			global_transform.origin = global_transform.origin.lerp(chosen_path_follow.global_transform.origin, delta * follow_speed)
+			global_transform.origin = global_transform.origin.lerp(chosen_path_follow.global_transform.origin + path_follow_offset, delta * follow_speed)
 			#global_transform.origin = global_transform.origin.move_toward(chosen_path_follow.global_transform.origin, delta * follow_speed)
 			global_rotation = global_rotation.lerp(chosen_path_follow.global_rotation, delta * follow_speed)
+			print(chosen_path_follow.global_rotation)
 			#global_rotation = global_rotation.move_toward(chosen_path_follow.global_rotation, delta * rotation_follow_speed)
 	
 	if Input.is_action_just_pressed("shoot"):

@@ -1,6 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://c3die3s30ls2x"]
+[gd_scene load_steps=45 format=3 uid="uid://c3die3s30ls2x"]
 
-[ext_resource type="Material" uid="uid://cv6yij2k82k62" path="res://materials/ground.tres" id="1_dxvkd"]
+[ext_resource type="Material" uid="uid://d0jih4i06y51" path="res://materials/ground.tres" id="1_dxvkd"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_ji3kl"]
 [ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="1_tqd0j"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="2_b42hv"]
@@ -28,14 +28,8 @@
 [ext_resource type="PackedScene" uid="uid://cqhohdxkchw1l" path="res://models/WillowTreeOrange.gltf" id="25_yqp8u"]
 [ext_resource type="PackedScene" uid="uid://b8jegtp1c18a6" path="res://models/WillowTreeRed.gltf" id="26_c60l1"]
 [ext_resource type="PackedScene" uid="uid://cc4qhkq3560c6" path="res://models/WillowTreeYellow.gltf" id="27_wwigs"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_njgvg"]
-size = Vector3(20, 0.1, 20)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3oyeb"]
-size = Vector3(20, 0.1, 20)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x0st1"]
+[ext_resource type="Script" path="res://scripts/Path.gd" id="28_dq77v"]
+[ext_resource type="PackedScene" uid="uid://tebfoxg60y0k" path="res://models/lamppost.gltf" id="28_ynsh8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_duokt"]
 
@@ -67,34 +61,166 @@ sky_material = SubResource("ShaderMaterial_m6qgg")
 background_mode = 2
 sky = SubResource("Sky_vmk5g")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1u17t"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8y7ij"]
+size = Vector3(20, 0.1, 20)
+
+[sub_resource type="Shader" id="Shader_5vaxa"]
+code = "shader_type spatial;
+
+void fragment() {
+	// Place fragment code here.
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgose"]
+render_priority = 0
+shader = SubResource("Shader_5vaxa")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x0st1"]
+
+[sub_resource type="Curve3D" id="Curve3D_d4k7n"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0335464, 0.000120997, -0.00431442, 0, 0, 0, 0, 0, 0, -0.626663, 0.320878, -8.35385),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Curve3D" id="Curve3D_0supp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.180733, -4.45843e-05, 0.0283508, 14.8486, 0, 3.17249, -14.8486, 0, -3.17249, -17.885, -4.45843e-05, -15.4646, 0, 0, 0, 0, 0, 0, -39.5109, -4.45843e-05, -8.75679, -4.5507, 0, -13.3212, 4.5507, 0, 13.3212, -40.2294, -4.45843e-05, 8.79493),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
 [node name="Neighborhood" type="Node"]
 
 [node name="3DWorld" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="3DWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00421, 1.1991, -2.53903)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_duokt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/StaticBody3D"]
+mesh = SubResource("BoxMesh_1vcqo")
+
+[node name="Path3D" type="Path3D" parent="3DWorld"]
+curve = SubResource("Curve3D_w8odi")
+
+[node name="Path3D2" type="Path3D" parent="3DWorld"]
+transform = Transform3D(0.999704, 0.00562597, -0.0236729, -0.00566812, 0.999982, -0.00171369, 0.0236628, 0.00184738, 0.999718, 0, 0, 0)
+curve = SubResource("Curve3D_f1v4f")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="3DWorld/Path3D2"]
+transform = Transform3D(1, -1.33659e-08, 5.58794e-09, 1.33659e-08, 1, 4.42378e-09, -5.58794e-09, -4.42378e-09, 1, 0, 0, 0)
+material_override = ExtResource("1_tqd0j")
+polygon = PackedVector2Array(0, 0, 0.00712574, 0.0765264, 0.999008, 0.118925, 1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 1.0
+path_simplify_angle = 0.0
+path_rotation = 2
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="3DWorld"]
+environment = SubResource("Environment_oefb7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DWorld/WorldEnvironment"]
+transform = Transform3D(0.984057, 0.134254, -0.116652, -0.0456839, 0.824687, 0.563741, 0.171886, -0.549424, 0.817672, 0, 4.95604, 0)
 
 [node name="Terrain" type="Node3D" parent="3DWorld"]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
 
 [node name="Ground" type="StaticBody3D" parent="3DWorld/Terrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/Terrain/Ground"]
-shape = SubResource("BoxShape3D_njgvg")
+shape = SubResource("BoxShape3D_1u17t")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/Terrain/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.177233, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = ExtResource("1_dxvkd")
-mesh = SubResource("BoxMesh_3oyeb")
+mesh = SubResource("BoxMesh_8y7ij")
 
 [node name="Pile of boxes" type="Node3D" parent="3DWorld/Terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.49567, 0, -1.95697)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="3DWorld/Terrain/Pile of boxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="3DWorld/Terrain/Pile of boxes"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.25, 0)
+material = SubResource("ShaderMaterial_dgose")
+
+[node name="House" parent="3DWorld/Terrain" instance=ExtResource("11_ehhwd")]
+transform = Transform3D(2.98023e-09, 0, -0.05, 0, 1, 0, 0.05, 0, 2.98023e-09, -0.509465, 0.0500002, 5.80555)
+
+[node name="House2" parent="3DWorld/Terrain" instance=ExtResource("12_ue5ab")]
+transform = Transform3D(-0.05, 0, -4.37114e-09, 0, 1, 0, 4.37114e-09, 0, -0.05, 1.23079, 0.0500002, 4.27489)
+
+[node name="LHouse2" parent="3DWorld/Terrain" instance=ExtResource("13_7y2no")]
+transform = Transform3D(-0.0499998, 0, 0.000124791, 0, 1, 0, -0.000124791, 0, -0.0499998, 2.67998, 0.05, 4.24619)
+
+[node name="LHouse" parent="3DWorld/Terrain" instance=ExtResource("14_o6ym4")]
+transform = Transform3D(-2.18557e-09, 0, -0.05, 0, 1, 0, 0.05, 0, -2.18557e-09, -0.494365, 0.05, 4.43418)
+
+[node name="OakTreeGreen" parent="3DWorld/Terrain" instance=ExtResource("15_dwo7l")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, -0.96463, 0.05, -2.92367)
+
+[node name="OakTreeOrange" parent="3DWorld/Terrain" instance=ExtResource("16_u2dwg")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, -1.26759, 0.05, -2.58071)
+
+[node name="OakTreeRed" parent="3DWorld/Terrain" instance=ExtResource("17_mr06c")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 0.437876, 0.05, 4.66021)
+
+[node name="OakTreeYellow" parent="3DWorld/Terrain" instance=ExtResource("18_d4y1q")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, -1.28527, 0.05, -2.26256)
+
+[node name="PineTree" parent="3DWorld/Terrain" instance=ExtResource("19_3x7xg")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, -0.911315, 0.05, -2.19721)
+
+[node name="THouse2" parent="3DWorld/Terrain" instance=ExtResource("20_2onfp")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, -0.28037, 0.0500002, 1.77153)
+
+[node name="THouse" parent="3DWorld/Terrain" instance=ExtResource("21_oplgo")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 1.70848, 0.0500002, 6.95723)
+
+[node name="UHouse2" parent="3DWorld/Terrain" instance=ExtResource("22_0neud")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 1.57445, 0.05, 1.52669)
+
+[node name="UHouse" parent="3DWorld/Terrain" instance=ExtResource("23_ynpdj")]
+transform = Transform3D(-2.18557e-09, 0, 0.05, 0, 1, 0, -0.05, 0, -2.18557e-09, 3.07579, 0.05, 5.91086)
+
+[node name="WillowTreeGreen" parent="3DWorld/Terrain" instance=ExtResource("24_ho33n")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 2.50225, 0.05, 6.71671)
+
+[node name="WillowTreeOrange" parent="3DWorld/Terrain" instance=ExtResource("25_yqp8u")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, -0.351318, 0.05, -3.07429)
+
+[node name="WillowTreeRed" parent="3DWorld/Terrain" instance=ExtResource("26_c60l1")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 2.19802, 0.05, 5.27512)
+
+[node name="WillowTreeYellow" parent="3DWorld/Terrain" instance=ExtResource("27_wwigs")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 2.90901, 0.05, 5.11495)
+
+[node name="lamppost" parent="3DWorld/Terrain" instance=ExtResource("28_ynsh8")]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 1.54992, 0.05, 5.46158)
+
 [node name="Player" type="CharacterBody3D" parent="3DWorld" node_paths=PackedStringArray("chosen_path_follow", "reload_text", "bullet_count")]
-transform = Transform3D(0.906451, -0.0158823, 0.422013, -9.31323e-10, 0.999292, 0.0376079, -0.422311, -0.0340898, 0.90581, -5.79587, 1.44459, 3.85109)
+transform = Transform3D(0.0139621, -0.038384, 0.999166, 0, 0.999262, 0.0383878, -0.999903, -0.000535975, 0.0139518, 53.0446, 1.4146, 118.295)
 script = ExtResource("1_ji3kl")
 arm_range = Vector2(1.25, 0.625)
 arm_base = Vector2(-0.5, 0)
 max_ammo = 6
-chosen_path_follow = NodePath("../Path3D/PathFollow3D")
+chosen_path_follow = NodePath("../StartPath/PathFollow3D")
 reload_timer = 2.0
 reload_text = NodePath("../../UI/reload_text")
 bullet_count = NodePath("../../UI/bullet_count")
@@ -113,28 +239,28 @@ drag_coefficient = 1.0
 pinned_points = [60, 1006, 1248, 1059, 608, 1274, 560, 1094]
 attachments/0/point_index = 60
 attachments/0/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Back")
-attachments/0/offset = Vector3(-1.48916, -0.29245, -0.230785)
+attachments/0/offset = Vector3(-1.48917, -0.29245, -0.230787)
 attachments/1/point_index = 1006
 attachments/1/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Tip")
-attachments/1/offset = Vector3(1.46866, -0.0552672, 0.162607)
+attachments/1/offset = Vector3(1.46866, -0.0552673, 0.162606)
 attachments/2/point_index = 1248
 attachments/2/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/2/offset = Vector3(0.357747, -0.0238528, 0.211393)
+attachments/2/offset = Vector3(0.357738, -0.0238528, 0.211386)
 attachments/3/point_index = 1059
 attachments/3/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
-attachments/3/offset = Vector3(0.136709, 0.143001, -0.215188)
+attachments/3/offset = Vector3(0.136715, 0.143, -0.215177)
 attachments/4/point_index = 608
 attachments/4/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/4/offset = Vector3(0.256963, 0.108849, 0.141167)
+attachments/4/offset = Vector3(0.256954, 0.108849, 0.14116)
 attachments/5/point_index = 1274
 attachments/5/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/5/offset = Vector3(0.304987, 0.092906, 0.322905)
+attachments/5/offset = Vector3(0.304978, 0.092906, 0.322899)
 attachments/6/point_index = 560
 attachments/6/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
-attachments/6/offset = Vector3(0.0913344, 0.279893, -0.131848)
+attachments/6/offset = Vector3(0.0913401, 0.279893, -0.131837)
 attachments/7/point_index = 1094
 attachments/7/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
-attachments/7/offset = Vector3(0.227882, 0.277671, -0.219239)
+attachments/7/offset = Vector3(0.227888, 0.277671, -0.219228)
 
 [node name="Camera" type="Camera3D" parent="3DWorld/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -165,66 +291,72 @@ transform = Transform3D(0.999999, 0, -3.8743e-07, 0, 1, 0, 3.8743e-07, 0, 0.9999
 
 [node name="reload_timer" type="Timer" parent="3DWorld/Player"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="3DWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00421, 1.1991, -2.53903)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/StaticBody3D"]
-shape = SubResource("BoxShape3D_duokt")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="3DWorld/StaticBody3D"]
-mesh = SubResource("BoxMesh_1vcqo")
-
-[node name="Path3D" type="Path3D" parent="3DWorld"]
-curve = SubResource("Curve3D_w8odi")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="3DWorld/Path3D" node_paths=PackedStringArray("EncounterNode")]
-transform = Transform3D(0.906488, 0, 0.422233, 0, 0.999999, 0, -0.422232, 0, 0.906488, -5.512, 1, 3.655)
-loop = false
-script = ExtResource("5_sfbh2")
-Path_Speed = 0.5
-EncounterNode = NodePath("../../Node3D")
-
-[node name="Path3D2" type="Path3D" parent="3DWorld"]
-transform = Transform3D(0.999704, 0.00562597, -0.0236729, -0.00566812, 0.999982, -0.00171369, 0.0236628, 0.00184738, 0.999718, 0, 0, 0)
-curve = SubResource("Curve3D_f1v4f")
-
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="3DWorld/Path3D2"]
-transform = Transform3D(1, -1.33659e-08, 5.58794e-09, 1.33659e-08, 1, 4.42378e-09, -5.58794e-09, -4.42378e-09, 1, 0, 0, 0)
-material_override = ExtResource("1_tqd0j")
-polygon = PackedVector2Array(0, 0, 0.00712574, 0.0765264, 0.999008, 0.118925, 1, 0)
-mode = 2
-path_node = NodePath("..")
-path_interval_type = 0
-path_interval = 1.0
-path_simplify_angle = 0.0
-path_rotation = 2
-path_local = false
-path_continuous_u = true
-path_u_distance = 1.0
-path_joined = false
-
-[node name="Node3D" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
+[node name="Encounter1" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.1005, -0.140513, 123.454)
 script = ExtResource("6_d5bmd")
-PathFollow = NodePath("../Path3D/PathFollow3D")
-Next_Path = NodePath("../Path3D2")
+PathFollow = NodePath("../StartPath/PathFollow3D")
+Next_Path = NodePath("../Path_2")
 
-[node name="skeleton" parent="3DWorld/Node3D" instance=ExtResource("7_yl78b")]
-transform = Transform3D(-0.131777, 0, 0.789072, 0, 0.8, 0, -0.789072, 0, -0.131777, -1.71171, 0.215585, -2.93914)
+[node name="skeleton" parent="3DWorld/Encounter1" instance=ExtResource("7_yl78b")]
+transform = Transform3D(-0.550065, 0, -0.580886, 0, 0.8, 0, 0.580886, 0, -0.550065, -0.480946, 0.215585, -6.08685)
 spawn_animation = "Spawn"
 max_health = 2
 activate_delay = 1.5
 
-[node name="skeleton2" parent="3DWorld/Node3D" instance=ExtResource("7_yl78b")]
-transform = Transform3D(-0.663097, 0, 0.447551, 0, 0.8, 0, -0.447551, 0, -0.663097, 4.62374, 0.375478, -6.96303)
+[node name="skeleton2" parent="3DWorld/Encounter1" instance=ExtResource("7_yl78b")]
+transform = Transform3D(-0.056042, 0, -0.798034, 0, 0.8, 0, 0.798034, 0, -0.056042, 3.62374, 0.215585, -3.96303)
 spawn_animation = "Spawn"
 max_health = 3
 activate_delay = 0.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="3DWorld"]
-environment = SubResource("Environment_oefb7")
+[node name="skeleton3" parent="3DWorld/Encounter1" instance=ExtResource("7_yl78b")]
+transform = Transform3D(0.212984, 0, -0.771128, 0, 0.8, 0, 0.771128, 0, 0.212984, -0.480946, 0.215585, -2.0994)
+spawn_animation = "Spawn"
+max_health = 2
+activate_delay = 1.5
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DWorld/WorldEnvironment"]
-transform = Transform3D(0.984057, 0.134254, -0.116652, -0.0456839, 0.824687, 0.563741, 0.171886, -0.549424, 0.817672, 0, 4.95604, 0)
+[node name="StartPath" type="Path3D" parent="3DWorld" node_paths=PackedStringArray("path_end_encounter")]
+transform = Transform3D(0.0139621, -0.0383841, 0.999166, 0, 0.999263, 0.0383878, -0.999903, -0.000535976, 0.0139518, 53.0446, 1.4146, 118.295)
+curve = SubResource("Curve3D_d4k7n")
+script = ExtResource("28_dq77v")
+path_end_encounter = NodePath("../Encounter1")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="3DWorld/StartPath" node_paths=PackedStringArray("EncounterNode")]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 1, 0)
+loop = false
+script = ExtResource("5_sfbh2")
+Path_Speed = 10.0
+EncounterNode = NodePath("../../Encounter1")
+
+[node name="Path_2" type="Path3D" parent="3DWorld" node_paths=PackedStringArray("path_end_encounter")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.6409, 1.4146, 118.888)
+curve = SubResource("Curve3D_0supp")
+script = ExtResource("28_dq77v")
+path_end_encounter = NodePath("../Encounter2")
+
+[node name="Encounter2" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
+transform = Transform3D(-0.240906, 0, 0.970549, 0, 1, 0, -0.970549, 0, -0.240906, 11.8235, -0.140513, 131.949)
+script = ExtResource("6_d5bmd")
+PathFollow = NodePath("../StartPath/PathFollow3D")
+Next_Path = NodePath("../Path3D2")
+
+[node name="skeleton" parent="3DWorld/Encounter2" instance=ExtResource("7_yl78b")]
+transform = Transform3D(-0.550065, 0, -0.580886, 0, 0.8, 0, 0.580886, 0, -0.550065, -0.480946, 0.215585, -6.08685)
+spawn_animation = "Spawn"
+max_health = 2
+activate_delay = 1.5
+
+[node name="skeleton2" parent="3DWorld/Encounter2" instance=ExtResource("7_yl78b")]
+transform = Transform3D(-0.056042, 0, -0.798034, 0, 0.8, 0, 0.798034, 0, -0.056042, 3.62374, 0.215585, -3.96303)
+spawn_animation = "Spawn"
+max_health = 3
+activate_delay = 0.0
+
+[node name="skeleton3" parent="3DWorld/Encounter2" instance=ExtResource("7_yl78b")]
+transform = Transform3D(0.212984, 0, -0.771128, 0, 0.8, 0, 0.771128, 0, 0.212984, -0.480946, 0.215585, -2.0994)
+spawn_animation = "Spawn"
+max_health = 2
+activate_delay = 1.5
 
 [node name="UI" type="Control" parent="."]
 process_mode = 3
@@ -251,54 +383,3 @@ text = "Reloading..."
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-
-[node name="House" parent="." instance=ExtResource("11_ehhwd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.67459, 1.50497, -33.8889)
-
-[node name="House2" parent="." instance=ExtResource("12_ue5ab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.6947, 0.45092, -31.5021)
-
-[node name="LHouse2" parent="." instance=ExtResource("13_7y2no")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.1874, 0.45092, -21.4587)
-
-[node name="LHouse" parent="." instance=ExtResource("14_o6ym4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.8873, 0.45092, 0.683613)
-
-[node name="OakTreeGreen" parent="." instance=ExtResource("15_dwo7l")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2926, 0.45092, -58.4735)
-
-[node name="OakTreeOrange" parent="." instance=ExtResource("16_u2dwg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.3519, 0.45092, -51.6142)
-
-[node name="OakTreeRed" parent="." instance=ExtResource("17_mr06c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.9617, 0.45092, -48.6628)
-
-[node name="OakTreeYellow" parent="." instance=ExtResource("18_d4y1q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.7055, 0.450924, -45.2513)
-
-[node name="PineTree" parent="." instance=ExtResource("19_3x7xg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2263, 0.45092, -43.9443)
-
-[node name="THouse2" parent="." instance=ExtResource("20_2onfp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.60741, 0.45092, 35.4307)
-
-[node name="THouse" parent="." instance=ExtResource("21_oplgo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.6987, 0.45092, 50.017)
-
-[node name="UHouse2" parent="." instance=ExtResource("22_0neud")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.4891, 0.45092, 30.5339)
-
-[node name="UHouse" parent="." instance=ExtResource("23_ynpdj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.6375, 0.45092, 26.1383)
-
-[node name="WillowTreeGreen" parent="." instance=ExtResource("24_ho33n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0450778, 0.45092, -67.6657)
-
-[node name="WillowTreeOrange" parent="." instance=ExtResource("25_yqp8u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.02636, 0.45092, -61.4858)
-
-[node name="WillowTreeRed" parent="." instance=ExtResource("26_c60l1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59156, 0.45092, -63.1739)
-
-[node name="WillowTreeYellow" parent="." instance=ExtResource("27_wwigs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.483973, 0.45092, -56.4987)
