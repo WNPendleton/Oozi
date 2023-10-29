@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cernwdlsei81b"]
+[gd_scene load_steps=39 format=3 uid="uid://cernwdlsei81b"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_6j2kd"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="2_tsx1f"]
@@ -9,11 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://bh6t23en4fuhw" path="res://models/cart.gltf" id="5_pyqr6"]
 [ext_resource type="ArrayMesh" uid="uid://dfiju0we4ipq7" path="res://models/RailPlank.obj" id="6_kvfiw"]
 [ext_resource type="ArrayMesh" uid="uid://dbbxngqx70opt" path="res://models/RailPlankMinus.obj" id="6_tk54q"]
+[ext_resource type="AudioStream" uid="uid://dwr4h2flbe66t" path="res://sounds/shoot.wav" id="7_gswhr"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="7_keqov"]
 [ext_resource type="ArrayMesh" uid="uid://du1rbwfgy0361" path="res://models/RailPlankPlus.obj" id="8_krelq"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="8_nsrkm"]
+[ext_resource type="AudioStream" uid="uid://bo1oj7nb3i4m1" path="res://sounds/click.wav" id="8_slji7"]
 [ext_resource type="Material" uid="uid://bj1a4c1u1tviw" path="res://materials/cave.tres" id="8_wewtq"]
+[ext_resource type="AudioStream" uid="uid://bkk3s4bkworyl" path="res://sounds/oozihit.wav" id="9_0jfgp"]
+[ext_resource type="AudioStream" uid="uid://bijyoqiwr2rei" path="res://sounds/reload.wav" id="10_8fg7j"]
 [ext_resource type="Script" path="res://scripts/PathFollow3D.gd" id="11_fe5d0"]
+[ext_resource type="AudioStream" uid="uid://maymrku2km6y" path="res://sounds/enemyhit.wav" id="11_nw2ao"]
+[ext_resource type="AudioStream" uid="uid://monew1aguujw" path="res://sounds/bossdeath.wav" id="12_dbxwb"]
+[ext_resource type="AudioStream" uid="uid://d2fk6bk5xal8d" path="res://sounds/Wretched Destroyer.mp3" id="13_hn5ly"]
 [ext_resource type="Script" path="res://scripts/skellycartplacer.gd" id="14_4uavf"]
 [ext_resource type="PackedScene" uid="uid://c6c58n05wrjsm" path="res://models/railturntable.gltf" id="17_h7i3p"]
 [ext_resource type="Script" path="res://scripts/skeleviathan_enemy.gd" id="18_k8fso"]
@@ -94,6 +101,7 @@ reload_text = NodePath("../../UI/reload_text")
 bullet_count = NodePath("../../UI/bullet_count")
 chosen_path_follow = NodePath("../RailPath/PlayerPathFollow")
 follow_speed = 2
+music = ExtResource("13_hn5ly")
 
 [node name="Viewmodel" type="SoftBody3D" parent="3DWorld/Player"]
 transform = Transform3D(0.544639, -0.393732, -0.740503, 0, 0.882947, -0.469472, 0.838671, 0.255692, 0.480888, 0.428, -0.3, -0.416)
@@ -171,6 +179,27 @@ light_energy = 16.0
 light_indirect_energy = 16.0
 light_volumetric_fog_energy = 16.0
 spot_range = 14.905
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("7_gswhr")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("8_slji7")
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("9_0jfgp")
+
+[node name="ReloadSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("10_8fg7j")
+
+[node name="EnemyHitSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("11_nw2ao")
+
+[node name="BossDeathSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("12_dbxwb")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="3DWorld/Player"]
+volume_db = -10.0
 
 [node name="RailPath" type="Path3D" parent="3DWorld"]
 curve = SubResource("Curve3D_bk1xm")
