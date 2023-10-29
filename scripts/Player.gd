@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@export var next_level : PackedScene
 @export var arm_range : Vector2
 @export var arm_base : Vector2
 @export var init_counter = 0.2
@@ -109,3 +110,7 @@ func player_get_hit(dmg):
 func game_over() :
 	#Do the gameover thing here
 	get_tree().quit()
+
+
+func _on_boss_death_sound_finished():
+	get_tree().change_scene_to_packed(next_level)

@@ -1,0 +1,200 @@
+[gd_scene load_steps=32 format=3 uid="uid://bpe8bm7u6cbs0"]
+
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_4ci7d"]
+[ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_be173"]
+[ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="2_nke7g"]
+[ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="3_8g1yk"]
+[ext_resource type="ArrayMesh" uid="uid://cnb0jsea733p6" path="res://models/blob.obj" id="4_vyrja"]
+[ext_resource type="PackedScene" uid="uid://obcdwbj6a7wr" path="res://models/LHouse2.gltf" id="5_wupa2"]
+[ext_resource type="PackedScene" uid="uid://c484luve2wx5f" path="res://models/House2.gltf" id="6_mp55b"]
+[ext_resource type="PackedScene" uid="uid://0l2i2gwgosdo" path="res://models/THouse2.gltf" id="7_jx0e5"]
+[ext_resource type="PackedScene" uid="uid://l47bw6ev7qgf" path="res://models/UHouse2.gltf" id="8_q8f0b"]
+[ext_resource type="PackedScene" uid="uid://cviisjqmdckws" path="res://models/cave.gltf" id="9_mlrsy"]
+[ext_resource type="PackedScene" uid="uid://cw6ibpscmphqu" path="res://models/railbutton.gltf" id="10_i1ctt"]
+[ext_resource type="PackedScene" uid="uid://dqo4r72gjsvum" path="res://models/5rails.gltf" id="11_wlgon"]
+[ext_resource type="PackedScene" uid="uid://bh6t23en4fuhw" path="res://models/cart.gltf" id="12_c5t7a"]
+[ext_resource type="PackedScene" uid="uid://tebfoxg60y0k" path="res://models/lamppost.gltf" id="13_4mwsq"]
+[ext_resource type="PackedScene" uid="uid://dtlcljf2di7hg" path="res://models/scientist.gltf" id="15_d6c88"]
+[ext_resource type="PackedScene" uid="uid://cc4qhkq3560c6" path="res://models/WillowTreeYellow.gltf" id="17_fondq"]
+[ext_resource type="PackedScene" uid="uid://b8jegtp1c18a6" path="res://models/WillowTreeRed.gltf" id="18_s574w"]
+[ext_resource type="PackedScene" uid="uid://brce3jyu3cmov" path="res://models/WillowTreeGreen.gltf" id="19_u21nr"]
+[ext_resource type="PackedScene" uid="uid://cqhohdxkchw1l" path="res://models/WillowTreeOrange.gltf" id="20_kp8vg"]
+[ext_resource type="PackedScene" uid="uid://qbyqt532jr4m" path="res://models/OakTreeYellow.gltf" id="21_1xbmu"]
+[ext_resource type="PackedScene" uid="uid://8fq2lqik6k88" path="res://models/OakTreeRed.gltf" id="22_vbnkj"]
+[ext_resource type="PackedScene" uid="uid://ceovl8hmkftg5" path="res://models/OakTreeGreen.gltf" id="23_bu7m4"]
+[ext_resource type="PackedScene" uid="uid://b3gsokcl6wlnb" path="res://models/OakTreeOrange.gltf" id="24_5bb85"]
+[ext_resource type="PackedScene" uid="uid://ci15c358od2n6" path="res://models/PineTree.gltf" id="25_7tkkq"]
+
+[sub_resource type="SystemFont" id="SystemFont_il0fh"]
+font_names = PackedStringArray("Titan One")
+
+[sub_resource type="LabelSettings" id="LabelSettings_rb3ps"]
+font = SubResource("SystemFont_il0fh")
+font_size = 72
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dl4lm"]
+shader = ExtResource("1_be173")
+shader_parameter/skyColor = Color(0.301961, 0.54902, 1, 1)
+shader_parameter/horizonColor = Color(0.701961, 0.803922, 1, 1)
+
+[sub_resource type="Sky" id="Sky_e7f0h"]
+sky_material = SubResource("ShaderMaterial_dl4lm")
+
+[sub_resource type="Environment" id="Environment_6p37c"]
+background_mode = 2
+sky = SubResource("Sky_e7f0h")
+
+[sub_resource type="SphereMesh" id="SphereMesh_8g37o"]
+radius = 0.05
+height = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_41vdl"]
+material = ExtResource("2_nke7g")
+radius = 0.2
+height = 0.2
+
+[node name="Game" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ci7d")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -15.5
+offset_right = 48.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start Game
+"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.5
+offset_top = 143.0
+offset_right = 84.5
+offset_bottom = 245.0
+grow_horizontal = 2
+text = "Oozi"
+label_settings = SubResource("LabelSettings_rb3ps")
+
+[node name="3DWorld" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="3DWorld"]
+environment = SubResource("Environment_6p37c")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DWorld/WorldEnvironment"]
+transform = Transform3D(0.984057, 0.134254, -0.116652, -0.0456839, 0.824687, 0.563741, 0.171886, -0.549424, 0.817672, 0, 4.95604, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="3DWorld"]
+material_override = ExtResource("2_nke7g")
+size = Vector3(100, 0.1, 100)
+
+[node name="Camera3D" type="Camera3D" parent="3DWorld"]
+transform = Transform3D(0.5, -1.40782e-07, 0.866026, -1.40782e-07, 1, 2.43842e-07, -0.866026, -2.43842e-07, 0.5, 8.56105, 2, 12.4749)
+current = true
+
+[node name="Blob" type="MeshInstance3D" parent="3DWorld"]
+transform = Transform3D(0.140193, 0, 0.990124, 0, 1, 0, -0.990124, 0, 0.140193, 4.09739, 0, 12.4737)
+material_override = ExtResource("3_8g1yk")
+mesh = ExtResource("4_vyrja")
+skeleton = NodePath("../..")
+
+[node name="Face" type="Node3D" parent="3DWorld/Blob"]
+transform = Transform3D(0.515, 0, 0, 0, 0.502753, 0.111642, 0, -0.111642, 0.502753, 0, 0.0384248, 0.773148)
+
+[node name="Eye1" type="MeshInstance3D" parent="3DWorld/Blob/Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 1.506, 0)
+material_override = ExtResource("2_nke7g")
+mesh = SubResource("SphereMesh_8g37o")
+skeleton = NodePath("../..")
+
+[node name="Eye2" type="MeshInstance3D" parent="3DWorld/Blob/Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338, 1.506, 0)
+material_override = ExtResource("2_nke7g")
+mesh = SubResource("SphereMesh_8g37o")
+skeleton = NodePath("../..")
+
+[node name="Mouth" type="MeshInstance3D" parent="3DWorld/Blob/Face"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.948, 0)
+mesh = SubResource("SphereMesh_41vdl")
+skeleton = NodePath("../..")
+
+[node name="LHouse2" parent="3DWorld" instance=ExtResource("5_wupa2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8608, 0, 24.5297)
+
+[node name="House2" parent="3DWorld" instance=ExtResource("6_mp55b")]
+transform = Transform3D(-0.0796944, 0, -0.996819, 0, 1, 0, 0.996819, 0, -0.0796944, -34.8771, 0, -1.27394)
+
+[node name="THouse2" parent="3DWorld" instance=ExtResource("7_jx0e5")]
+transform = Transform3D(-0.636267, 0, -0.771469, 0, 1, 0, 0.771469, 0, -0.636267, -26.6602, -1.90735e-06, -23.8524)
+
+[node name="UHouse2" parent="3DWorld" instance=ExtResource("8_q8f0b")]
+transform = Transform3D(-0.972059, 0, -0.234735, 0, 1, 0, 0.234735, 0, -0.972059, -6.73543, 0, -33.735)
+
+[node name="cave" parent="3DWorld" instance=ExtResource("9_mlrsy")]
+transform = Transform3D(-0.759453, 0, 0.650562, 0, 1, 0, -0.650562, 0, -0.759453, 21.614, 0, -19.2403)
+
+[node name="railbutton" parent="3DWorld/cave" instance=ExtResource("10_i1ctt")]
+transform = Transform3D(0.994115, 0, -0.108329, 0, 1, 0, 0.108329, 0, 0.994115, -4.84498, 0, -6.28541)
+
+[node name="5rails" parent="3DWorld/cave" instance=ExtResource("11_wlgon")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.234989, 0.0446822, -5.17693)
+
+[node name="cart" parent="3DWorld/cave/5rails" instance=ExtResource("12_c5t7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 0.404, -1.31046)
+
+[node name="lamppost" parent="3DWorld" instance=ExtResource("13_4mwsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.19203, 0, -0.822439)
+
+[node name="scientist" parent="3DWorld" instance=ExtResource("15_d6c88")]
+transform = Transform3D(-0.918702, 0, -0.394952, 0, 1, 0, 0.394952, 0, -0.918702, 6.05765, 0, 7.69464)
+
+[node name="WillowTreeYellow" parent="3DWorld" instance=ExtResource("17_fondq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82939, 0, 17.7099)
+
+[node name="WillowTreeRed" parent="3DWorld" instance=ExtResource("18_s574w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4226, 0, 12.1713)
+
+[node name="WillowTreeGreen" parent="3DWorld" instance=ExtResource("19_u21nr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8583, 0, -34.5656)
+
+[node name="WillowTreeOrange" parent="3DWorld" instance=ExtResource("20_kp8vg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.9389, 0, -47.5009)
+
+[node name="OakTreeYellow" parent="3DWorld" instance=ExtResource("21_1xbmu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.0111, 0, -28.3783)
+
+[node name="OakTreeRed" parent="3DWorld" instance=ExtResource("22_vbnkj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9525, 0, -46.8872)
+
+[node name="OakTreeGreen" parent="3DWorld" instance=ExtResource("23_bu7m4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.0811, 0, -14.4858)
+
+[node name="OakTreeOrange" parent="3DWorld" instance=ExtResource("24_5bb85")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.1206, 0, 4.50634)
+
+[node name="PineTree" parent="3DWorld" instance=ExtResource("25_7tkkq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.9029, 0, 0.999548)
+
+[node name="PineTree2" parent="3DWorld" instance=ExtResource("25_7tkkq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58969, 0, -15.8019)
+
+[connection signal="pressed" from="Control/Button" to="Control" method="_on_button_pressed"]
