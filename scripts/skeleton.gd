@@ -3,6 +3,9 @@ extends Enemy
 #@onready var anim = $Armature/AnimationPlayer
 @onready var activate_delay_timer = $activate_delay_timer
 @export var spawn_animation : String
+@export var attack_timer : int
+
+@onready var projectile_prefab = preload("res://prefabs/bone_projectile.tscn")
 
 func _ready():
 	anim.connect("animation_finished", Callable(self, "_on_animation_player_animation_finished"))

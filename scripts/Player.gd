@@ -8,6 +8,7 @@ extends CharacterBody3D
 @export var chosen_path_follow : PathFollow3D
 @export var path_follow_offset : Vector3
 @export var follow_speed = 10
+@export var max_health : int
 @export_category("Reload Bullshit")
 @export var reload_timer : float
 @export var reload_text : Label
@@ -21,6 +22,8 @@ var ray_length = 500.0
 
 var reloading = false
 
+
+@onready var current_health = max_health
 
 @onready var current_ammo = max_ammo
 
@@ -98,3 +101,12 @@ func finish_reload():
 	reload_text.hide()
 	current_ammo = max_ammo	
 	bullet_count.text = str(current_ammo)
+	
+func player_get_hit(dmg):
+	current_health -= dmg
+	if current_health <= 0:
+		game_over()
+		
+func game_over() :
+	#Do the gameover thing here
+	get_tree().quit()
