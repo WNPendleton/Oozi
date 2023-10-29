@@ -1,16 +1,23 @@
-[gd_scene load_steps=41 format=3 uid="uid://bmcmxeptbanl4"]
+[gd_scene load_steps=49 format=3 uid="uid://bmcmxeptbanl4"]
 
 [ext_resource type="Material" uid="uid://cehsst823bf3x" path="res://materials/ground.tres" id="1_a8feo"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_feode"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="2_3untc"]
+[ext_resource type="PackedScene" uid="uid://cernwdlsei81b" path="res://scenes/Level02.tscn" id="2_cdpwk"]
+[ext_resource type="AudioStream" uid="uid://cpqprvfnh5e5w" path="res://sounds/Wepa.mp3" id="2_dtr8x"]
 [ext_resource type="ArrayMesh" uid="uid://bk7f1p5blvqe" path="res://models/viewmodel.obj" id="3_ini4h"]
 [ext_resource type="ArrayMesh" uid="uid://dxot1ygcupbaj" path="res://models/uzi.obj" id="4_n4w6q"]
 [ext_resource type="Script" path="res://scripts/PathFollow3D.gd" id="5_g0ywy"]
+[ext_resource type="AudioStream" uid="uid://dwr4h2flbe66t" path="res://sounds/shoot.wav" id="5_uypqc"]
+[ext_resource type="AudioStream" uid="uid://bo1oj7nb3i4m1" path="res://sounds/click.wav" id="6_enqkf"]
 [ext_resource type="Script" path="res://scripts/EnemyEncounter.gd" id="6_ntmgi"]
 [ext_resource type="PackedScene" uid="uid://dvs1eabwvj4do" path="res://prefabs/corrected_skeleton.tscn" id="7_u0s67"]
+[ext_resource type="AudioStream" uid="uid://bijyoqiwr2rei" path="res://sounds/reload.wav" id="7_xfamb"]
+[ext_resource type="AudioStream" uid="uid://maymrku2km6y" path="res://sounds/enemyhit.wav" id="8_3lf6q"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="8_y3css"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="9_4yo8b"]
 [ext_resource type="PackedScene" uid="uid://obcdwbj6a7wr" path="res://models/LHouse2.gltf" id="9_42d06"]
+[ext_resource type="AudioStream" uid="uid://monew1aguujw" path="res://sounds/bossdeath.wav" id="9_uuv65"]
 [ext_resource type="PackedScene" uid="uid://c484luve2wx5f" path="res://models/House2.gltf" id="10_35gxo"]
 [ext_resource type="PackedScene" uid="uid://0l2i2gwgosdo" path="res://models/THouse2.gltf" id="11_ehcif"]
 [ext_resource type="PackedScene" uid="uid://l47bw6ev7qgf" path="res://models/UHouse2.gltf" id="12_0xt3u"]
@@ -25,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://ci15c358od2n6" path="res://models/PineTree.gltf" id="21_kdohw"]
 [ext_resource type="PackedScene" uid="uid://cviisjqmdckws" path="res://models/cave.gltf" id="23_fk2v6"]
 [ext_resource type="Script" path="res://Path.gd" id="23_v5uan"]
+[ext_resource type="Script" path="res://scripts/BigSkellyEncounter.gd" id="31_pu2di"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x0st1"]
 
@@ -108,6 +116,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73913, 0, 0)
 [node name="Player" type="CharacterBody3D" parent="3DWorld" node_paths=PackedStringArray("reload_text", "bullet_count", "chosen_path_follow")]
 transform = Transform3D(-0.0685799, 0.0375195, -0.99694, -8.73129e-10, 0.999292, 0.0376079, 0.997646, 0.00257913, -0.0685308, -45.596, 2.5, -50.531)
 script = ExtResource("1_feode")
+next_level = ExtResource("2_cdpwk")
 arm_range = Vector2(1.25, 0.625)
 arm_base = Vector2(-0.5, 0)
 max_ammo = 6
@@ -115,6 +124,7 @@ reload_timer = 2.0
 reload_text = NodePath("../../UI/reload_text")
 bullet_count = NodePath("../../UI/bullet_count")
 chosen_path_follow = NodePath("../StartPath/PathFollow3D")
+music = ExtResource("2_dtr8x")
 
 [node name="Viewmodel" type="SoftBody3D" parent="3DWorld/Player"]
 transform = Transform3D(0.544639, -0.393732, -0.740503, 0, 0.882947, -0.469472, 0.838671, 0.255692, 0.480888, 0.428, -0.3, -0.416)
@@ -130,28 +140,28 @@ drag_coefficient = 1.0
 pinned_points = [60, 1006, 1248, 1059, 608, 1274, 560, 1094]
 attachments/0/point_index = 60
 attachments/0/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Back")
-attachments/0/offset = Vector3(-1.48916, -0.29245, -0.230787)
+attachments/0/offset = Vector3(-1.48916, -0.29245, -0.230783)
 attachments/1/point_index = 1006
 attachments/1/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Tip")
 attachments/1/offset = Vector3(1.46866, -0.0552673, 0.162606)
 attachments/2/point_index = 1248
 attachments/2/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/2/offset = Vector3(0.357749, -0.023853, 0.211394)
+attachments/2/offset = Vector3(0.357749, -0.0238525, 0.211392)
 attachments/3/point_index = 1059
 attachments/3/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
-attachments/3/offset = Vector3(0.136704, 0.143, -0.215185)
+attachments/3/offset = Vector3(0.136707, 0.143, -0.215185)
 attachments/4/point_index = 608
 attachments/4/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/4/offset = Vector3(0.256965, 0.108849, 0.141168)
+attachments/4/offset = Vector3(0.256965, 0.108849, 0.141166)
 attachments/5/point_index = 1274
 attachments/5/spatial_attachment_path = NodePath("../ArmAnchor/Markers/Trigger")
-attachments/5/offset = Vector3(0.304989, 0.0929058, 0.322907)
+attachments/5/offset = Vector3(0.30499, 0.0929063, 0.322905)
 attachments/6/point_index = 560
 attachments/6/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
-attachments/6/offset = Vector3(0.0913286, 0.279893, -0.131844)
+attachments/6/offset = Vector3(0.0913324, 0.279893, -0.131844)
 attachments/7/point_index = 1094
 attachments/7/spatial_attachment_path = NodePath("../ArmAnchor/Uzi")
-attachments/7/offset = Vector3(0.227876, 0.277671, -0.219236)
+attachments/7/offset = Vector3(0.22788, 0.277671, -0.219236)
 
 [node name="Camera" type="Camera3D" parent="3DWorld/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -181,6 +191,24 @@ transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, -0.504
 transform = Transform3D(0.999999, 0, -3.8743e-07, 0, 1, 0, 3.8743e-07, 0, 0.999999, 0.0966836, 0.12842, -0.327205)
 
 [node name="reload_timer" type="Timer" parent="3DWorld/Player"]
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("5_uypqc")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("6_enqkf")
+
+[node name="ReloadSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("7_xfamb")
+
+[node name="EnemyHitSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("8_3lf6q")
+
+[node name="BossDeathSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("9_uuv65")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="3DWorld/Player"]
+volume_db = -10.0
 
 [node name="Terrain" type="Node3D" parent="3DWorld"]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
@@ -588,7 +616,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -124.549, 0, -233.707)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -131.621, 0, -214.584)
 
 [node name="OakTreeRed" parent="3DWorld/Trees" instance=ExtResource("18_kk3tf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -104.563, 0, -233.093)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -137.628, 0, -227.004)
 
 [node name="OakTreeGreen" parent="3DWorld/Trees" instance=ExtResource("19_au0km")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -138.691, 0, -200.691)
@@ -684,10 +712,10 @@ script = ExtResource("23_v5uan")
 path_end_encounter = NodePath("../Encounter1")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="3DWorld/StartPath" node_paths=PackedStringArray("EncounterNode")]
-transform = Transform3D(0.998765, -0.00186668, -0.0496629, 4.65661e-10, 0.999294, -0.0375604, 0.049698, 0.037514, 0.99806, -0.039, 0, 0.1)
+transform = Transform3D(0.998765, 0.00149571, -0.0496767, 5.82077e-11, 0.999547, 0.0300952, 0.0496993, -0.0300579, 0.998312, -0.039, 1.5, 0.062)
 loop = false
 script = ExtResource("5_g0ywy")
-Path_Speed = 8.0
+Path_Speed = 20.0
 EncounterNode = NodePath("../../Encounter1")
 
 [node name="Encounter1" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
@@ -804,19 +832,14 @@ visible = false
 transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -4.21738, -0.986755, 1.34877)
 visible = false
 
-[node name="Encounter7" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
+[node name="Encounter7" type="Node3D" parent="3DWorld"]
 transform = Transform3D(-0.444682, 0, -0.895689, 0, 1, 0, 0.895689, 0, -0.444682, -98.5968, 1.0681, -217.544)
-script = ExtResource("6_ntmgi")
-PathFollow = NodePath("../StartPath/PathFollow3D")
-Next_Path = NodePath("../StartPath")
+script = ExtResource("31_pu2di")
 
 [node name="skeleton" parent="3DWorld/Encounter7" instance=ExtResource("7_u0s67")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.986755, 0)
+transform = Transform3D(2.47737, 0, -4.34311, 0, 5, 0, 4.34311, 0, 2.47737, -9.5435, 0, 7.61537)
 visible = false
-
-[node name="skeleton2" parent="3DWorld/Encounter7" instance=ExtResource("7_u0s67")]
-transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -4.21738, -0.986755, 1.34877)
-visible = false
+max_health = 15
 
 [node name="UI" type="Control" parent="."]
 process_mode = 3
@@ -843,3 +866,5 @@ text = "Reloading..."
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[connection signal="finished" from="3DWorld/Player/BossDeathSound" to="3DWorld/Player" method="_on_boss_death_sound_finished"]
