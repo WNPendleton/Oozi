@@ -16,7 +16,6 @@ func _process(delta):
 	if started:
 		attack_timer += delta
 		progress += path_speed * delta
-		look_at(player_reference.global_transform.origin, Vector3.UP)
 
 func start_encounter():
 	var timer : SceneTreeTimer = get_tree().create_timer(1)
@@ -28,11 +27,14 @@ func play_laugh():
 func on_animation_finished(anim_name):
 	if anim_name == "Laugh":
 		started = true
-		var tween = get_tree().create_tween()
 		anim.play("Idle")
 	if anim_name == "Idle":
 		if attack_timer >= attack_delay:
 			attack_timer = 0
 			anim.play(["AttackLeft", "AttackRight"].pick_random())
+			var bone_timer : SceneTreeTimer = get_tree().create_timer(1)
+			bone_timer.connect("timeout", Callable($skeleviathan, "throw_bone"))
 		else:
 			anim.play("Idle")
+	else:
+		anim.play("Idle")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ddwobwc1vnu6y"]
 
 [ext_resource type="Script" path="res://scripts/PathFollow3D.gd" id="1_q280b"]
-[ext_resource type="PackedScene" uid="uid://ccqgj44hdrmuc" path="res://models/skeleton.gltf" id="2_nnv8f"]
+[ext_resource type="PackedScene" uid="uid://dvs1eabwvj4do" path="res://prefabs/corrected_skeleton.tscn" id="2_okqio"]
 [ext_resource type="PackedScene" uid="uid://bh6t23en4fuhw" path="res://models/cart.gltf" id="3_2fhw5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jxyi0"]
@@ -13,14 +13,16 @@ script = ExtResource("1_q280b")
 Path_Speed = -3.0
 initial_progress_ratio = 0.2
 
-[node name="skeleton" parent="." instance=ExtResource("2_nnv8f")]
-transform = Transform3D(-1, 3.97639e-09, -8.73324e-08, -3.97638e-09, 0.995864, 0.090875, 8.73323e-08, 0.090875, -0.995864, 2.98249, 0.536751, -0.953716)
+[node name="skeleton" parent="." instance=ExtResource("2_okqio")]
+transform = Transform3D(-1, -7.45058e-09, 5.96046e-08, 5.42218e-09, 0.995865, 0.0908751, -1.19086e-07, 0.0908751, -0.995865, 3.1045, 0.986938, -0.934646)
+spawn_animation = "Idle"
 
-[node name="StaticBody3D" type="StaticBody3D" parent="skeleton"]
+[node name="cart" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 3.97639e-09, -8.73324e-08, -3.97638e-09, 0.995864, 0.090875, 8.73323e-08, 0.090875, -0.995864, 2.98249, 0.536736, -0.953716)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="skeleton/StaticBody3D"]
-transform = Transform3D(1, -8.88178e-16, 2.13163e-14, 0, 0.999999, -3.72529e-09, 0, 1.11759e-08, 0.999999, -7.15256e-07, 0.548233, 1.00311)
+[node name="collider" type="CollisionShape3D" parent="cart"]
+transform = Transform3D(1, -1.33227e-15, 3.55271e-14, 0, 0.999999, -3.72529e-09, 7.10543e-15, 1.11759e-08, 0.999999, -1.19209e-06, 0.548225, 1.00311)
 shape = SubResource("BoxShape3D_jxyi0")
 
-[node name="cart" parent="skeleton/StaticBody3D" instance=ExtResource("3_2fhw5")]
-transform = Transform3D(1, -4.44089e-16, 7.10543e-15, 0, 0.999999, -7.45058e-09, 0, 1.11759e-08, 0.999999, -2.38419e-07, -0.536781, 0.953712)
+[node name="mesh" parent="cart" instance=ExtResource("3_2fhw5")]
+transform = Transform3D(1, -4.44089e-16, 7.10543e-15, 0, 0.999999, 0, 7.10543e-15, 7.45058e-09, 0.999999, -7.15256e-07, -0.536774, 0.953712)
