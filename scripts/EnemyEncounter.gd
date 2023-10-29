@@ -23,7 +23,9 @@ func activate_encounter():
 	
 func complete_encounter():
 	print('Encounter Completed')
+	PathFollow.path_end = false
 	PathFollow.get_parent().remove_child(PathFollow)
 	Next_Path.add_child(PathFollow)
 	PathFollow.progress_ratio = 0
+	PathFollow.EncounterNode = Next_Path.path_end_encounter
 	pass
