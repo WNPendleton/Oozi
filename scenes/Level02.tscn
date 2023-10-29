@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://cernwdlsei81b"]
+[gd_scene load_steps=39 format=3 uid="uid://cernwdlsei81b"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_6j2kd"]
+[ext_resource type="PackedScene" uid="uid://bpe8bm7u6cbs0" path="res://scenes/Menu.tscn" id="2_tldns"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="2_tsx1f"]
 [ext_resource type="ArrayMesh" uid="uid://bk7f1p5blvqe" path="res://models/viewmodel.obj" id="3_vu7th"]
 [ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="4_5fqlv"]
@@ -9,13 +10,20 @@
 [ext_resource type="PackedScene" uid="uid://bh6t23en4fuhw" path="res://models/cart.gltf" id="5_pyqr6"]
 [ext_resource type="ArrayMesh" uid="uid://dfiju0we4ipq7" path="res://models/RailPlank.obj" id="6_kvfiw"]
 [ext_resource type="ArrayMesh" uid="uid://dbbxngqx70opt" path="res://models/RailPlankMinus.obj" id="6_tk54q"]
+[ext_resource type="AudioStream" uid="uid://dwr4h2flbe66t" path="res://sounds/shoot.wav" id="7_gswhr"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="7_keqov"]
 [ext_resource type="ArrayMesh" uid="uid://du1rbwfgy0361" path="res://models/RailPlankPlus.obj" id="8_krelq"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="8_nsrkm"]
+[ext_resource type="AudioStream" uid="uid://bo1oj7nb3i4m1" path="res://sounds/click.wav" id="8_slji7"]
 [ext_resource type="Material" uid="uid://bj1a4c1u1tviw" path="res://materials/cave.tres" id="8_wewtq"]
+[ext_resource type="AudioStream" uid="uid://bijyoqiwr2rei" path="res://sounds/reload.wav" id="10_8fg7j"]
 [ext_resource type="Script" path="res://scripts/PathFollow3D.gd" id="11_fe5d0"]
+[ext_resource type="AudioStream" uid="uid://maymrku2km6y" path="res://sounds/enemyhit.wav" id="11_nw2ao"]
+[ext_resource type="AudioStream" uid="uid://monew1aguujw" path="res://sounds/bossdeath.wav" id="12_dbxwb"]
+[ext_resource type="AudioStream" uid="uid://d2fk6bk5xal8d" path="res://sounds/Wretched Destroyer.mp3" id="13_hn5ly"]
 [ext_resource type="Script" path="res://scripts/skellycartplacer.gd" id="14_4uavf"]
 [ext_resource type="PackedScene" uid="uid://c6c58n05wrjsm" path="res://models/railturntable.gltf" id="17_h7i3p"]
+[ext_resource type="Script" path="res://scripts/skeleviathan_enemy.gd" id="18_k8fso"]
 [ext_resource type="Script" path="res://scripts/skeleviathan_encounter.gd" id="18_rl0bk"]
 [ext_resource type="PackedScene" uid="uid://dvgemsbqgc22m" path="res://models/skeleviathan.gltf" id="19_qow61"]
 [ext_resource type="Script" path="res://scripts/skeleviathan_boss.gd" id="20_b3uwg"]
@@ -62,10 +70,13 @@ sky = SubResource("Sky_vmk5g")
 
 [sub_resource type="Curve3D" id="Curve3D_uorln"]
 _data = {
-"points": PackedVector3Array(-0.720825, -1.47731, -1.11362, 0.720825, 1.47731, 1.11362, 0, 0, 0, -1.79538, 0.470506, -0.220032, 1.79538, -0.470506, 0.220032, 4.35498, 3.63003, 4.34534, 0.19722, 2.09118, -1.04799, -0.19722, -2.09118, 1.04799, 6.63072, -0.220333, 7.3342, 1.81512, -0.0957699, 0.778319, -1.81512, 0.0957699, -0.778319, 3.8286, -3.58526, 6.9024, -0.214508, -0.287042, 1.38219, 0.214508, 0.287042, -1.38219, -0.552231, 3.81453, -5.87851, 1.13379, 2.37025, 0.898159, -1.13379, -2.37025, -0.898159, -2.7567, 0.597179, -9.45929, -0.387207, -0.342108, -2.17369, 0.387207, 0.342108, 2.17369, -4.07791, -3.60034, -6.87536, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"points": PackedVector3Array(-0.720825, -1.47731, -1.11362, 0.720825, 1.47731, 1.11362, 0, 0, 0, -2.12922, -0.129992, -0.240616, 2.12922, 0.129992, 0.240616, 6.36359, 4.43457, -0.167694, -1.00393, 2.18876, -1.35886, 1.00393, -2.18876, 1.35886, 9.48203, 0.515706, -0.965546, 2.44928, 0.00487709, -0.322571, -2.44928, -0.00487709, 0.322571, 6.41203, -3.21897, 2.94812, 1.43391, -0.382507, 1.17932, -1.43391, 0.382507, -1.17932, -5.44968, 4.06468, 0.327148, -0.497219, 2.09975, 0.934204, 0.497219, -2.09975, -0.934204, -8.78335, 1.51577, -2.4617, -1.91285, 0.0667591, -1.20554, 1.91285, -0.0667591, 1.20554, -7.20815, -1.97257, 0.0189819, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 8
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_45x7o"]
+points = PackedVector3Array(1, 1, 0, -1, 1, 0, -4, -3.2, 0, 4, -3.2, 0)
 
 [sub_resource type="Curve3D" id="Curve3D_cha8q"]
 _data = {
@@ -75,21 +86,23 @@ _data = {
 point_count = 2
 up_vector_enabled = false
 
-[node name="Game" type="Node"]
+[node name="Game2" type="Node"]
 
 [node name="3DWorld" type="Node3D" parent="."]
 
-[node name="Player" type="CharacterBody3D" parent="3DWorld" node_paths=PackedStringArray("chosen_path_follow", "reload_text", "bullet_count")]
+[node name="Player" type="CharacterBody3D" parent="3DWorld" node_paths=PackedStringArray("reload_text", "bullet_count", "chosen_path_follow")]
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 102.601, 0)
 script = ExtResource("1_6j2kd")
+next_level = ExtResource("2_tldns")
 arm_range = Vector2(1.25, 0.625)
 arm_base = Vector2(-0.5, 0)
 max_ammo = 6
-chosen_path_follow = NodePath("../RailPath/PlayerPathFollow")
-follow_speed = 2
 reload_timer = 2.0
 reload_text = NodePath("../../UI/reload_text")
 bullet_count = NodePath("../../UI/bullet_count")
+chosen_path_follow = NodePath("../RailPath/PlayerPathFollow")
+follow_speed = 2
+music = ExtResource("13_hn5ly")
 
 [node name="Viewmodel" type="SoftBody3D" parent="3DWorld/Player"]
 transform = Transform3D(0.544639, -0.393732, -0.740503, 0, 0.882947, -0.469472, 0.838671, 0.255692, 0.480888, 0.428, -0.3, -0.416)
@@ -167,6 +180,24 @@ light_energy = 16.0
 light_indirect_energy = 16.0
 light_volumetric_fog_energy = 16.0
 spot_range = 14.905
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("7_gswhr")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("8_slji7")
+
+[node name="ReloadSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("10_8fg7j")
+
+[node name="EnemyHitSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("11_nw2ao")
+
+[node name="BossDeathSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("12_dbxwb")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="3DWorld/Player"]
+volume_db = -10.0
 
 [node name="RailPath" type="Path3D" parent="3DWorld"]
 curve = SubResource("Curve3D_bk1xm")
@@ -287,12 +318,11 @@ path_joined = false
 multimesh = SubResource("MultiMesh_40atv")
 
 [node name="PlayerPathFollow" type="PathFollow3D" parent="3DWorld/RailPath" node_paths=PackedStringArray("EncounterNode")]
-transform = Transform3D(0.999996, 0, 0, 0, 0.998963, 0.0454843, 0, -0.0454844, 0.998962, 0, 101.998, -0.090969)
+transform = Transform3D(0.999996, 0, 0, 0, 0.998962, 0.0454843, 0, -0.0454843, 0.998961, 0, 101.998, -0.090969)
 v_offset = 2.0
 loop = false
 script = ExtResource("11_fe5d0")
-Path_Speed = 30.0
-initial_progress_ratio = 0.95
+Path_Speed = 10.0
 EncounterNode = NodePath("../../../BossCave/railturntable")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="3DWorld"]
@@ -341,17 +371,22 @@ sides = 16
 material = ExtResource("8_wewtq")
 
 [node name="BossPath" type="Path3D" parent="BossCave"]
-transform = Transform3D(0.995578, 0, -0.0939346, 0, 1, 0, 0.0939346, 0, 0.995578, -4.1076, -0.16046, 0.724551)
+transform = Transform3D(0.422618, 0, -0.906307, 0, 1, 0, 0.906307, 0, 0.422618, -4.1076, -0.16046, 0.724551)
 curve = SubResource("Curve3D_uorln")
 
 [node name="SkeleviathanPathFollow" type="PathFollow3D" parent="BossCave/BossPath" node_paths=PackedStringArray("player_reference")]
-transform = Transform3D(0.489474, 0, -0.872018, 0, 1, 0, 0.872018, 0, 0.489474, 0, 0, 0)
 rotation_mode = 0
 script = ExtResource("20_b3uwg")
 path_speed = 10
 player_reference = NodePath("../../../3DWorld/Player")
+attack_delay = 1.0
 
 [node name="skeleviathan" parent="BossCave/BossPath/SkeleviathanPathFollow" instance=ExtResource("19_qow61")]
+script = ExtResource("18_k8fso")
+max_health = 30
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BossCave/BossPath/SkeleviathanPathFollow/skeleviathan"]
+shape = SubResource("ConvexPolygonShape3D_45x7o")
 
 [node name="railturntable" parent="BossCave" node_paths=PackedStringArray("PathFollow", "Next_Path", "skeleviathan") instance=ExtResource("17_h7i3p")]
 transform = Transform3D(0.398514, 0, -0.900784, 0, 0.985, 0, 0.900784, 0, 0.398514, 4.31384, -4.1922, -2.69783)
@@ -364,4 +399,5 @@ skeleviathan = NodePath("../BossPath/SkeleviathanPathFollow")
 transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0, 0, 0)
 curve = SubResource("Curve3D_cha8q")
 
+[connection signal="finished" from="3DWorld/Player/BossDeathSound" to="3DWorld/Player" method="_on_boss_death_sound_finished"]
 [connection signal="curve_changed" from="3DWorld/RailPath" to="3DWorld/RailPath" method="_on_curve_changed"]

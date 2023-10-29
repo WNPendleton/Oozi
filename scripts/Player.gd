@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@export var next_level : PackedScene
 @export var arm_range : Vector2
 @export var arm_base : Vector2
 @export var init_counter = 0.2
@@ -14,6 +15,8 @@ extends CharacterBody3D
 @export var chosen_path_follow : PathFollow3D
 @export var path_follow_offset : Vector3
 @export var follow_speed = 10
+@export_category("Music")
+@export var music : AudioStream
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var ray_length = 500.0
@@ -25,6 +28,8 @@ var reloading = false
 @onready var camera = get_viewport().get_camera_3d()
 
 func _ready():
+	$MusicPlayer.stream = music
+	$MusicPlayer.play()
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	current_reload_timer.connect("timeout", (Callable(self, "finish_reload")))
 	current_reload_timer.one_shot = true
@@ -63,16 +68,17 @@ func _physics_process(delta):
 				if collider.has_method("get_hit"):
 					collider.get_hit(gun_damage)
 			current_ammo -= 1
+			$ShootSound.play()
 			bullet_count.text = str(current_ammo)
 		else :
-			#If we want, we can add a no ammo sound/visual here
-			pass
+			$ClickSound.play()
 			
 	if Input.is_action_just_pressed("reload"):
 		if !reloading:
 			current_reload_timer.start(reload_timer)
 			reloading = true
 			reload_text.show()
+			$ReloadSound.play()
 		
 func raycast_from_mouse(mouse_pos):
 	var ray_start = camera.project_ray_origin(mouse_pos)
@@ -96,6 +102,7 @@ func finish_reload():
 	bullet_count.text = str(current_ammo)
 	
 func player_get_hit(dmg):
+	$HurtSound.play()
 	current_health -= dmg
 	if current_health <= 0:
 		game_over()
@@ -103,3 +110,7 @@ func player_get_hit(dmg):
 func game_over() :
 	#Do the gameover thing here
 	get_tree().quit()
+
+
+func _on_boss_death_sound_finished():
+	get_tree().change_scene_to_packed(next_level)
