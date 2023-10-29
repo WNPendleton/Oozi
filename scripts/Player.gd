@@ -109,7 +109,7 @@ func player_get_hit(dmg):
 		
 func game_over() :
 	#Do the gameover thing here
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://scenes/Menu.tscn")
 
 
 func _on_boss_death_sound_finished():
