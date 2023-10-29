@@ -47,7 +47,7 @@ sky = SubResource("Sky_vmk5g")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_aavjp"]
 
-[node name="Game" type="Node"]
+[node name="Game2" type="Node"]
 
 [node name="3DWorld" type="Node3D" parent="."]
 
