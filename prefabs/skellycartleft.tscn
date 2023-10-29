@@ -1,33 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://fa80a6tfbchu"]
+[gd_scene load_steps=5 format=3 uid="uid://fa80a6tfbchu"]
 
 [ext_resource type="Script" path="res://scripts/PathFollow3D.gd" id="1_f88sm"]
-[ext_resource type="PackedScene" uid="uid://ccqgj44hdrmuc" path="res://models/skeleton.gltf" id="2_lqic2"]
+[ext_resource type="PackedScene" uid="uid://dvs1eabwvj4do" path="res://prefabs/corrected_skeleton.tscn" id="2_252ke"]
 [ext_resource type="PackedScene" uid="uid://bh6t23en4fuhw" path="res://models/cart.gltf" id="3_icyjd"]
-[ext_resource type="Script" path="res://scripts/SkellyCartDeleter.gd" id="4_4jcam"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jxyi0"]
 size = Vector3(2, 2, 4)
 
-[node name="skellycart" type="PathFollow3D" node_paths=PackedStringArray("EncounterNode")]
+[node name="skellycart" type="PathFollow3D"]
 transform = Transform3D(1, 0, 0, 0, 0.998965, 0.0454845, 0, -0.0454845, 0.998965, 0, 100, 0)
 script = ExtResource("1_f88sm")
 Path_Speed = -3.0
 initial_progress_ratio = 0.2
-EncounterNode = NodePath("cart/skeleton/Encounter")
 
-[node name="cart" parent="." instance=ExtResource("3_icyjd")]
-transform = Transform3D(-1, 3.97639e-09, -8.73323e-08, -3.97638e-09, 0.995864, 0.0908749, 8.73323e-08, 0.0908749, -0.995864, -2.94944, 0.0888214, -1.95227)
+[node name="skeleton" parent="." instance=ExtResource("2_252ke")]
+transform = Transform3D(-1, 3.97639e-09, -8.73324e-08, -3.97638e-09, 0.995865, 0.0908751, 8.73323e-08, 0.0908751, -0.995865, -2.97782, 0.936646, -0.993243)
+spawn_animation = "Idle"
 
-[node name="skeleton" parent="cart" instance=ExtResource("2_lqic2")]
-transform = Transform3D(1, 4.44089e-16, 7.10543e-15, 0, 1, 7.45058e-09, 0, -1.49012e-08, 1, 4.76837e-07, 0.536789, -0.953712)
+[node name="cart" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 3.97639e-09, -8.73323e-08, -3.97638e-09, 0.995864, 0.0908749, 8.73323e-08, 0.0908749, -0.995864, -2.94944, 0.536736, -0.953721)
 
-[node name="Encounter" type="Node3D" parent="cart/skeleton"]
-transform = Transform3D(-1, -3.97636e-09, 8.73321e-08, 3.97636e-09, 0.99586, 0.0908745, -8.73321e-08, 0.0908745, -0.99586, -2.94944, -0.447838, -0.998543)
-script = ExtResource("4_4jcam")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="cart"]
-transform = Transform3D(1, 4.44089e-16, 1.42109e-14, 0, 1, 7.45058e-09, 0, -1.49012e-08, 1, 7.15256e-07, 0.536797, -0.953712)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cart/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cart"]
 transform = Transform3D(1, -8.88178e-16, 2.13163e-14, 0, 0.999999, -3.72529e-09, 0, 1.11759e-08, 0.999999, -7.15256e-07, 0.548233, 1.00311)
 shape = SubResource("BoxShape3D_jxyi0")
+
+[node name="mesh" parent="cart" instance=ExtResource("3_icyjd")]
+transform = Transform3D(1, -8.88178e-16, 0, 0, 1, 0, 0, 1.49012e-08, 1, -9.53674e-07, -0.536804, 0.953712)

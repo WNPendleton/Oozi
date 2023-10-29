@@ -4,7 +4,7 @@ class_name Enemy
 @export var max_health : int = 1
 @export var activate_delay : float
 
-var current_health = max_health
+@onready var current_health = max_health
 
 @onready var anim = $AnimationPlayer
 
