@@ -38,12 +38,12 @@ shader = ExtResource("1_8ok1h")
 shader_parameter/skyColor = Color(0.301961, 0.54902, 1, 1)
 shader_parameter/horizonColor = Color(0.701961, 0.803922, 1, 1)
 
-[sub_resource type="Sky" id="Sky_vmk5g"]
+[sub_resource type="Sky" id="Sky_m6jug"]
 sky_material = SubResource("ShaderMaterial_fyc3x")
 
 [sub_resource type="Environment" id="Environment_uonbw"]
 background_mode = 2
-sky = SubResource("Sky_vmk5g")
+sky = SubResource("Sky_m6jug")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_aavjp"]
 
