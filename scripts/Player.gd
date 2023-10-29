@@ -2,29 +2,26 @@ extends CharacterBody3D
 
 @export var arm_range : Vector2
 @export var arm_base : Vector2
-@export var max_ammo : int
 @export var init_counter = 0.2
+@export_category("Combat")
+@export var max_ammo : int
+@export var max_health : int = 3
+@export var gun_damage : int = 1
+@export var reload_timer : float
+@export var reload_text : Label
+@export var bullet_count : Label
 @export_category("Path Following")
 @export var chosen_path_follow : PathFollow3D
 @export var path_follow_offset : Vector3
 @export var follow_speed = 10
-@export_category("Reload Bullshit")
-@export var reload_timer : float
-@export var reload_text : Label
-@export var bullet_count : Label
-
-
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
 var ray_length = 500.0
-
 var reloading = false
 
+@onready var current_health = max_health
 @onready var current_ammo = max_ammo
-
 @onready var current_reload_timer = $reload_timer
-
 @onready var camera = get_viewport().get_camera_3d()
 
 func _ready():
@@ -32,6 +29,7 @@ func _ready():
 	current_reload_timer.connect("timeout", (Callable(self, "finish_reload")))
 	current_reload_timer.one_shot = true
 	bullet_count.text = str(current_ammo)
+	PlayerPathGetter.player_path = self.get_path()
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -63,7 +61,7 @@ func _physics_process(delta):
 			if !hit.is_empty():
 				var collider = hit.get("collider")
 				if collider.has_method("get_hit"):
-					collider.get_hit()
+					collider.get_hit(gun_damage)
 			current_ammo -= 1
 			bullet_count.text = str(current_ammo)
 		else :
@@ -96,3 +94,12 @@ func finish_reload():
 	reload_text.hide()
 	current_ammo = max_ammo	
 	bullet_count.text = str(current_ammo)
+	
+func player_get_hit(dmg):
+	current_health -= dmg
+	if current_health <= 0:
+		game_over()
+		
+func game_over() :
+	#Do the gameover thing here
+	get_tree().quit()

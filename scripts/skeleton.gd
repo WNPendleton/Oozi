@@ -2,7 +2,11 @@ extends Enemy
 
 #@onready var anim = $Armature/AnimationPlayer
 @onready var activate_delay_timer = $activate_delay_timer
-@export var spawn_animation : String
+@export var spawn_animation : String = "Spawn"
+@export var attack_animation : String = "Throw"
+
+@onready var projectile_prefab = preload("res://prefabs/corrected_bone_projectile.tscn")
+@onready var player = get_tree().get_root().get_node(PlayerPathGetter.player_path)
 
 func _ready():
 	anim.connect("animation_finished", Callable(self, "_on_animation_player_animation_finished"))
@@ -11,20 +15,20 @@ func _ready():
 	#anim.play("Spawn")
 
 func _on_animation_player_animation_finished(anim_name):
-	
-	if anim_name == "Throw":
-		throw_bone()
-		anim.play("Throw")
-		return
-	if anim_name == "Spawn":
-		anim.play("Throw")
-		return
 	if anim_name == "Die":
 		do_post_death()
+	else: 
+		anim.play(attack_animation)
 
 func throw_bone():
-	#Spawn a bone projectile
-	pass
+	print("throwing bone")
+	var vector_offset = Vector3(0, 1.5, 0)
+	var bone_prefab = projectile_prefab.instantiate()
+	get_parent().get_parent().add_child(bone_prefab)	
+	var direction = (global_transform.origin + vector_offset).direction_to(player.global_transform.origin)
+	bone_prefab.direction = direction
+	bone_prefab.projectile_speed = 1.0
+	bone_prefab.global_transform.origin = global_transform.origin + -basis.z * 1 + vector_offset
 
 func die():
 	do_pre_death()
@@ -46,4 +50,5 @@ func activate():
 	
 func spawn():
 	print("spawning")
+	show()
 	anim.play(spawn_animation)
