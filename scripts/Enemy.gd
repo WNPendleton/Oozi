@@ -5,10 +5,12 @@ class_name Enemy
 @export var activate_delay : float
 
 @onready var current_health = max_health
+@onready var player = get_tree().get_root().get_node(PlayerPathGetter.player_path)
 
 @onready var anim = $AnimationPlayer
 
 func get_hit(dmg = 1):
+	player.get_node("EnemyHitSound").play()
 	current_health -= dmg
 	if current_health <= 0:
 		die()

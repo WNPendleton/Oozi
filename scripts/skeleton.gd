@@ -6,7 +6,6 @@ extends Enemy
 @export var attack_animation : String = "Throw"
 
 @onready var projectile_prefab = preload("res://prefabs/corrected_bone_projectile.tscn")
-@onready var player = get_tree().get_root().get_node(PlayerPathGetter.player_path)
 
 func _ready():
 	anim.connect("animation_finished", Callable(self, "_on_animation_player_animation_finished"))

@@ -1,7 +1,6 @@
 extends Enemy
 
 @onready var projectile_prefab = preload("res://prefabs/corrected_bone_projectile.tscn")
-@onready var player = get_tree().get_root().get_node(PlayerPathGetter.player_path)
 
 func throw_bone():
 	var vector_offset = Vector3(0, 1.5, 0)
@@ -14,4 +13,5 @@ func throw_bone():
 	bone_prefab.global_transform.origin = global_transform.origin + -basis.z * 1 + vector_offset
 
 func die():
+	player.get_node("BossDeathSound").play()
 	queue_free()
