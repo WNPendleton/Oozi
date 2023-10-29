@@ -47,7 +47,7 @@ sky = SubResource("Sky_fgeu7")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_aavjp"]
 
-[node name="Game" type="Node"]
+[node name="Game2" type="Node"]
 
 [node name="3DWorld" type="Node3D" parent="."]
 
@@ -62,7 +62,7 @@ material_override = ExtResource("2_njed2")
 size = Vector3(100, 0.1, 100)
 
 [node name="Camera3D" type="Camera3D" parent="3DWorld"]
-transform = Transform3D(0.866025, -0.12941, 0.482963, 0, 0.965926, 0.258819, -0.5, -0.224144, 0.836516, 6.76395, 10.2966, 16.2946)
+transform = Transform3D(0.5, -1.40782e-07, 0.866026, -1.40782e-07, 1, 2.43842e-07, -0.866026, -2.43842e-07, 0.5, 8.56105, 2, 12.4749)
 current = true
 
 [node name="Blob" type="MeshInstance3D" parent="."]
@@ -123,11 +123,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7982, 0, 10.8496)
 [node name="scientist" parent="." instance=ExtResource("26_4q24s")]
 transform = Transform3D(-0.517639, 0, -0.855599, 0, 1, 0, 0.855599, 0, -0.517639, -4.03144, 0, 4.09279)
 
-[node name="skeleton" parent="." instance=ExtResource("20_wptlp")]
-transform = Transform3D(-0.536298, 0, -0.844028, 0, 1, 0, 0.844028, 0, -0.536298, 1.74081, 0, 8.05896)
-script = ExtResource("11_oaier")
-animations = Array[String](["Spawn", "ThrowLeft", "ThrowRight", "Attack", "Die"])
-
 [node name="stalactite" parent="." instance=ExtResource("23_7skwg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.328, 0, 5.96765)
 
@@ -163,3 +158,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58969, 0, -15.8019)
 
 [node name="cashbundle" parent="." instance=ExtResource("32_j11hu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.23883, 0, -0.21509)
+
+[node name="skeleton" parent="." instance=ExtResource("20_wptlp")]
+transform = Transform3D(-0.57702, -0.000366047, -0.81673, -0.000605035, 1, -2.07452e-05, 0.81673, 0.00048219, -0.57702, 2.24162, 0, 8.42583)
+script = ExtResource("11_oaier")
+animations = Array[String](["Spawn", "Popup", "LeanLeft", "LeanThrowLeft", "LeanThrowLeft", "LeanRight", "LeanThrowRight", "LeanThrowRight"])
