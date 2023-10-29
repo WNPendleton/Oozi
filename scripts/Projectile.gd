@@ -1,15 +1,12 @@
 extends RigidBody3D
 
-@export var destructible : bool
-@export var max_health : int
-
-var direction
-
-var projectile_speed
+@export var destructible : bool = true
+@export var max_health : int = 1
+@export var direction : Vector3 = Vector3(0, 0, 0)
+@export var projectile_speed : float
+@export var projectile_damage : int = 1
 
 var current_health = max_health
-
-var dmg
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,7 +19,7 @@ func _physics_process(delta):
 	if !get_colliding_bodies().is_empty():
 		for _i in get_colliding_bodies():
 			if _i.has_method("player_get_hit"):
-				_i.player_get_hit(dmg)
+				_i.player_get_hit(projectile_damage)
 		queue_free()
 
 func get_hit(dmg):

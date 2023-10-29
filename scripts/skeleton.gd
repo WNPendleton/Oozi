@@ -3,9 +3,9 @@ extends Enemy
 #@onready var anim = $Armature/AnimationPlayer
 @onready var activate_delay_timer = $activate_delay_timer
 @export var spawn_animation : String
-@export var attack_timer : int
 
-@onready var projectile_prefab = preload("res://prefabs/bone_projectile.tscn")
+@onready var projectile_prefab = preload("res://prefabs/bone_remake.tscn")
+@onready var player = get_tree().get_root().get_node(PlayerPathGetter.player_path)
 
 func _ready():
 	anim.connect("animation_finished", Callable(self, "_on_animation_player_animation_finished"))
@@ -26,8 +26,11 @@ func _on_animation_player_animation_finished(anim_name):
 		do_post_death()
 
 func throw_bone():
-	#Spawn a bone projectile
-	pass
+	print("throwing bone")
+	var bone_prefab = projectile_prefab.instantiate()
+	bone_prefab.direction = global_transform.origin.direction_to(player.global_transform.origin)
+	bone_prefab.projectile_speed = 1.0
+	get_parent().get_parent().add_child(bone_prefab)
 
 func die():
 	do_pre_death()

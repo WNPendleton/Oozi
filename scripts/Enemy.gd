@@ -6,7 +6,7 @@ class_name Enemy
 
 var current_health = max_health
 
-@onready var anim = $Armature/AnimationPlayer
+@onready var anim = $AnimationPlayer
 
 func get_hit(dmg = 1):
 	current_health -= dmg

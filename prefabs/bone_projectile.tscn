@@ -5,5 +5,3 @@
 
 [node name="Bone" instance=ExtResource("1_khsdr")]
 script = ExtResource("2_dacb3")
-destructible = true
-max_health = 1

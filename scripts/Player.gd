@@ -2,9 +2,10 @@ extends CharacterBody3D
 
 @export var arm_range : Vector2
 @export var arm_base : Vector2
-@export var max_ammo : int
+@export var max_ammo : int = 6
 @export var chosen_path_follow : PathFollow3D
-@export var max_health : int
+@export var max_health : int = 3
+@export var gun_damage : int = 1
 @export_category("Reload Bullshit")
 @export var reload_timer : float
 @export var reload_text : Label
@@ -34,6 +35,7 @@ func _ready():
 	current_reload_timer.connect("timeout", (Callable(self, "finish_reload")))
 	current_reload_timer.one_shot = true
 	bullet_count.text = str(current_ammo)
+	PlayerPathGetter.player_path = self.get_path()
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -65,7 +67,7 @@ func _physics_process(delta):
 			if !hit.is_empty():
 				var collider = hit.get("collider")
 				if collider.has_method("get_hit"):
-					collider.get_hit()
+					collider.get_hit(gun_damage)
 			current_ammo -= 1
 			bullet_count.text = str(current_ammo)
 		else :
