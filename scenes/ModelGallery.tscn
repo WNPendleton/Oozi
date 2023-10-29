@@ -77,7 +77,6 @@ mesh = SubResource("ArrayMesh_aavjp")
 [node name="demonopoly_man" parent="." instance=ExtResource("10_4q1jk")]
 transform = Transform3D(-0.734855, 0, -0.678224, 0, 1, 0, 0.678224, 0, -0.734855, 0.48878, 0, 1.49107)
 script = ExtResource("11_oaier")
-animations = Array[String](["Transform", "AttackLeft", "AttackRight", "AttackHead"])
 
 [node name="monopoly_man" parent="." instance=ExtResource("14_ug3rs")]
 transform = Transform3D(-0.821677, 0, -0.569954, 0, 1, 0, 0.569954, 0, -0.821677, 4.75253, 0, 3.89443)
