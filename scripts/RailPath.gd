@@ -5,7 +5,7 @@ extends Path3D
 
 var dirty = false
 
-func _process(delta):
+func _process(_delta):
 	if dirty:
 		update_multimesh()
 
@@ -22,15 +22,15 @@ func update_multimesh():
 		var offset = distance_between_planks / 2.0
 		for i in range(0, count):
 			var curve_distance = offset + distance_between_planks * i
-			var position = curve.sample_baked(curve_distance, true)
-			var basis = Basis()
+			var mesh_position = curve.sample_baked(curve_distance, true)
+			var mesh_basis = Basis()
 			var up = curve.sample_baked_up_vector(curve_distance, true)
-			var forward = position.direction_to(curve.sample_baked(curve_distance + 0.1, true))
-			basis.y = up
-			basis.x = forward.cross(up).normalized()
-			basis.z = -forward
-			var transform = Transform3D(basis, position)
-			mm.set_instance_transform(i, transform)
+			var forward = mesh_position.direction_to(curve.sample_baked(curve_distance + 0.1, true))
+			mesh_basis.y = up
+			mesh_basis.x = forward.cross(up).normalized()
+			mesh_basis.z = -forward
+			var mesh_transform = Transform3D(mesh_basis, mesh_position)
+			mm.set_instance_transform(i, mesh_transform)
 
 func _on_curve_changed():
 	dirty = true

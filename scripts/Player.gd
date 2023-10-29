@@ -54,7 +54,6 @@ func _physics_process(delta):
 		if chosen_path_follow != null:
 			global_transform.origin = global_transform.origin.lerp(chosen_path_follow.global_transform.origin + path_follow_offset, delta * follow_speed)
 			#global_transform.origin = global_transform.origin.move_toward(chosen_path_follow.global_transform.origin, delta * follow_speed)
-			print(chosen_path_follow.global_rotation)
 			global_rotation = global_rotation.lerp(chosen_path_follow.global_rotation, delta * follow_speed)
 			#global_rotation = global_rotation.move_toward(chosen_path_follow.global_rotation, delta * rotation_follow_speed)
 	
