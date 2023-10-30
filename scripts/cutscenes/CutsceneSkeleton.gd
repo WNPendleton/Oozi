@@ -1,6 +1,6 @@
 extends Actor3D
 
-@onready var anim = $Model/AnimationPlayer
+@onready var anim = $AnimationPlayer
 
 func _process(delta):
 	script_process(delta)

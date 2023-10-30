@@ -1,12 +1,14 @@
 class_name Actor3D extends Node3D
 
 @export_category("Dialog")
-@export var chat_head_camera : Camera3D
 @export var chat_box : TextureRect
-@export var chat_head_index : int
+@export var chat_text_box : Label
+@export var chat_head_box : TextureRect
+@export var chat_head_image : CompressedTexture2D
 
 @export_category("Actions")
 @export var eventList : Array[ScriptEvent]
+@export var next_scene : PackedScene
 
 @onready var smoke_puff_prefab = preload("res://prefabs/smoke_puff.tscn")
 
@@ -31,15 +33,15 @@ func script_process(delta):
 			printerr("Invalid start action given: ", next_event.start_action)
 		
 		if next_event.dialog_line:
-			chat_box.get_node("Text").text = next_event.dialog_line
-			chat_head_camera.transform.origin.x = chat_head_index
+			chat_text_box.text = next_event.dialog_line
+			chat_head_box.texture = chat_head_image
 			chat_box.show()
 		
 		var position_tween = get_tree().create_tween()
 		position_tween.tween_property(self, "position", next_event.location, next_event.duration)
 		
 		var rotation_tween = get_tree().create_tween()
-		var rotation_amt = Vector3(deg_to_rad(next_event.rotation.x), deg_to_rad(next_event.rotation.y), deg_to_rad(next_event.rotation.z))
+		var rotation_amt = Vector3(next_event.rotation.x, next_event.rotation.y, next_event.rotation.z)
 		rotation_tween.tween_property(self, "rotation", rotation_amt, next_event.duration)
 		
 		var scale_tween = get_tree().create_tween()
@@ -72,3 +74,6 @@ func do_smoke_puff_and_hide():
 func do_smoke_puff_and_show():
 	do_smoke_puff()
 	show()
+
+func load_next_scene():
+	get_tree().change_scene_to_packed(next_scene)

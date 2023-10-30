@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b1bgobfvmxwol"]
+[gd_scene load_steps=42 format=3 uid="uid://b1bgobfvmxwol"]
 
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_8ok1h"]
 [ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="2_njed2"]
@@ -32,6 +32,8 @@
 [ext_resource type="PackedScene" uid="uid://b3gsokcl6wlnb" path="res://models/OakTreeOrange.gltf" id="31_6dokl"]
 [ext_resource type="PackedScene" uid="uid://ci15c358od2n6" path="res://models/PineTree.gltf" id="32_8g471"]
 [ext_resource type="PackedScene" uid="uid://s76flwqqt0sr" path="res://models/cashbundle.gltf" id="32_j11hu"]
+[ext_resource type="Material" uid="uid://dar4hnunooqp5" path="res://materials/opaque_goo.tres" id="33_48qy7"]
+[ext_resource type="PackedScene" uid="uid://c5vdy5ggwiqvg" path="res://models/PhotoStudio/photo_demonopoly_man.tscn" id="34_uf5np"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fyc3x"]
 shader = ExtResource("1_8ok1h")
@@ -47,6 +49,18 @@ sky = SubResource("Sky_mcyqv")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_aavjp"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_ha0no"]
+radius = 0.05
+height = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_iydxe"]
+material = ExtResource("2_njed2")
+radius = 0.2
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28l5q"]
+albedo_color = Color(0, 0, 1, 1)
+
 [node name="Game2" type="Node"]
 
 [node name="3DWorld" type="Node3D" parent="."]
@@ -57,111 +71,363 @@ environment = SubResource("Environment_uonbw")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DWorld/WorldEnvironment"]
 transform = Transform3D(0.984057, 0.134254, -0.116652, -0.0456839, 0.824687, 0.563741, 0.171886, -0.549424, 0.817672, 0, 4.95604, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="3DWorld"]
+[node name="Ground" type="CSGBox3D" parent="3DWorld"]
 material_override = ExtResource("2_njed2")
 size = Vector3(100, 0.1, 100)
 
-[node name="Camera3D" type="Camera3D" parent="3DWorld"]
-transform = Transform3D(0.5, -1.40782e-07, 0.866026, -1.40782e-07, 1, 2.43842e-07, -0.866026, -2.43842e-07, 0.5, 8.56105, 2, 12.4749)
-current = true
+[node name="Gallery" type="Node3D" parent="3DWorld"]
 
-[node name="Blob" type="MeshInstance3D" parent="3DWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.23729, 0, 11.8164)
-material_override = ExtResource("4_7u3gh")
-mesh = ExtResource("5_vaqhd")
-skeleton = NodePath("../..")
-
-[node name="Cashbundle" type="MeshInstance3D" parent="3DWorld"]
+[node name="Cashbundle" type="MeshInstance3D" parent="3DWorld/Gallery"]
 transform = Transform3D(0.830002, 0, 0.55776, 0, 1, 0, -0.55776, 0, 0.830002, 1.25317, 0.799924, 10.8873)
 mesh = SubResource("ArrayMesh_aavjp")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="demonopoly_man" parent="3DWorld" instance=ExtResource("10_4q1jk")]
+[node name="demonopoly_man" parent="3DWorld/Gallery" instance=ExtResource("10_4q1jk")]
 transform = Transform3D(-0.734855, 0, -0.678224, 0, 1, 0, 0.678224, 0, -0.734855, 0.48878, 0, 1.49107)
 script = ExtResource("11_oaier")
 animations = Array[String](["Transform", "AttackLeft", "AttackRight", "AttackHead"])
 
-[node name="monopoly_man" parent="3DWorld" instance=ExtResource("14_ug3rs")]
+[node name="monopoly_man" parent="3DWorld/Gallery" instance=ExtResource("14_ug3rs")]
 transform = Transform3D(-0.821677, 0, -0.569954, 0, 1, 0, 0.569954, 0, -0.821677, 4.75253, 0, 3.89443)
 
-[node name="skeleviathan" parent="3DWorld" instance=ExtResource("21_3i4l2")]
+[node name="skeleviathan" parent="3DWorld/Gallery" instance=ExtResource("21_3i4l2")]
 transform = Transform3D(-0.989974, 0, -0.141247, 0, 1, 0, 0.141247, 0, -0.989974, 6.51311, 5.02367, -2.28363)
 script = ExtResource("11_oaier")
 animations = Array[String](["AttackLeft", "AttackRight", "AttackDual", "Idle", "Laugh"])
 
-[node name="LHouse2" parent="3DWorld" instance=ExtResource("23_ghaj3")]
+[node name="LHouse2" parent="3DWorld/Gallery" instance=ExtResource("23_ghaj3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8608, 0, 24.5297)
 
-[node name="House2" parent="3DWorld" instance=ExtResource("18_yang0")]
+[node name="House2" parent="3DWorld/Gallery" instance=ExtResource("18_yang0")]
 transform = Transform3D(-0.0796944, 0, -0.996819, 0, 1, 0, 0.996819, 0, -0.0796944, -34.8771, 0, -1.27394)
 
-[node name="THouse2" parent="3DWorld" instance=ExtResource("19_svw7f")]
+[node name="THouse2" parent="3DWorld/Gallery" instance=ExtResource("19_svw7f")]
 transform = Transform3D(-0.636267, 0, -0.771469, 0, 1, 0, 0.771469, 0, -0.636267, -26.6602, -1.90735e-06, -23.8524)
 
-[node name="UHouse2" parent="3DWorld" instance=ExtResource("20_worv6")]
+[node name="UHouse2" parent="3DWorld/Gallery" instance=ExtResource("20_worv6")]
 transform = Transform3D(-0.972059, 0, -0.234735, 0, 1, 0, 0.234735, 0, -0.972059, -6.73543, 0, -33.735)
 
-[node name="cave" parent="3DWorld" instance=ExtResource("21_0os1r")]
+[node name="cave" parent="3DWorld/Gallery" instance=ExtResource("21_0os1r")]
 transform = Transform3D(-0.759453, 0, 0.650562, 0, 1, 0, -0.650562, 0, -0.759453, 21.614, 0, -19.2403)
 
-[node name="railbutton" parent="3DWorld/cave" instance=ExtResource("24_ngfli")]
+[node name="railbutton" parent="3DWorld/Gallery/cave" instance=ExtResource("24_ngfli")]
 transform = Transform3D(0.994115, 0, -0.108329, 0, 1, 0, 0.108329, 0, 0.994115, -4.84498, 0, -6.28541)
 
-[node name="5rails" parent="3DWorld/cave" instance=ExtResource("24_uwgjs")]
+[node name="5rails" parent="3DWorld/Gallery/cave" instance=ExtResource("24_uwgjs")]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.234989, 0.0446822, -5.17693)
 
-[node name="cart" parent="3DWorld/cave/5rails" instance=ExtResource("23_mibf7")]
+[node name="cart" parent="3DWorld/Gallery/cave/5rails" instance=ExtResource("23_mibf7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 0.404, -1.31046)
 
-[node name="railturntable" parent="3DWorld/cave" instance=ExtResource("24_nl8xw")]
+[node name="railturntable" parent="3DWorld/Gallery/cave" instance=ExtResource("24_nl8xw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.225821, -0.236766, -12.7368)
 
-[node name="lamppost" parent="3DWorld" instance=ExtResource("22_8108d")]
+[node name="lamppost" parent="3DWorld/Gallery" instance=ExtResource("22_8108d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.19203, 0, -0.822439)
 
-[node name="boulder" parent="3DWorld" instance=ExtResource("22_uvjvr")]
+[node name="boulder" parent="3DWorld/Gallery" instance=ExtResource("22_uvjvr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7982, 0, 10.8496)
 
-[node name="scientist" parent="3DWorld" instance=ExtResource("26_4q24s")]
+[node name="scientist" parent="3DWorld/Gallery" instance=ExtResource("26_4q24s")]
 transform = Transform3D(-0.517639, 0, -0.855599, 0, 1, 0, 0.855599, 0, -0.517639, -4.03144, 0, 4.09279)
 
-[node name="stalactite" parent="3DWorld" instance=ExtResource("23_7skwg")]
+[node name="stalactite" parent="3DWorld/Gallery" instance=ExtResource("23_7skwg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.328, 0, 5.96765)
 
-[node name="WillowTreeYellow" parent="3DWorld" instance=ExtResource("24_qnp41")]
+[node name="WillowTreeYellow" parent="3DWorld/Gallery" instance=ExtResource("24_qnp41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82939, 0, 17.7099)
 
-[node name="WillowTreeRed" parent="3DWorld" instance=ExtResource("25_e4l2x")]
+[node name="WillowTreeRed" parent="3DWorld/Gallery" instance=ExtResource("25_e4l2x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.4226, 0, 12.1713)
 
-[node name="WillowTreeGreen" parent="3DWorld" instance=ExtResource("26_4aomg")]
+[node name="WillowTreeGreen" parent="3DWorld/Gallery" instance=ExtResource("26_4aomg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8583, 0, -34.5656)
 
-[node name="WillowTreeOrange" parent="3DWorld" instance=ExtResource("27_cbwn0")]
+[node name="WillowTreeOrange" parent="3DWorld/Gallery" instance=ExtResource("27_cbwn0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.9389, 0, -47.5009)
 
-[node name="OakTreeYellow" parent="3DWorld" instance=ExtResource("28_7dtg4")]
+[node name="OakTreeYellow" parent="3DWorld/Gallery" instance=ExtResource("28_7dtg4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.0111, 0, -28.3783)
 
-[node name="OakTreeRed" parent="3DWorld" instance=ExtResource("29_k8jvp")]
+[node name="OakTreeRed" parent="3DWorld/Gallery" instance=ExtResource("29_k8jvp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9525, 0, -46.8872)
 
-[node name="OakTreeGreen" parent="3DWorld" instance=ExtResource("30_ykeac")]
+[node name="OakTreeGreen" parent="3DWorld/Gallery" instance=ExtResource("30_ykeac")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.0811, 0, -14.4858)
 
-[node name="OakTreeOrange" parent="3DWorld" instance=ExtResource("31_6dokl")]
+[node name="OakTreeOrange" parent="3DWorld/Gallery" instance=ExtResource("31_6dokl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.1206, 0, 4.50634)
 
-[node name="PineTree" parent="3DWorld" instance=ExtResource("32_8g471")]
+[node name="PineTree" parent="3DWorld/Gallery" instance=ExtResource("32_8g471")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.9029, 0, 0.999548)
 
-[node name="PineTree2" parent="3DWorld" instance=ExtResource("32_8g471")]
+[node name="PineTree2" parent="3DWorld/Gallery" instance=ExtResource("32_8g471")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58969, 0, -15.8019)
 
-[node name="cashbundle" parent="3DWorld" instance=ExtResource("32_j11hu")]
+[node name="cashbundle" parent="3DWorld/Gallery" instance=ExtResource("32_j11hu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.23883, 0, -0.21509)
 
-[node name="skeleton" parent="3DWorld" instance=ExtResource("20_wptlp")]
+[node name="skeleton" parent="3DWorld/Gallery" instance=ExtResource("20_wptlp")]
 transform = Transform3D(-0.57702, -0.000366047, -0.81673, -0.000605035, 1, -2.07452e-05, 0.81673, 0.00048219, -0.57702, 2.24162, 0, 8.42583)
 script = ExtResource("11_oaier")
 animations = Array[String](["Spawn", "Popup", "LeanLeft", "LeanThrowLeft", "LeanThrowLeft", "LeanRight", "LeanThrowRight", "LeanThrowRight"])
+
+[node name="Blob" type="MeshInstance3D" parent="3DWorld/Gallery"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.23729, 0, 11.8164)
+material_override = ExtResource("4_7u3gh")
+mesh = ExtResource("5_vaqhd")
+skeleton = NodePath("../../..")
+
+[node name="Camera3D" type="Camera3D" parent="3DWorld/Gallery"]
+transform = Transform3D(0.5, -1.40782e-07, 0.866026, -1.40782e-07, 1, 2.43842e-07, -0.866026, -2.43842e-07, 0.5, 8.56105, 2, 12.4749)
+current = true
+
+[node name="PhotoStudio" type="Node3D" parent="3DWorld"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 67.5185)
+
+[node name="Camera3D2" type="Camera3D" parent="3DWorld/PhotoStudio"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.584875, -2.14506)
+
+[node name="Blob2" type="MeshInstance3D" parent="3DWorld/PhotoStudio"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
+material_override = ExtResource("33_48qy7")
+mesh = ExtResource("5_vaqhd")
+skeleton = NodePath("../../..")
+
+[node name="Face" type="Node3D" parent="3DWorld/PhotoStudio/Blob2"]
+transform = Transform3D(0.515, 0, 0, 0, 0.502753, 0.111642, 0, -0.111642, 0.502753, 0, 0.0384248, 0.773148)
+
+[node name="Eye1" type="MeshInstance3D" parent="3DWorld/PhotoStudio/Blob2/Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 1.506, 0)
+material_override = ExtResource("2_njed2")
+mesh = SubResource("SphereMesh_ha0no")
+skeleton = NodePath("../..")
+
+[node name="Eye2" type="MeshInstance3D" parent="3DWorld/PhotoStudio/Blob2/Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338, 1.506, 0)
+material_override = ExtResource("2_njed2")
+mesh = SubResource("SphereMesh_ha0no")
+skeleton = NodePath("../..")
+
+[node name="Mouth" type="MeshInstance3D" parent="3DWorld/PhotoStudio/Blob2/Face"]
+transform = Transform3D(1, -1.19209e-07, -1.49012e-08, 0, -2.98023e-08, 1, 0, -1, -1.49012e-08, 0, 0.947999, 0)
+mesh = SubResource("SphereMesh_iydxe")
+skeleton = NodePath("../..")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="3DWorld/PhotoStudio"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.07416)
+size = Vector3(30, 30, 1)
+material = SubResource("StandardMaterial3D_28l5q")
+
+[node name="demonopoly_man" parent="3DWorld/PhotoStudio" instance=ExtResource("34_uf5np")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.54968, 0)
+visible = false
+
+[node name="scientist" parent="3DWorld/PhotoStudio" instance=ExtResource("26_4q24s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.475, 0)
+visible = false
+
+[node name="Cube_002" parent="3DWorld/PhotoStudio/scientist" index="1"]
+visible = false
+
+[node name="Cube" parent="3DWorld/PhotoStudio/scientist" index="2"]
+visible = false
+
+[node name="skeleton" parent="3DWorld/PhotoStudio" instance=ExtResource("20_wptlp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.53, 0)
+
+[node name="RiggedFoot_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 2.98023e-08, -1.77883e-07, -1.4063e-07, -1.56462e-07, -1, -8.9407e-08, 1, -1.60187e-07, -2.98023e-08, 1.02058, -0.886509)
+visible = false
+bone_idx = 4
+
+[node name="RiggedShin_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 5.75092e-08, -5.96046e-08, -2.98023e-08, -2.65427e-08, -1, -7.72998e-08, 1, -2.32831e-09, -5.96046e-08, 1.02058, -0.886509)
+visible = false
+bone_idx = 5
+
+[node name="RiggedThigh_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="2"]
+transform = Transform3D(1, 2.23517e-08, -5.96046e-08, -5.96046e-08, -7.45058e-08, -1, 2.23517e-08, 1, -4.47035e-08, 5.21541e-08, 1.02058, -0.886509)
+visible = false
+bone_idx = 6
+
+[node name="RiggedHead" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -5.70991e-16, 1.02058, -0.886509)
+bone_idx = 11
+
+[node name="RiggedPinky3_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="4"]
+transform = Transform3D(1, -8.94069e-08, -9.55038e-09, 7.83092e-09, -5.91098e-08, -1, 1.19209e-07, 1, -5.27012e-08, -5.36442e-07, 1.02058, -0.886509)
+visible = false
+bone_idx = 18
+
+[node name="RiggedPinky2_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="5"]
+transform = Transform3D(1, 5.96047e-08, -9.72869e-09, 7.65253e-09, -5.90856e-08, -1, 4.55434e-14, 1, -5.26769e-08, -3.57628e-07, 1.02058, -0.886509)
+bone_idx = 19
+
+[node name="RiggedPinky1_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="6"]
+transform = Transform3D(1, 5.96047e-08, 2.14968e-09, 1.9531e-08, -6.06975e-08, -1, 5.96047e-08, 1, -5.42888e-08, -3.57628e-07, 1.02058, -0.886509)
+bone_idx = 20
+
+[node name="RiggedRing3_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="7"]
+transform = Transform3D(1, -2.98023e-08, -8.49022e-09, 8.89111e-09, -5.92536e-08, -1, 5.96047e-08, 1, -5.28449e-08, 5.96046e-08, 1.02058, -0.886509)
+bone_idx = 24
+
+[node name="RiggedRing2_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="8"]
+transform = Transform3D(1, -5.96046e-08, -8.64986e-09, 8.73146e-09, -5.9232e-08, -1, 2.98024e-08, 1, -5.28233e-08, -1.19209e-07, 1.02058, -0.886509)
+bone_idx = 25
+
+[node name="RiggedRing1_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="9"]
+transform = Transform3D(1, 1.78814e-07, -8.86703e-09, 8.51429e-09, -5.92025e-08, -1, -1.49012e-07, 1, -5.27939e-08, -3.57628e-07, 1.02058, -0.886509)
+bone_idx = 26
+
+[node name="RiggedMiddle3_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="10"]
+transform = Transform3D(1, 1.78814e-07, -8.05665e-09, 9.32465e-09, -5.93125e-08, -1, -2.98023e-08, 1, -5.29039e-08, -2.98023e-07, 1.02058, -0.886509)
+bone_idx = 30
+
+[node name="RiggedMiddle2_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="11"]
+transform = Transform3D(1, 5.96047e-08, -8.08444e-09, 9.29694e-09, -5.93087e-08, -1, 8.9407e-08, 1, -5.29001e-08, -1.78814e-07, 1.02058, -0.886509)
+bone_idx = 31
+
+[node name="RiggedMiddle1_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="12"]
+transform = Transform3D(1, 1.19209e-07, -7.78965e-09, 9.5917e-09, -5.93487e-08, -1, -2.98023e-08, 1, -5.29401e-08, -3.57628e-07, 1.02058, -0.886509)
+bone_idx = 32
+
+[node name="RiggedIndex3_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="13"]
+transform = Transform3D(1, 7.45061e-09, -7.01388e-09, 1.03676e-08, -5.94541e-08, -1, 1.2666e-07, 1, -5.30454e-08, -1.19209e-07, 1.02058, -0.886509)
+bone_idx = 36
+
+[node name="RiggedIndex2_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="14"]
+transform = Transform3D(1, 1.49012e-08, -7.21954e-09, 1.01619e-08, -5.94262e-08, -1, 1.3411e-07, 1, -5.30175e-08, -2.98023e-07, 1.02058, -0.886509)
+bone_idx = 37
+
+[node name="RiggedIndex1_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="15"]
+transform = Transform3D(1, 6.70552e-08, -6.65514e-09, 1.07262e-08, -5.95027e-08, -1, 7.63685e-08, 1, -5.3094e-08, -3.57628e-07, 1.02058, -0.886509)
+bone_idx = 38
+
+[node name="RiggedThumb2_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="16"]
+transform = Transform3D(1, 2.08616e-07, -4.56501e-09, 1.28163e-08, -5.97863e-08, -1, 2.98022e-08, 1, -5.33777e-08, -4.76837e-07, 1.02058, -0.886509)
+bone_idx = 41
+
+[node name="RiggedThumb1_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="17"]
+transform = Transform3D(1, 4.17232e-07, -5.03044e-09, 1.23509e-08, -5.9723e-08, -1, -1.49012e-07, 1, -5.33144e-08, -5.96046e-07, 1.02058, -0.886509)
+bone_idx = 42
+
+[node name="RiggedTricep_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="18"]
+transform = Transform3D(1, 8.9407e-08, -8.39273e-09, 8.98859e-09, -5.92669e-08, -1, 5.96047e-08, 1, -5.28582e-08, -5.96046e-07, 1.02058, -0.886509)
+visible = false
+bone_idx = 43
+
+[node name="RiggedBicep_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="19"]
+transform = Transform3D(1, -1.58325e-08, -2.23517e-08, -1.49012e-08, -3.72529e-08, -1, 3.72529e-09, 1, -5.96046e-08, -1.49012e-07, 1.02058, -0.886509)
+visible = false
+bone_idx = 44
+
+[node name="RiggedShoulder_R" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="20"]
+transform = Transform3D(1, -9.78286e-16, -7.10543e-15, 0, -4.37114e-08, -1, -6.51392e-16, 1, -4.37114e-08, -2.08462e-07, 1.02058, -0.886509)
+visible = false
+bone_idx = 45
+
+[node name="RiggedRing3_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="21"]
+transform = Transform3D(1, -1.49012e-07, 4.1711e-09, 1.56683e-08, -2.9993e-08, -1, 2.98023e-08, 1, -3.02861e-08, 5.36442e-07, 1.02058, -0.886509)
+bone_idx = 52
+
+[node name="RiggedRing2_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="22"]
+transform = Transform3D(1, -1.19209e-07, 3.78378e-09, 1.5281e-08, -2.95932e-08, -1, 8.9407e-08, 1, -2.98864e-08, 5.36442e-07, 1.02058, -0.886509)
+bone_idx = 53
+
+[node name="RiggedRing1_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="23"]
+transform = Transform3D(1, -2.68221e-07, 3.25685e-09, 1.4754e-08, -2.90494e-08, -1, 2.98023e-07, 1, -2.93425e-08, 4.76837e-07, 1.02058, -0.886509)
+bone_idx = 54
+
+[node name="RiggedMiddle3_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="24"]
+transform = Transform3D(1, -1.78814e-07, 5.22361e-09, 1.67208e-08, -3.10792e-08, -1, 2.08616e-07, 1, -3.13723e-08, 2.38419e-07, 1.02058, -0.886509)
+bone_idx = 58
+
+[node name="RiggedMiddle2_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="25"]
+transform = Transform3D(1, -1.19209e-07, 5.15613e-09, 1.66533e-08, -3.10095e-08, -1, 1.78814e-07, 1, -3.13027e-08, 2.38419e-07, 1.02058, -0.886509)
+bone_idx = 59
+
+[node name="RiggedMiddle1_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="26"]
+transform = Transform3D(1, -1.19209e-07, 5.87153e-09, 1.73687e-08, -3.17479e-08, -1, 2.38419e-07, 1, -3.2041e-08, 3.57628e-07, 1.02058, -0.886509)
+bone_idx = 60
+
+[node name="RiggedIndex3_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="27"]
+transform = Transform3D(1, -2.08616e-07, 7.75446e-09, 1.92516e-08, -3.36911e-08, -1, 3.57628e-07, 1, -3.39843e-08, 4.76837e-07, 1.02058, -0.886509)
+bone_idx = 64
+
+[node name="RiggedIndex2_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="28"]
+transform = Transform3D(1, -2.23517e-07, 7.25531e-09, 1.87525e-08, -3.3176e-08, -1, 3.8743e-07, 1, -3.34691e-08, 4.76837e-07, 1.02058, -0.886509)
+bone_idx = 65
+
+[node name="RiggedIndex1_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="29"]
+transform = Transform3D(1, -2.36556e-07, 8.62505e-09, 2.01222e-08, -3.45896e-08, -1, 3.85568e-07, 1, -3.48827e-08, 6.55651e-07, 1.02058, -0.886509)
+bone_idx = 66
+
+[node name="RiggedThumb2_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="30"]
+transform = Transform3D(1, -5.96046e-08, 1.36976e-08, 2.51948e-08, -3.98247e-08, -1, 1.78814e-07, 1, -4.01178e-08, 4.76837e-07, 1.02058, -0.886509)
+bone_idx = 69
+
+[node name="RiggedThumb1_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="31"]
+transform = Transform3D(1, -2.08616e-07, 1.2568e-08, 2.40652e-08, -3.86589e-08, -1, 2.68221e-07, 1, -3.89521e-08, 5.96046e-07, 1.02058, -0.886509)
+bone_idx = 70
+
+[node name="RiggedPinky3_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="32"]
+transform = Transform3D(1, -3.8743e-07, 1.10053e-09, 1.25977e-08, -2.68241e-08, -1, 5.06639e-07, 1, -2.71173e-08, 2.98023e-07, 1.02058, -0.886509)
+bone_idx = 74
+
+[node name="RiggedPinky2_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="33"]
+transform = Transform3D(1, -5.96047e-08, 1.33788e-09, 1.28351e-08, -2.7069e-08, -1, 2.38419e-07, 1, -2.73622e-08, 3.57628e-07, 1.02058, -0.886509)
+bone_idx = 75
+
+[node name="RiggedPinky1_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="34"]
+transform = Transform3D(1, -2.98024e-08, 2.97188e-08, 4.12159e-08, -5.63592e-08, -1, 3.27826e-07, 1, -5.66523e-08, 3.57628e-07, 1.02058, -0.886509)
+bone_idx = 76
+
+[node name="RiggedForearm_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="35"]
+transform = Transform3D(1, -5.96047e-08, 4.40801e-09, 1.59052e-08, -3.02374e-08, -1, 1.78814e-07, 1, -3.05306e-08, 2.98023e-07, 1.02058, -0.886509)
+visible = false
+bone_idx = 77
+
+[node name="RiggedBicep_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="36"]
+transform = Transform3D(1, -1.7602e-07, -7.45058e-09, -7.45058e-09, -4.47035e-08, -1, 1.30385e-07, 1, -3.72529e-08, 3.57628e-07, 1.02058, -0.886509)
+bone_idx = 78
+
+[node name="RiggedBicep_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D/RiggedBicep_L" index="0"]
+visible = false
+
+[node name="RiggedShoulder_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="37"]
+transform = Transform3D(1, 9.78287e-16, -7.99361e-15, -6.21725e-15, -4.37114e-08, -1, 6.51393e-16, 1, -4.37114e-08, 2.08462e-07, 1.02058, -0.886509)
+visible = false
+bone_idx = 79
+
+[node name="RiggedRibs" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="38"]
+transform = Transform3D(1, -4.23516e-22, -7.10543e-15, -7.10543e-15, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.76614e-17, 1.02058, -0.886509)
+visible = false
+bone_idx = 80
+
+[node name="RiggedFoot_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="39"]
+transform = Transform3D(1, -2.98023e-08, 1.77883e-07, 1.4063e-07, -1.56462e-07, -1, 8.9407e-08, 1, -1.60187e-07, 2.98023e-08, 1.02058, -0.886509)
+visible = false
+bone_idx = 84
+
+[node name="RiggedShin_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="40"]
+transform = Transform3D(1, -5.75092e-08, 5.96046e-08, 2.98023e-08, -2.65427e-08, -1, 7.72998e-08, 1, -2.32831e-09, 5.96046e-08, 1.02058, -0.886509)
+visible = false
+bone_idx = 85
+
+[node name="RiggedThigh_L" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="41"]
+transform = Transform3D(1, -2.23517e-08, 5.96046e-08, 5.96046e-08, -7.45058e-08, -1, -2.23517e-08, 1, -4.47035e-08, -5.21541e-08, 1.02058, -0.886509)
+visible = false
+bone_idx = 86
+
+[node name="RiggedPelvis" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="42"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -1.96844e-16, 1.02058, -0.886509)
+visible = false
+bone_idx = 87
+
+[node name="RiggedSpine" parent="3DWorld/PhotoStudio/skeleton/Armature/Skeleton3D" index="43"]
+visible = false
+
+[editable path="3DWorld/PhotoStudio/scientist"]
+[editable path="3DWorld/PhotoStudio/skeleton"]

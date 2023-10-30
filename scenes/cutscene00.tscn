@@ -1,19 +1,26 @@
-[gd_scene load_steps=28 format=3 uid="uid://d3wytdcg2ka0w"]
+[gd_scene load_steps=47 format=3 uid="uid://d3wytdcg2ka0w"]
 
-[ext_resource type="ArrayMesh" uid="uid://d1egwtyee1vws" path="res://models/chatheads/monopoly_man_chathead.obj" id="1_0hfti"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_53w72"]
-[ext_resource type="ArrayMesh" uid="uid://dewl0h7xvebx3" path="res://models/chatheads/scientist_chathead.obj" id="2_1rj47"]
 [ext_resource type="ArrayMesh" uid="uid://cnb0jsea733p6" path="res://models/blob.obj" id="2_12f10"]
 [ext_resource type="Script" path="res://scripts/cutscenes/CutsceneOozi.gd" id="2_c4nsj"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="2_ogr3q"]
-[ext_resource type="ArrayMesh" uid="uid://fhtxtays12yj" path="res://models/chatheads/skeleton_chathead.obj" id="3_bw5m3"]
-[ext_resource type="Script" path="res://scripts/cutscenes/ScriptEvent.gd" id="3_jbdmh"]
+[ext_resource type="Texture2D" uid="uid://2bd3legnqgjo" path="res://sprites/oozi_chathead.png" id="3_0skpp"]
 [ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="4_vdl50"]
-[ext_resource type="Script" path="res://scripts/cutscenes/CutsceneSkeleton.gd" id="6_cofvn"]
-[ext_resource type="PackedScene" uid="uid://ccqgj44hdrmuc" path="res://models/skeleton.gltf" id="7_5sjnn"]
+[ext_resource type="Texture2D" uid="uid://dijykcvhjfqvp" path="res://sprites/scientist_chathead.png" id="8_wilgr"]
 [ext_resource type="Texture2D" uid="uid://c3e6i8awlcdm0" path="res://sprites/Chatbox.png" id="9_lis40"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqn7a"]
+[ext_resource type="PackedScene" uid="uid://dtlcljf2di7hg" path="res://models/scientist.gltf" id="9_s300x"]
+[ext_resource type="Script" path="res://scripts/cutscenes/ScriptEvent.gd" id="10_7eljy"]
+[ext_resource type="Script" path="res://scripts/cutscenes/Actor3D.gd" id="10_ttwu0"]
+[ext_resource type="PackedScene" uid="uid://ccqgj44hdrmuc" path="res://models/skeleton.gltf" id="11_md2qg"]
+[ext_resource type="Script" path="res://scripts/cutscenes/CutsceneSkeleton.gd" id="12_4x4lv"]
+[ext_resource type="Texture2D" uid="uid://cxx82mi8cueeb" path="res://sprites/skeleton_chathead.png" id="12_6ffdt"]
+[ext_resource type="PackedScene" uid="uid://c4v5vsi71tc5e" path="res://models/monopoly_man.gltf" id="13_8eses"]
+[ext_resource type="Texture2D" uid="uid://iv7knd1ebo23" path="res://sprites/monopoly_chathead.png" id="14_y1ffs"]
+[ext_resource type="PackedScene" uid="uid://bmcmxeptbanl4" path="res://level_one.tscn" id="16_r2oc5"]
+[ext_resource type="PackedScene" uid="uid://obcdwbj6a7wr" path="res://models/LHouse2.gltf" id="18_n0vsg"]
+[ext_resource type="PackedScene" uid="uid://c484luve2wx5f" path="res://models/House2.gltf" id="19_b3und"]
+[ext_resource type="PackedScene" uid="uid://brce3jyu3cmov" path="res://models/WillowTreeGreen.gltf" id="20_c37ck"]
+[ext_resource type="PackedScene" uid="uid://ci15c358od2n6" path="res://models/PineTree.gltf" id="21_tfbt8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3bl63"]
 size = Vector3(5, 1, 5)
@@ -36,6 +43,17 @@ sky_material = SubResource("ShaderMaterial_80tqy")
 background_mode = 2
 sky = SubResource("Sky_vmk5g")
 
+[sub_resource type="Resource" id="Resource_e0okk"]
+script = ExtResource("10_7eljy")
+time = 5.0
+duration = 3.0
+location = Vector3(-1.84786, -0.00512701, 0.249773)
+rotation = Vector3(0, 0.707644, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = ""
+dialog_line = "*schlorp schlorp*"
+
 [sub_resource type="SphereMesh" id="SphereMesh_52id3"]
 radius = 0.05
 height = 0.2
@@ -45,52 +63,170 @@ material = ExtResource("4_vdl50")
 radius = 0.2
 height = 0.2
 
-[sub_resource type="Resource" id="Resource_vmxlj"]
-script = ExtResource("3_jbdmh")
+[sub_resource type="Resource" id="Resource_vyg3e"]
+script = ExtResource("10_7eljy")
 time = 0.0
 duration = 0.0
-location = Vector3(-1.7, 0, -2.6)
-rotation = Vector3(0, 75, 0)
-size = Vector3(1, 1, 1)
-start_action = "show"
-end_action = "do_spawn"
-dialog_line = ""
-
-[sub_resource type="Resource" id="Resource_buswg"]
-script = ExtResource("3_jbdmh")
-time = 1.0
-duration = 2.0
-location = Vector3(-1.7, 0, -2.6)
-rotation = Vector3(0, 75, 0)
-size = Vector3(1, 1, 1)
-start_action = "do_attack"
-end_action = ""
-dialog_line = "MUAHAHA!"
-
-[sub_resource type="Resource" id="Resource_dv4ju"]
-script = ExtResource("3_jbdmh")
-time = 3.0
-duration = 1.0
-location = Vector3(-1.7, 0, -2.6)
-rotation = Vector3(0, 244, 0)
+location = Vector3(0.407107, -0.0749997, -2.81757)
+rotation = Vector3(0, 2.8216, 0)
 size = Vector3(1, 1, 1)
 start_action = ""
 end_action = ""
 dialog_line = ""
 
-[sub_resource type="Resource" id="Resource_iyd1p"]
-script = ExtResource("3_jbdmh")
-time = 4.1
-duration = 0.0
-location = Vector3(4, 0, 0)
-rotation = Vector3(0, 244, 0)
+[sub_resource type="Resource" id="Resource_qwb0a"]
+script = ExtResource("10_7eljy")
+time = 1.0
+duration = 3.0
+location = Vector3(-0.533546, -0.0749997, -1.00203)
+rotation = Vector3(0, 2.69971, 0)
 size = Vector3(1, 1, 1)
-start_action = "do_smoke_puff"
+start_action = ""
+end_action = ""
+dialog_line = "Oh Oozi, my sweet boy, I love you so much."
+
+[sub_resource type="Resource" id="Resource_oyigs"]
+script = ExtResource("10_7eljy")
+time = 21.8
+duration = 3.0
+location = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+size = Vector3(1, 1, 1)
+start_action = "do_smoke_puff_and_hide"
+end_action = ""
+dialog_line = "SAVE ME OOZI~"
+
+[sub_resource type="Resource" id="Resource_r7ncg"]
+script = ExtResource("10_7eljy")
+time = 0.0
+duration = 0.0
+location = Vector3(17.5877, 0, -1.26633)
+rotation = Vector3(0, 0, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = ""
+dialog_line = ""
+
+[sub_resource type="Resource" id="Resource_ito2o"]
+script = ExtResource("10_7eljy")
+time = 9.0
+duration = 0.0
+location = Vector3(2.50154, 0, -1.78202)
+rotation = Vector3(0, 2.11785, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
 end_action = "do_smoke_puff"
 dialog_line = ""
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_q3req"]
-viewport_path = NodePath("World/Chathead set/Viewport")
+[sub_resource type="Resource" id="Resource_r7kp4"]
+script = ExtResource("10_7eljy")
+time = 18.1
+duration = 2.9
+location = Vector3(0.61741, 0, -1.26633)
+rotation = Vector3(0, 2.15171, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = "do_attack"
+dialog_line = "*clack clack*"
+
+[sub_resource type="Resource" id="Resource_4ijji"]
+script = ExtResource("10_7eljy")
+time = 25.0
+duration = 0.0
+location = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+size = Vector3(1, 1, 1)
+start_action = "do_smoke_puff_and_hide"
+end_action = ""
+dialog_line = ""
+
+[sub_resource type="Resource" id="Resource_wlx8o"]
+script = ExtResource("10_7eljy")
+time = 0.0
+duration = 0.0
+location = Vector3(22.5854, 0, -1.60149)
+rotation = Vector3(0, 0, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = ""
+dialog_line = ""
+
+[sub_resource type="Resource" id="Resource_n0ln4"]
+script = ExtResource("10_7eljy")
+time = 9.0
+duration = 0.0
+location = Vector3(-2.11305, 0, -2.52658)
+rotation = Vector3(0, -2.49732, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = "do_smoke_puff"
+dialog_line = ""
+
+[sub_resource type="Resource" id="Resource_fe5o6"]
+script = ExtResource("10_7eljy")
+time = 18.0
+duration = 3.0
+location = Vector3(-1.71276, 0, -1.60149)
+rotation = Vector3(0, -2.42238, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = "do_attack"
+dialog_line = ""
+
+[sub_resource type="Resource" id="Resource_5mu2f"]
+script = ExtResource("10_7eljy")
+time = 25.0
+duration = 0.0
+location = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+size = Vector3(1, 1, 1)
+start_action = "do_smoke_puff_and_hide"
+end_action = ""
+dialog_line = ""
+
+[sub_resource type="Resource" id="Resource_20you"]
+script = ExtResource("10_7eljy")
+time = 9.0
+duration = 0.0
+location = Vector3(3.08926, 0, 1.65232)
+rotation = Vector3(0, 2.39918, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = "do_smoke_puff"
+dialog_line = ""
+
+[sub_resource type="Resource" id="Resource_ej1eo"]
+script = ExtResource("10_7eljy")
+time = 10.0
+duration = 3.0
+location = Vector3(3.08926, 0, 1.65232)
+rotation = Vector3(0, 2.39918, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = ""
+dialog_line = "EH HEH HEH! I have finally found you! Now you must do my evil bidding!"
+
+[sub_resource type="Resource" id="Resource_gwhgx"]
+script = ExtResource("10_7eljy")
+time = 14.0
+duration = 3.0
+location = Vector3(3.08926, 0, 1.65232)
+rotation = Vector3(0, 2.39918, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = ""
+dialog_line = "GET HIM BOYS!"
+
+[sub_resource type="Resource" id="Resource_86ry4"]
+script = ExtResource("10_7eljy")
+time = 25.1
+duration = 3.0
+location = Vector3(0, 0, 0)
+rotation = Vector3(0, 0, 0)
+size = Vector3(1, 1, 1)
+start_action = "do_smoke_puff_and_hide"
+end_action = "load_next_scene"
+dialog_line = "EH HEH HEH!"
 
 [sub_resource type="LabelSettings" id="LabelSettings_i5p28"]
 line_spacing = 0.0
@@ -99,35 +235,6 @@ font_size = 24
 [node name="scene" type="Node"]
 
 [node name="World" type="Node3D" parent="."]
-
-[node name="Chathead set" type="Node3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
-
-[node name="Viewport" type="SubViewport" parent="World/Chathead set"]
-transparent_bg = true
-
-[node name="Camera3D" type="Camera3D" parent="World/Chathead set/Viewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, -17.911, 1.416)
-
-[node name="MonopolyManChathead" type="MeshInstance3D" parent="World/Chathead set"]
-transform = Transform3D(0.965926, 0.0669873, 0.25, 0, 0.965926, -0.258819, -0.258819, 0.25, 0.933013, -0.17, 0, 2)
-mesh = ExtResource("1_0hfti")
-skeleton = NodePath("../../..")
-
-[node name="ScientistChathead" type="MeshInstance3D" parent="World/Chathead set"]
-transform = Transform3D(0.965926, 0.0669873, 0.25, 0, 0.965926, -0.258819, -0.258819, 0.25, 0.933013, 1.9, 0.2, 2)
-mesh = ExtResource("2_1rj47")
-skeleton = NodePath("../../..")
-
-[node name="SkeletonChathead" type="MeshInstance3D" parent="World/Chathead set"]
-transform = Transform3D(0.965926, 0.0669873, 0.25, 0, 0.965926, -0.258819, -0.258819, 0.25, 0.933013, 3.9, 0.2, 2)
-mesh = ExtResource("3_bw5m3")
-skeleton = NodePath("../../..")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="World/Chathead set"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.04775)
-material_override = SubResource("StandardMaterial3D_pqn7a")
-size = Vector3(30, 10, 1)
 
 [node name="Set" type="Node3D" parent="World"]
 
@@ -190,6 +297,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.386102, 0)
 size = Vector3(50, 0.1, 50)
 material = SubResource("StandardMaterial3D_2b3dt")
 
+[node name="LHouse2" parent="World/Set" instance=ExtResource("18_n0vsg")]
+transform = Transform3D(-0.214538, 0, -0.451634, 0, 0.5, 0, 0.451634, 0, -0.214538, -4.657, 0, -17.737)
+
+[node name="House2" parent="World/Set" instance=ExtResource("19_b3und")]
+transform = Transform3D(-0.363005, 0, 0.343842, 0, 0.5, 0, -0.343842, 0, -0.363005, 14.817, 0, -15.29)
+
+[node name="WillowTreeGreen" parent="World/Set" instance=ExtResource("20_c37ck")]
+transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, 1.676, 0, -11.196)
+
+[node name="PineTree" parent="World/Set" instance=ExtResource("21_tfbt8")]
+transform = Transform3D(0.555, 0, 0, 0, 0.555, 0, 0, 0, 0.555, 13.598, 0, -10.918)
+
 [node name="Camera3D" type="Camera3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44529, 5.74273)
 current = true
@@ -203,67 +322,79 @@ environment = SubResource("Environment_i2t3u")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/WorldEnvironment"]
 transform = Transform3D(0.984057, 0.134254, -0.116652, -0.0456839, 0.824687, 0.563741, 0.171886, -0.549424, 0.817672, 0, 4.95604, 0)
 
-[node name="Oozi" type="Node3D" parent="World"]
-transform = Transform3D(0.759896, 0, 0.650045, 0, 1, 0, -0.650045, 0, 0.759896, -3.07358, -0.00512701, -3.05179)
+[node name="Actors" type="Node3D" parent="World"]
+
+[node name="Oozi" type="Node3D" parent="World/Actors" node_paths=PackedStringArray("chat_box", "chat_text_box", "chat_head_box")]
+transform = Transform3D(0.759896, 0, 0.650045, 0, 1, 0, -0.650045, 0, 0.759896, -2.64259, -0.00512701, 0.249773)
 script = ExtResource("2_c4nsj")
+chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
+chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
+chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
+chat_head_image = ExtResource("3_0skpp")
+eventList = Array[ExtResource("10_7eljy")]([SubResource("Resource_e0okk")])
 
-[node name="SoftBody3D" type="SoftBody3D" parent="World/Oozi"]
-material_override = ExtResource("2_ogr3q")
-mesh = ExtResource("2_12f10")
-linear_stiffness = 0.1
-pressure_coefficient = 20.0
-pinned_points = [47, 119, 30, 37, 130, 88]
-attachments/0/point_index = 47
-attachments/0/spatial_attachment_path = NodePath("../Face/Eye1")
-attachments/0/offset = Vector3(-0.062652, 0.722361, 0.520341)
-attachments/1/point_index = 119
-attachments/1/spatial_attachment_path = NodePath("../Face/Eye2")
-attachments/1/offset = Vector3(0.08163, 0.72113, 0.501765)
-attachments/2/point_index = 30
-attachments/2/spatial_attachment_path = NodePath("../Face/Mouth")
-attachments/2/offset = Vector3(-0.04129, 0.52695, 0.558349)
-attachments/3/point_index = 37
-attachments/3/spatial_attachment_path = NodePath("../Core")
-attachments/3/offset = Vector3(-0.464947, 0.81349, 0.023662)
-attachments/4/point_index = 130
-attachments/4/spatial_attachment_path = NodePath("../Core")
-attachments/4/offset = Vector3(0.43122, 0.831139, 0.018896)
-attachments/5/point_index = 88
-attachments/5/spatial_attachment_path = NodePath("../Core")
-attachments/5/offset = Vector3(0.015267, 0.834634, -0.455698)
+[node name="Core" type="Node3D" parent="World/Actors/Oozi"]
 
-[node name="Core" type="Node3D" parent="World/Oozi"]
-
-[node name="Face" type="Node3D" parent="World/Oozi"]
+[node name="Face" type="Node3D" parent="World/Actors/Oozi"]
 transform = Transform3D(0.515, 0, 0, 0, 0.502753, 0.111642, 0, -0.111642, 0.502753, 0, 0.0384248, 0.773148)
 
-[node name="Eye1" type="MeshInstance3D" parent="World/Oozi/Face"]
+[node name="Eye1" type="MeshInstance3D" parent="World/Actors/Oozi/Face"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 1.506, 0)
 material_override = ExtResource("4_vdl50")
 mesh = SubResource("SphereMesh_52id3")
 skeleton = NodePath("../..")
 
-[node name="Eye2" type="MeshInstance3D" parent="World/Oozi/Face"]
+[node name="Eye2" type="MeshInstance3D" parent="World/Actors/Oozi/Face"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338, 1.506, 0)
 material_override = ExtResource("4_vdl50")
 mesh = SubResource("SphereMesh_52id3")
 skeleton = NodePath("../..")
 
-[node name="Mouth" type="MeshInstance3D" parent="World/Oozi/Face"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.948, 0)
+[node name="Mouth" type="MeshInstance3D" parent="World/Actors/Oozi/Face"]
+transform = Transform3D(1, -1.19209e-07, -1.49012e-08, 0, -2.98023e-08, 1, 0, -1, -1.49012e-08, 0, 0.947999, 0)
 mesh = SubResource("SphereMesh_wicw4")
 skeleton = NodePath("../..")
 
-[node name="Skeleton1" type="Node3D" parent="World" node_paths=PackedStringArray("chat_head_camera", "chat_box")]
-transform = Transform3D(0.0334867, 0, -0.99944, 0, 1, 0, 0.99944, 0, 0.0334867, 4.66409, 0, -0.310563)
-visible = false
-script = ExtResource("6_cofvn")
-chat_head_camera = NodePath("../Chathead set/Viewport/Camera3D")
-chat_box = NodePath("../../UI/VBoxContainer/MarginContainer/Chatbox")
-chat_head_index = 4
-eventList = Array[ExtResource("3_jbdmh")]([SubResource("Resource_vmxlj"), SubResource("Resource_buswg"), SubResource("Resource_dv4ju"), SubResource("Resource_iyd1p")])
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Actors/Oozi"]
+material_override = ExtResource("2_ogr3q")
+mesh = ExtResource("2_12f10")
 
-[node name="Model" parent="World/Skeleton1" instance=ExtResource("7_5sjnn")]
+[node name="scientist" parent="World/Actors" node_paths=PackedStringArray("chat_box", "chat_text_box", "chat_head_box") instance=ExtResource("9_s300x")]
+transform = Transform3D(-0.903948, 0, 0.427642, 0, 1, 0, -0.427642, 0, -0.903948, -0.533546, -0.0749997, -1.00203)
+script = ExtResource("10_ttwu0")
+chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
+chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
+chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
+chat_head_image = ExtResource("8_wilgr")
+eventList = Array[ExtResource("10_7eljy")]([SubResource("Resource_vyg3e"), SubResource("Resource_qwb0a"), SubResource("Resource_oyigs")])
+
+[node name="skeleton" parent="World/Actors" node_paths=PackedStringArray("chat_box", "chat_text_box", "chat_head_box") instance=ExtResource("11_md2qg")]
+transform = Transform3D(-0.548789, 0, 0.835961, 0, 1, 0, -0.835961, 0, -0.548789, 17.5877, 0, -1.26633)
+script = ExtResource("12_4x4lv")
+chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
+chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
+chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
+chat_head_image = ExtResource("12_6ffdt")
+eventList = Array[ExtResource("10_7eljy")]([SubResource("Resource_r7ncg"), SubResource("Resource_ito2o"), SubResource("Resource_r7kp4"), SubResource("Resource_4ijji")])
+
+[node name="skeleton2" parent="World/Actors" node_paths=PackedStringArray("chat_box", "chat_text_box", "chat_head_box") instance=ExtResource("11_md2qg")]
+transform = Transform3D(-0.752323, 0, -0.658794, 0, 1, 0, 0.658794, 0, -0.752323, 22.5854, 0, -1.60149)
+script = ExtResource("12_4x4lv")
+chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
+chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
+chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
+chat_head_image = ExtResource("12_6ffdt")
+eventList = Array[ExtResource("10_7eljy")]([SubResource("Resource_wlx8o"), SubResource("Resource_n0ln4"), SubResource("Resource_fe5o6"), SubResource("Resource_5mu2f")])
+
+[node name="monopoly_man" parent="World/Actors" node_paths=PackedStringArray("chat_box", "chat_text_box", "chat_head_box") instance=ExtResource("13_8eses")]
+transform = Transform3D(-0.736841, 0, 0.676066, 0, 1, 0, -0.676066, 0, -0.736841, 26.5359, 0, 1.65232)
+script = ExtResource("10_ttwu0")
+chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
+chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
+chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
+chat_head_image = ExtResource("14_y1ffs")
+eventList = Array[ExtResource("10_7eljy")]([SubResource("Resource_20you"), SubResource("Resource_ej1eo"), SubResource("Resource_gwhgx"), SubResource("Resource_86ry4")])
+next_scene = ExtResource("16_r2oc5")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -304,7 +435,6 @@ offset_left = 55.0
 offset_top = 25.0
 offset_right = 151.0
 offset_bottom = 121.0
-texture = SubResource("ViewportTexture_q3req")
 expand_mode = 1
 
 [node name="Text" type="Label" parent="UI/VBoxContainer/MarginContainer/Chatbox"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://bpe8bm7u6cbs0"]
+[gd_scene load_steps=33 format=3 uid="uid://bpe8bm7u6cbs0"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_4ci7d"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_be173"]
 [ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="2_nke7g"]
+[ext_resource type="PackedScene" uid="uid://d3wytdcg2ka0w" path="res://scenes/cutscene00.tscn" id="2_vdo1b"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="3_8g1yk"]
 [ext_resource type="ArrayMesh" uid="uid://cnb0jsea733p6" path="res://models/blob.obj" id="4_vyrja"]
 [ext_resource type="PackedScene" uid="uid://obcdwbj6a7wr" path="res://models/LHouse2.gltf" id="5_wupa2"]
@@ -65,6 +66,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4ci7d")
+start_scene = ExtResource("2_vdo1b")
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 1
