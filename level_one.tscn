@@ -119,6 +119,7 @@ script = ExtResource("1_feode")
 next_level = ExtResource("2_cdpwk")
 arm_range = Vector2(1.25, 0.625)
 arm_base = Vector2(-0.5, 0)
+init_counter = 0.5
 max_ammo = 6
 reload_timer = 2.0
 reload_text = NodePath("../../UI/reload_text")
@@ -712,10 +713,11 @@ script = ExtResource("23_v5uan")
 path_end_encounter = NodePath("../Encounter1")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="3DWorld/StartPath" node_paths=PackedStringArray("EncounterNode")]
-transform = Transform3D(0.998765, 0.00149571, -0.0496767, 5.82077e-11, 0.999547, 0.0300952, 0.0496993, -0.0300579, 0.998312, -0.039, 1.5, 0.062)
+transform = Transform3D(0.998765, 0.00149571, -0.0496767, 5.82077e-11, 0.999547, 0.0300952, 0.0496993, -0.030058, 0.998312, -0.039, 1.5, 0.062)
 loop = false
 script = ExtResource("5_g0ywy")
-Path_Speed = 20.0
+Path_Speed = 8.0
+delay = 0.5
 EncounterNode = NodePath("../../Encounter1")
 
 [node name="Encounter1" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
