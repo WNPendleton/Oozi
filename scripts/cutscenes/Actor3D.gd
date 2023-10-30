@@ -8,7 +8,7 @@ class_name Actor3D extends Node3D
 
 @export_category("Actions")
 @export var eventList : Array[ScriptEvent]
-@export var next_scene : PackedScene
+@export var next_scene : String
 
 @onready var smoke_puff_prefab = preload("res://prefabs/smoke_puff.tscn")
 
@@ -76,4 +76,4 @@ func do_smoke_puff_and_show():
 	show()
 
 func load_next_scene():
-	get_tree().change_scene_to_packed(next_scene)
+	get_tree().change_scene_to_file(next_scene)

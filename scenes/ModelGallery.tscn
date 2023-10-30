@@ -32,7 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://b3gsokcl6wlnb" path="res://models/OakTreeOrange.gltf" id="31_6dokl"]
 [ext_resource type="PackedScene" uid="uid://ci15c358od2n6" path="res://models/PineTree.gltf" id="32_8g471"]
 [ext_resource type="PackedScene" uid="uid://s76flwqqt0sr" path="res://models/cashbundle.gltf" id="32_j11hu"]
-[ext_resource type="Material" uid="uid://dar4hnunooqp5" path="res://materials/opaque_goo.tres" id="33_48qy7"]
+[ext_resource type="Material" uid="uid://cq3wherp311co" path="res://materials/opaque_goo.tres" id="33_48qy7"]
 [ext_resource type="PackedScene" uid="uid://c5vdy5ggwiqvg" path="res://models/PhotoStudio/photo_demonopoly_man.tscn" id="34_uf5np"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fyc3x"]

@@ -19,7 +19,7 @@ func update_skeletons():
 		var new_skellycart = type.instantiate()
 		new_skellycart.Path_Speed = randf_range(-5, 8)
 		new_skellycart.initial_progress_ratio = ratio
-		var delay_time = 60.0 * ratio - 2
+		var delay_time = 60.0 * ratio - 10
 		new_skellycart.delay = delay_time
 		rail_path.add_child(new_skellycart)
 		new_skellycart.get_node("skeleton").activate_delay = delay_time
