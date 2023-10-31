@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://jbad4dsttsmf"]
+[gd_scene load_steps=33 format=3 uid="uid://jbad4dsttsmf"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_4ci7d"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_be173"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ceovl8hmkftg5" path="res://models/OakTreeGreen.gltf" id="23_bu7m4"]
 [ext_resource type="PackedScene" uid="uid://b3gsokcl6wlnb" path="res://models/OakTreeOrange.gltf" id="24_5bb85"]
 [ext_resource type="PackedScene" uid="uid://ci15c358od2n6" path="res://models/PineTree.gltf" id="25_7tkkq"]
+[ext_resource type="AudioStream" uid="uid://biroeunns7fyp" path="res://sounds/Bleeping Demo.mp3" id="25_k7y5j"]
 
 [sub_resource type="SystemFont" id="SystemFont_il0fh"]
 font_names = PackedStringArray("Titan One")
@@ -196,5 +197,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.9029, 0, 0.999548)
 
 [node name="PineTree2" parent="3DWorld" instance=ExtResource("25_7tkkq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58969, 0, -15.8019)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_k7y5j")
+volume_db = -10.0
+autoplay = true
 
 [connection signal="pressed" from="Control/Button" to="Control" method="_on_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dsnmasrx52dlh"]
+[gd_scene load_steps=28 format=3 uid="uid://dsnmasrx52dlh"]
 
 [ext_resource type="PackedScene" uid="uid://v475jjx1ewku" path="res://models/LabComputer.gltf" id="1_f0gxl"]
 [ext_resource type="PackedScene" uid="uid://dgqhb8y5l6v7b" path="res://models/LabPylon.gltf" id="2_uyhto"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dtlcljf2di7hg" path="res://models/scientist.gltf" id="12_63ljb"]
 [ext_resource type="Script" path="res://scripts/cutscenes/Actor3D.gd" id="13_ycris"]
 [ext_resource type="Texture2D" uid="uid://dijykcvhjfqvp" path="res://sprites/scientist_chathead.png" id="14_hmvkt"]
+[ext_resource type="AudioStream" uid="uid://biroeunns7fyp" path="res://sounds/Bleeping Demo.mp3" id="15_p4425"]
 [ext_resource type="Texture2D" uid="uid://c3e6i8awlcdm0" path="res://sprites/Chatbox.png" id="20_uuemc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6cvl"]
@@ -174,6 +175,11 @@ chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text
 chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
 chat_head_image = ExtResource("14_hmvkt")
 eventList = Array[ExtResource("8_bq4yw")]([SubResource("Resource_vyg3e"), SubResource("Resource_qwb0a")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World"]
+stream = ExtResource("15_p4425")
+volume_db = -10.0
+autoplay = true
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
