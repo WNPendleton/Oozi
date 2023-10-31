@@ -8,7 +8,7 @@ var current_health = max_health
 
 @onready var anim = $AnimationPlayer
 
-func get_hit(dmg = 1):
+func get_hit(dmg = 1, collider_name = ""):
 	current_health -= dmg
 	if current_health <= 0:
 		die()

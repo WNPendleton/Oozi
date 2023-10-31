@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var max_health : int = 3
 @export var gun_damage : int = 1
 @export_category("Reload Bullshit")
-@export var reload_timer : float
+@export var reload_timer : float = 2
 @export var reload_text : Label
 @export var bullet_count : Label
 
@@ -67,7 +67,7 @@ func _physics_process(delta):
 			if !hit.is_empty():
 				var collider = hit.get("collider")
 				if collider.has_method("get_hit"):
-					collider.get_hit(gun_damage)
+					collider.get_hit(gun_damage, collider.get(name))
 			current_ammo -= 1
 			bullet_count.text = str(current_ammo)
 		else :

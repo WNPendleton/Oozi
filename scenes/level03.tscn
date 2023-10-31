@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://18t07tpes3hg"]
+[gd_scene load_steps=10 format=3 uid="uid://18t07tpes3hg"]
 
 [ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="1_0xxmw"]
 [ext_resource type="Script" path="res://scripts/Player.gd" id="2_gfduw"]
@@ -9,6 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://ds3gngnlvyyd2" path="res://prefabs/corrected_demonopoly_man.tscn" id="7_41sje"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_126p6"]
+
+[sub_resource type="Curve3D" id="Curve3D_jso07"]
+_data = {
+"points": PackedVector3Array(0, 0.0953827, 1.35269, 0, -0.0953827, -1.35269, 1.43051e-06, 0.00109959, -0.010237, 0, 1.61283, -0.0606985, 0, -1.61283, 0.0606985, 1.43051e-06, -2.10598, -3.92091, 0, 0.0173421, -1.25731, 0, -0.0173421, 1.25731, 1.43051e-06, -4.4125, 0.0244472, 0, -1.85562, -0.00867081, 0, 1.85562, 0.00867081, 1.43051e-06, -2.05396, 3.9438, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
 
 [node name="Level03" type="Node"]
 
@@ -21,7 +28,6 @@ transform = Transform3D(0.906451, -0.0158823, 0.422013, -9.31323e-10, 0.999292, 
 script = ExtResource("2_gfduw")
 arm_range = Vector2(1.25, 0.625)
 arm_base = Vector2(-0.5, 0)
-reload_timer = 2.0
 reload_text = NodePath("../UI/reload_text")
 bullet_count = NodePath("../UI/bullet_count")
 
@@ -117,5 +123,12 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="demonopoly_man" parent="." instance=ExtResource("7_41sje")]
-transform = Transform3D(-0.0793639, 0, 0.996846, 0, 1, 0, -0.996846, 0, -0.0793639, 1.86673, 3.54104, 0)
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.70618, 11.8745, 0)
+curve = SubResource("Curve3D_jso07")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(1, 0, 0, 0, 0.997523, 0.0703384, 0, -0.0703384, 0.997523, 1.43051e-06, 0.00109959, -0.010237)
+
+[node name="demonopoly_man" parent="Path3D/PathFollow3D" instance=ExtResource("7_41sje")]
+transform = Transform3D(-0.0793639, 0, 0.996846, 0.0701166, 0.997523, 0.00558233, -0.994377, 0.0703384, -0.0791673, -0.350347, -8.31467, -0.576031)
