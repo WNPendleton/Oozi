@@ -1,0 +1,227 @@
+[gd_scene load_steps=27 format=3 uid="uid://dsnmasrx52dlh"]
+
+[ext_resource type="PackedScene" uid="uid://v475jjx1ewku" path="res://models/LabComputer.gltf" id="1_f0gxl"]
+[ext_resource type="PackedScene" uid="uid://dgqhb8y5l6v7b" path="res://models/LabPylon.gltf" id="2_uyhto"]
+[ext_resource type="PackedScene" uid="uid://cbmqvv78kv0e8" path="res://models/LabTable.gltf" id="3_3plxs"]
+[ext_resource type="PackedScene" uid="uid://ciskhpiil1y8d" path="res://models/LabTortureBed.gltf" id="4_kpuus"]
+[ext_resource type="Shader" path="res://shaders/sky.gdshader" id="5_27t8t"]
+[ext_resource type="Script" path="res://scripts/cutscenes/CutsceneOozi.gd" id="6_dic18"]
+[ext_resource type="Texture2D" uid="uid://2bd3legnqgjo" path="res://sprites/oozi_chathead.png" id="7_au7r3"]
+[ext_resource type="Script" path="res://scripts/cutscenes/ScriptEvent.gd" id="8_bq4yw"]
+[ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="9_l6guh"]
+[ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="10_unvne"]
+[ext_resource type="ArrayMesh" uid="uid://cnb0jsea733p6" path="res://models/blob.obj" id="11_dieok"]
+[ext_resource type="PackedScene" uid="uid://dtlcljf2di7hg" path="res://models/scientist.gltf" id="12_63ljb"]
+[ext_resource type="Script" path="res://scripts/cutscenes/Actor3D.gd" id="13_ycris"]
+[ext_resource type="Texture2D" uid="uid://dijykcvhjfqvp" path="res://sprites/scientist_chathead.png" id="14_hmvkt"]
+[ext_resource type="Texture2D" uid="uid://c3e6i8awlcdm0" path="res://sprites/Chatbox.png" id="20_uuemc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q6cvl"]
+albedo_color = Color(0, 0.137255, 0.137255, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_80tqy"]
+shader = ExtResource("5_27t8t")
+shader_parameter/skyColor = Color(0.301961, 0.54902, 1, 1)
+shader_parameter/horizonColor = Color(0.701961, 0.803922, 1, 1)
+
+[sub_resource type="Sky" id="Sky_vmk5g"]
+sky_material = SubResource("ShaderMaterial_80tqy")
+
+[sub_resource type="Environment" id="Environment_i2t3u"]
+background_mode = 2
+sky = SubResource("Sky_vmk5g")
+
+[sub_resource type="Resource" id="Resource_e0okk"]
+script = ExtResource("8_bq4yw")
+time = 5.0
+duration = 3.0
+location = Vector3(-1.84786, -0.00512701, 0.249773)
+rotation = Vector3(0, 0.707644, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = ""
+dialog_line = "*schlorp schlorp*"
+
+[sub_resource type="Resource" id="Resource_lctfn"]
+script = ExtResource("8_bq4yw")
+time = 8.0
+duration = 3.0
+location = Vector3(-1.84786, -0.00512701, 0.249773)
+rotation = Vector3(0, 0.707644, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = "load_next_scene"
+dialog_line = ""
+
+[sub_resource type="SphereMesh" id="SphereMesh_52id3"]
+radius = 0.05
+height = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_wicw4"]
+material = ExtResource("9_l6guh")
+radius = 0.2
+height = 0.2
+
+[sub_resource type="Resource" id="Resource_vyg3e"]
+script = ExtResource("8_bq4yw")
+time = 0.0
+duration = 0.0
+location = Vector3(-0.931215, -0.0749997, -5.87911)
+rotation = Vector3(0, 2.69971, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = ""
+dialog_line = ""
+
+[sub_resource type="Resource" id="Resource_qwb0a"]
+script = ExtResource("8_bq4yw")
+time = 1.0
+duration = 3.0
+location = Vector3(-0.931215, -0.0749997, -0.383781)
+rotation = Vector3(0, 2.69971, 0)
+size = Vector3(1, 1, 1)
+start_action = ""
+end_action = ""
+dialog_line = "Oh Oozi, you saved me!"
+
+[sub_resource type="LabelSettings" id="LabelSettings_i5p28"]
+line_spacing = 0.0
+font_size = 24
+
+[node name="scene" type="Node"]
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Set" type="Node3D" parent="World"]
+
+[node name="Room" type="CSGBox3D" parent="World/Set"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.876835, 4.61419, 0)
+flip_faces = true
+size = Vector3(20, 10, 20)
+material = SubResource("StandardMaterial3D_q6cvl")
+
+[node name="LabComputer" parent="World/Set/Room" instance=ExtResource("1_f0gxl")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.65668, -5.00079, -5.40478)
+
+[node name="LabPylon" parent="World/Set/Room" instance=ExtResource("2_uyhto")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87684, -4.9201, 2)
+
+[node name="LabTable" parent="World/Set/Room" instance=ExtResource("3_3plxs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.69252, -5.01823, 6.02369)
+
+[node name="LabPylon2" parent="World/Set/Room" instance=ExtResource("2_uyhto")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.87684, -4.91696, -2)
+
+[node name="LabTortureBed" parent="World/Set/Room" instance=ExtResource("4_kpuus")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.87684, -5.01004, 0)
+
+[node name="Camera3D" type="Camera3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44529, 5.74273)
+current = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.111899, 2.45968, 2.91809)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_i2t3u")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World/WorldEnvironment"]
+transform = Transform3D(0.984057, 0.134254, -0.116652, -0.0456839, 0.824687, 0.563741, 0.171886, -0.549424, 0.817672, 0, 4.95604, 0)
+
+[node name="Actors" type="Node3D" parent="World"]
+
+[node name="Oozi" type="Node3D" parent="World/Actors" node_paths=PackedStringArray("chat_box", "chat_text_box", "chat_head_box")]
+transform = Transform3D(0.759896, 0, 0.650045, 0, 1, 0, -0.650045, 0, 0.759896, -2.64259, -0.00512701, 0.249773)
+script = ExtResource("6_dic18")
+chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
+chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
+chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
+chat_head_image = ExtResource("7_au7r3")
+eventList = Array[ExtResource("8_bq4yw")]([SubResource("Resource_e0okk"), SubResource("Resource_lctfn")])
+next_scene = "res://scenes/Menu.tscn"
+
+[node name="Core" type="Node3D" parent="World/Actors/Oozi"]
+
+[node name="Face" type="Node3D" parent="World/Actors/Oozi"]
+transform = Transform3D(0.515, 0, 0, 0, 0.502753, 0.111642, 0, -0.111642, 0.502753, 0, 0.0384248, 0.773148)
+
+[node name="Eye1" type="MeshInstance3D" parent="World/Actors/Oozi/Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 1.506, 0)
+material_override = ExtResource("9_l6guh")
+mesh = SubResource("SphereMesh_52id3")
+skeleton = NodePath("../..")
+
+[node name="Eye2" type="MeshInstance3D" parent="World/Actors/Oozi/Face"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.338, 1.506, 0)
+material_override = ExtResource("9_l6guh")
+mesh = SubResource("SphereMesh_52id3")
+skeleton = NodePath("../..")
+
+[node name="Mouth" type="MeshInstance3D" parent="World/Actors/Oozi/Face"]
+transform = Transform3D(1, -1.19209e-07, -1.49012e-08, 0, -2.98023e-08, 1, 0, -1, -1.49012e-08, 0, 0.947999, 0)
+mesh = SubResource("SphereMesh_wicw4")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Actors/Oozi"]
+material_override = ExtResource("10_unvne")
+mesh = ExtResource("11_dieok")
+
+[node name="scientist" parent="World/Actors" node_paths=PackedStringArray("chat_box", "chat_text_box", "chat_head_box") instance=ExtResource("12_63ljb")]
+transform = Transform3D(-0.903948, 0, 0.427642, 0, 1, 0, -0.427642, 0, -0.903948, -0.931215, -0.0749997, -0.383781)
+script = ExtResource("13_ycris")
+chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
+chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
+chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
+chat_head_image = ExtResource("14_hmvkt")
+eventList = Array[ExtResource("8_bq4yw")]([SubResource("Resource_vyg3e"), SubResource("Resource_qwb0a")])
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -512.0
+offset_top = -144.0
+offset_right = 512.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 20
+
+[node name="Chatbox" type="TextureRect" parent="UI/VBoxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("20_uuemc")
+
+[node name="Chathead" type="TextureRect" parent="UI/VBoxContainer/MarginContainer/Chatbox"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 25.0
+offset_right = 151.0
+offset_bottom = 121.0
+expand_mode = 1
+
+[node name="Text" type="Label" parent="UI/VBoxContainer/MarginContainer/Chatbox"]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 23.0
+offset_right = 971.0
+offset_bottom = 125.0
+text = "Hello. I am here to kidnap you! I am going to put you in a cage and take you back to the MONOPOLY MAN!! Once you are kidnapped you will be made to do EVIL SCIENCE  for us!!!"
+label_settings = SubResource("LabelSettings_i5p28")
+autowrap_mode = 2

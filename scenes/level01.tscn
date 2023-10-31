@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bmcmxeptbanl4"]
+[gd_scene load_steps=51 format=3 uid="uid://bmcmxeptbanl4"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_rc1k3"]
 [ext_resource type="AudioStream" uid="uid://cpqprvfnh5e5w" path="res://sounds/Wepa.mp3" id="2_xqi3b"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://monew1aguujw" path="res://sounds/bossdeath.wav" id="10_l2fnw"]
 [ext_resource type="Material" uid="uid://cehsst823bf3x" path="res://materials/ground.tres" id="11_3vmss"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="12_jjahu"]
+[ext_resource type="AudioStream" uid="uid://bkk3s4bkworyl" path="res://sounds/oozihit.wav" id="12_xh8g6"]
 [ext_resource type="PackedScene" uid="uid://obcdwbj6a7wr" path="res://models/LHouse2.gltf" id="13_xxlhi"]
 [ext_resource type="PackedScene" uid="uid://c484luve2wx5f" path="res://models/House2.gltf" id="14_nhbrf"]
 [ext_resource type="PackedScene" uid="uid://0l2i2gwgosdo" path="res://models/THouse2.gltf" id="15_b2j2i"]
@@ -33,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://dvs1eabwvj4do" path="res://prefabs/corrected_skeleton.tscn" id="30_k76k2"]
 [ext_resource type="Script" path="res://scripts/BigSkellyEncounter.gd" id="31_lrdhh"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="32_8ehw3"]
+[ext_resource type="Script" path="res://scripts/big_skeleton.gd" id="34_li4bm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x0st1"]
 
@@ -168,6 +170,9 @@ stream = ExtResource("10_l2fnw")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="3DWorld/Player"]
 volume_db = -10.0
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+stream = ExtResource("12_xh8g6")
 
 [node name="Terrain" type="Node3D" parent="3DWorld"]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
@@ -796,9 +801,10 @@ visible = false
 transform = Transform3D(-0.444682, 0, -0.895689, 0, 1, 0, 0.895689, 0, -0.444682, -98.5968, 1.0681, -217.544)
 script = ExtResource("31_lrdhh")
 
-[node name="skeleton" parent="3DWorld/Encounter7" instance=ExtResource("30_k76k2")]
-transform = Transform3D(2.47737, 0, -4.34311, 0, 5, 0, 4.34311, 0, 2.47737, -9.5435, 0, 7.61537)
+[node name="big_skeleton" parent="3DWorld/Encounter7" instance=ExtResource("30_k76k2")]
+transform = Transform3D(4.25511, 0, -2.62565, 0, 5, 0, 2.62565, 0, 4.25511, -3.50539, 0, -1.7951)
 visible = false
+script = ExtResource("34_li4bm")
 max_health = 15
 
 [node name="UI" type="Control" parent="."]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2ijqwblq2v6m"]
+
+[ext_resource type="Script" path="res://scripts/Projectile.gd" id="1_abn7g"]
+[ext_resource type="PackedScene" uid="uid://s76flwqqt0sr" path="res://models/cashbundle.gltf" id="1_k2qbh"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4xttf"]
+points = PackedVector3Array(1.06094, 0.349576, 1.12451, 0.999872, 0.712405, 2, 1.06094, -0.18557, 1.12451, 1.06094, 0.348657, -1.1249, -1.00008, 0.712405, 2, 0.999872, -0.205513, 2, 0.999872, 0.595505, -2, 1.06094, -0.226374, 0.653093, 1.06094, -0.17638, -1.1249, -1.06094, 0.349576, 1.12451, -1.00008, -0.205513, 2, -1.00008, 0.595505, -2, -1.06094, 0.348657, -1.1249, 0.999872, -0.144122, -2, -1.06094, -0.226374, 0.653093, 1.06094, -0.225823, -0.653485, -1.06094, -0.18557, 1.12451, -1.00008, -0.144122, -2, -1.06094, -0.17638, -1.1249, -1.06094, -0.225823, -0.653485)
+
+[node name="Cash" instance=ExtResource("1_k2qbh")]
+gravity_scale = 0.0
+contact_monitor = true
+script = ExtResource("1_abn7g")
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(0.31, 0, 0, 0, 0.31, 0, 0, 0, 0.31, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_4xttf")

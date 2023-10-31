@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cernwdlsei81b"]
+[gd_scene load_steps=40 format=3 uid="uid://cernwdlsei81b"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_6j2kd"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="2_tsx1f"]
@@ -30,6 +30,9 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fb0bb"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_lbfpr"]
+size = Vector3(3, 2, 4)
+
 [sub_resource type="Curve3D" id="Curve3D_bk1xm"]
 _data = {
 "points": PackedVector3Array(0, 0.6605, 14.5064, 0, -0.6605, -14.5064, 0, 100, 0, -3.71038, 8.83683, 22.4634, 3.71038, -8.83683, -22.4634, -4.7942, 90, -53.0817, -24.7489, 10.3872, 1.44312, 24.7489, -10.3872, -1.44312, 33.8636, 70, -92.7843, -13.858, 8.66698, -38.0034, 13.858, -8.66698, 38.0034, 77.223, 50, -45.768, -17.8811, 15.7903, -35.001, 17.8811, -15.7903, 35.001, 111.179, 20, 48.7868, -31.8665, 3.18262, 5.22402, 31.8665, -3.18262, -5.22402, 182.748, -10, 78.5638, -6.7348, 6.10498, 51.473, 6.7348, -6.10498, -51.473, 233.421, -20, 18.4875, 12.6789, -0.978273, -6.79115, -12.6789, 0.978273, 6.79115, 163.942, -20, -13.9015),
@@ -60,13 +63,13 @@ shader = ExtResource("7_keqov")
 shader_parameter/skyColor = Color(0.301961, 0.54902, 1, 1)
 shader_parameter/horizonColor = Color(0.701961, 0.803922, 1, 1)
 
-[sub_resource type="Sky" id="Sky_vmk5g"]
+[sub_resource type="Sky" id="Sky_adgnw"]
 sky_material = SubResource("ShaderMaterial_1eeaj")
 
 [sub_resource type="Environment" id="Environment_e10ty"]
 background_mode = 2
 background_energy_multiplier = 0.1
-sky = SubResource("Sky_vmk5g")
+sky = SubResource("Sky_adgnw")
 
 [sub_resource type="Curve3D" id="Curve3D_uorln"]
 _data = {
@@ -93,7 +96,7 @@ up_vector_enabled = false
 [node name="Player" type="CharacterBody3D" parent="3DWorld" node_paths=PackedStringArray("reload_text", "bullet_count", "chosen_path_follow")]
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 102.601, 0)
 script = ExtResource("1_6j2kd")
-next_level = "res://scenes/Menu.tscn"
+next_level = "res://scenes/Level03.tscn"
 arm_range = Vector2(1.25, 0.625)
 arm_base = Vector2(-0.5, 0)
 max_ammo = 6
@@ -128,15 +131,21 @@ shape = SubResource("CapsuleShape3D_fb0bb")
 
 [node name="reload_timer" type="Timer" parent="3DWorld/Player"]
 
-[node name="cart" parent="3DWorld/Player" instance=ExtResource("5_pyqr6")]
+[node name="StaticBody3D" type="StaticBody3D" parent="3DWorld/Player"]
+
+[node name="cart" parent="3DWorld/Player/StaticBody3D" instance=ExtResource("5_pyqr6")]
 transform = Transform3D(1, 9.31323e-10, 0, -9.31323e-09, 1, 0, 2.98023e-08, 1.30385e-08, 1, -1.33659e-08, -2.35345, 0.512654)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="3DWorld/Player/cart"]
+[node name="SpotLight3D" type="SpotLight3D" parent="3DWorld/Player/StaticBody3D/cart"]
 transform = Transform3D(1, 8.3819e-09, -2.98023e-08, 0, 1, -1.30385e-08, -1.42109e-14, -8.88178e-16, 1, -1.15153e-09, 1.23642, -1.74593)
 light_energy = 16.0
 light_indirect_energy = 16.0
 light_volumetric_fog_energy = 16.0
 spot_range = 14.905
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/Player/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3149, 0.557618)
+shape = SubResource("BoxShape3D_lbfpr")
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
 stream = ExtResource("7_gswhr")
@@ -278,7 +287,7 @@ path_joined = false
 multimesh = SubResource("MultiMesh_40atv")
 
 [node name="PlayerPathFollow" type="PathFollow3D" parent="3DWorld/RailPath" node_paths=PackedStringArray("EncounterNode")]
-transform = Transform3D(0.999996, 0, 0, 0, 0.998962, 0.0454843, 0, -0.0454843, 0.998961, 0, 101.998, -0.090969)
+transform = Transform3D(0.999996, 0, 0, 0, 0.998961, 0.0454842, 0, -0.0454843, 0.99896, 0, 101.998, -0.090969)
 v_offset = 2.0
 loop = false
 script = ExtResource("11_fe5d0")

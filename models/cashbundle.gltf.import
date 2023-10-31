@@ -13,8 +13,8 @@ dest_files=["res://.godot/imported/cashbundle.gltf-15ddceb01e3ec9f34da153fcd5965
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type="RigidBody3D"
+nodes/root_name="Cash"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
