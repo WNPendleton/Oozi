@@ -1,7 +1,7 @@
 extends Node3D
 @export var PathFollow: PathFollow3D
 @export var Next_Path: Path3D
-
+@onready var projectile_parent = get_tree().get_root().get_node_or_null(PlayerPathGetter.projectile_parent_path)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -23,6 +23,9 @@ func activate_encounter():
 	
 func complete_encounter():
 	print('Encounter Completed')
+	if projectile_parent:
+		for child in projectile_parent.get_children():
+			child.queue_free()
 	PathFollow.path_end = false
 	PathFollow.get_parent().remove_child(PathFollow)
 	Next_Path.add_child(PathFollow)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bmcmxeptbanl4"]
+[gd_scene load_steps=52 format=3 uid="uid://bmcmxeptbanl4"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_rc1k3"]
 [ext_resource type="AudioStream" uid="uid://cpqprvfnh5e5w" path="res://sounds/Wepa.mp3" id="2_xqi3b"]
@@ -35,6 +35,7 @@
 [ext_resource type="Script" path="res://scripts/BigSkellyEncounter.gd" id="31_lrdhh"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="32_8ehw3"]
 [ext_resource type="Script" path="res://scripts/big_skeleton.gd" id="34_li4bm"]
+[ext_resource type="Script" path="res://scripts/ProjectileParent.gd" id="35_06dyp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x0st1"]
 
@@ -63,35 +64,35 @@ sky = SubResource("Sky_vmk5g")
 
 [sub_resource type="Curve3D" id="Curve3D_83k64"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.591, 1.5, -2.169, -6.2874, 0.141554, -14.7615, 6.2874, -0.141554, 14.7615, 8.15581, -0.286208, 7.60543, 0, 0, 0, 0, 0, 0, 24.9853, -0.410452, 10.9067),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0992355, 0.00585747, -0.15564, -3.11418, -0.0714216, 1.89776, 3.11418, 0.0714216, -1.89776, 4.36446, 0.177369, -4.71293, -3, 0, -4, 3, 0, 4, 17.2119, 0.214898, -5.71012, -3, 0, -4, 3, 0, 4, 22.1626, -0.300057, 7.97291, 0, 0, 0, 0, 0, 0, 31.4843, -0.464442, 12.3408),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
-point_count = 3
+point_count = 5
 
 [sub_resource type="Curve3D" id="Curve3D_gboip"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.039, 1.5, 0.062, -5.05023, -0.228742, 6.07797, 5.05023, 0.228742, -6.07797, 1.06221, 0.832865, -22.0681, 0, 0, 0, 0, 0, 0, 7.88878, 1.11134, -29.4676),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.039, 1.5, 0.062, -1.47038, -0.178943, 4.75475, 1.47038, 0.178943, -4.75475, -0.57373, 2.1845, -18.1256, -1.5654, -0.126954, 3.37332, 1.5654, 0.126954, -3.37332, 2.90804, 2.57571, -28.5191, 0, 0, 0, 0, 0, 0, 5.45593, 2.75462, -33.2729),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 3
+point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_2w8lq"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.544533, 0, -0.654012, -8.8108, -4.88162e-05, -7.4262, 8.8108, 4.88162e-05, 7.4262, -4.13409, 0, 24.0506, 0, 0, 0, 0, 0, 0, 25.168, 4.88162e-05, 31.7429),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -2.14369, 0.5, 0.103771, -3.10532, 0, -8.99472, 3.10532, 0, 8.99472, -4.28529, 0.5, 18.6286, 0, 0, 0, 0, 0, 0, 20.4502, 0.5, 31.4782),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_vvdn0"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0665245, 4.88162e-05, -0.266117, 0.316139, 0, 21.0541, -0.316139, 0, -21.0541, 34.1887, 4.88162e-05, -14.8516, 0, 0, 0, 0, 0, 0, 51.8183, 4.88162e-05, -46.2036, 12.208, 0, 2.58521, -12.208, 0, -2.58521, 52.0977, 4.88162e-05, -78.0206),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.0665245, 4.88162e-05, -0.266117, -9.14933, -4.88162e-05, 10.153, 9.14933, 4.88162e-05, -10.153, 35.9403, 0, -14.6085, 0, 0, 0, 0, 0, 0, 51.8183, 4.88162e-05, -46.2036, 4.65331, -4.88162e-05, 9.89873, -4.65331, 4.88162e-05, -9.89873, 52.3907, 0, -72.284),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_vuho3"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.227272, 4.88162e-05, -0.826889, 9.5235, 0, 15.227, -9.5235, 0, -15.227, -22.8991, 4.88162e-05, -28.9791, 0, 0, 0, 0, 0, 0, -58.3664, 4.88162e-05, -41.0309),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.227272, 4.88162e-05, -0.826889, 10, 0, 12, -10, 0, -12, -22.8991, 4.88162e-05, -28.9791, 0, 0, 0, 0, 0, 0, -58.3664, 4.88162e-05, -41.0309),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -105,7 +106,7 @@ point_count = 3
 
 [sub_resource type="Curve3D" id="Curve3D_2eg2v"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.27832, 4.88162e-05, -1.10645, 5.95241, 0, 16.6777, -5.95241, 0, -16.6777, 14.0227, 4.88162e-05, -40.1695, 0, 0, 0, 0, 0, 0, -0.968811, 4.88162e-05, -76.5206),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 4.21239, 0, -13.1728, -4.58398, 0, 6.20187, 4.58398, 0, -6.20187, 13.764, 0, -31.1607, 0, 0, 0, 0, 0, 0, 13.6143, 0, -43.4843),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -173,6 +174,9 @@ volume_db = -10.0
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
 stream = ExtResource("12_xh8g6")
+
+[node name="ProjectileParent" type="Node3D" parent="3DWorld"]
+script = ExtResource("35_06dyp")
 
 [node name="Terrain" type="Node3D" parent="3DWorld"]
 transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
@@ -290,7 +294,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.1206, 0.05, 4.50634)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.9029, 0.05, 0.999548)
 
 [node name="PineTree2" parent="3DWorld/HouseBlock2" instance=ExtResource("25_knsmr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.58969, 0.05, -15.8019)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4392, 0.05, -8.0507)
 
 [node name="HouseBlock3" type="Node3D" parent="3DWorld"]
 transform = Transform3D(0.0339576, 0, 0.999423, 0, 1, 0, -0.999423, 0, 0.0339576, -32.7368, 0, 31.1)
@@ -595,7 +599,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.513, 0, -185.206)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.1997, 0, -202.008)
 
 [node name="Trees2" type="Node3D" parent="3DWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.7983, 0, -28.139)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.37, 0, 43.8566)
 
 [node name="WillowTreeYellow" parent="3DWorld/Trees2" instance=ExtResource("17_metrm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.439, 0, -168.496)
@@ -628,7 +632,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.513, 0, -185.206)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.1997, 0, -202.008)
 
 [node name="Trees3" type="Node3D" parent="3DWorld"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.6961, 0, -27.7255)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77.7624, 0, -25.5683)
 
 [node name="WillowTreeYellow" parent="3DWorld/Trees3" instance=ExtResource("17_metrm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -101.439, 0, -168.496)
@@ -661,22 +665,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.513, 0, -185.206)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -95.1997, 0, -202.008)
 
 [node name="cave" parent="3DWorld" instance=ExtResource("26_vaaar")]
-transform = Transform3D(-0.968864, 0, -0.247591, 0, 1, 0, 0.247591, 0, -0.968864, -103.035, 0, -236.939)
+transform = Transform3D(-1.93773, 0, -0.495182, 0, 2, 0, 0.495182, 0, -1.93773, -86.3794, -2, -209.242)
 
 [node name="Path2" type="Path3D" parent="3DWorld" node_paths=PackedStringArray("path_end_encounter")]
-transform = Transform3D(-0.0685798, 0.0375195, -0.99694, -8.73129e-10, 0.999293, 0.037608, 0.997646, 0.00257915, -0.0685313, -15.2027, 0.05, -34.4762)
+transform = Transform3D(-0.0685798, 0.0375195, -0.99694, -8.73129e-10, 0.999293, 0.037608, 0.997646, 0.00257915, -0.0685313, -12.2594, 1, -42.5633)
 curve = SubResource("Curve3D_83k64")
 script = ExtResource("27_jwmsg")
 path_end_encounter = NodePath("../Encounter2")
 
 [node name="StartPath" type="Path3D" parent="3DWorld" node_paths=PackedStringArray("path_end_encounter")]
-transform = Transform3D(-0.0685798, 0.0375195, -0.99694, -8.73129e-10, 0.999293, 0.037608, 0.997646, 0.00257915, -0.0685313, -45.5961, 0.460382, -50.5306)
+transform = Transform3D(-0.0685798, 0.0375195, -0.99694, -8.73129e-10, 0.999293, 0.037608, 0.997646, 0.00257915, -0.0685313, -45.596, 1, -50.531)
 curve = SubResource("Curve3D_gboip")
 script = ExtResource("27_jwmsg")
 path_end_encounter = NodePath("../Encounter1")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="3DWorld/StartPath" node_paths=PackedStringArray("EncounterNode")]
-transform = Transform3D(0.998765, 0.00149571, -0.0496767, 5.82077e-11, 0.999547, 0.0300952, 0.0496993, -0.030058, 0.998312, -0.039, 1.5, 0.062)
+transform = Transform3D(0.999569, 0.00110478, 0.0293673, 5.82077e-11, 0.999293, -0.0375927, -0.0293881, 0.0375764, 0.998862, -0.039, 1.5, 0.062)
 loop = false
 script = ExtResource("28_xd56e")
 Path_Speed = 8.0
@@ -684,21 +688,28 @@ delay = 0.5
 EncounterNode = NodePath("../../Encounter1")
 
 [node name="Encounter1" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
-transform = Transform3D(0.571774, 0, 0.820411, 0, 1, 0, -0.820411, 0, 0.571774, -11.6397, 1.0681, -36.2521)
+transform = Transform3D(0.0729082, 0, 0.997339, 0, 1, 0, -0.997339, 0, 0.0729082, -4.6996, 1.0681, -41.8387)
 script = ExtResource("29_2cbbd")
 PathFollow = NodePath("../StartPath/PathFollow3D")
 Next_Path = NodePath("../Path2")
 
+[node name="skeleton3" parent="3DWorld/Encounter1" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 6.70552e-08, 0, 1, 0, -6.70552e-08, 0, 1, -0.609348, -0.986755, 1.49555)
+visible = false
+
 [node name="skeleton" parent="3DWorld/Encounter1" instance=ExtResource("30_k76k2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.986755, 0)
+transform = Transform3D(0.630528, 0, -0.776168, 0, 1, 0, 0.776168, 0, 0.630528, -4.8283, -0.986755, -2.11565)
 visible = false
 
 [node name="skeleton2" parent="3DWorld/Encounter1" instance=ExtResource("30_k76k2")]
-transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -4.21738, -0.986755, 1.34877)
+transform = Transform3D(0.900804, 0, -0.434225, 0, 1, 0, 0.434225, 0, 0.900804, -8.37221, -0.986755, 4.25842)
 visible = false
+spawn_animation = "LeanLeft"
+attack_animation = "LeanThrowLeft"
+activate_delay = 1.0
 
 [node name="Encounter2" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
-transform = Transform3D(0.999312, 0, -0.0370972, 0, 1, 0, 0.0370972, 0, 0.999312, -24.6642, 1.0681, -3.8708)
+transform = Transform3D(0.999312, 0, -0.0370972, 0, 1, 0, 0.0370972, 0, 0.999312, -25.6642, 1.0681, -6.8708)
 script = ExtResource("29_2cbbd")
 PathFollow = NodePath("../StartPath/PathFollow3D")
 Next_Path = NodePath("../Path3")
@@ -711,50 +722,114 @@ visible = false
 transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -4.21738, -0.986755, 1.34877)
 visible = false
 
+[node name="skeleton3" parent="3DWorld/Encounter2" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18243, -0.986755, 5.86911)
+visible = false
+activate_delay = 3.0
+
+[node name="skeleton4" parent="3DWorld/Encounter2" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60711, -0.986755, 0.282397)
+visible = false
+activate_delay = 0.5
+
 [node name="Encounter3" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
-transform = Transform3D(0.432967, 0, -0.90141, 0, 1, 0, 0.90141, 0, 0.432967, 10.9262, 1.0681, 23.2346)
+transform = Transform3D(0.432967, 0, -0.90141, 0, 1, 0, 0.90141, 0, 0.432967, 10.9262, 1.0681, 22.2346)
 script = ExtResource("29_2cbbd")
 PathFollow = NodePath("../StartPath/PathFollow3D")
 Next_Path = NodePath("../Path4")
 
 [node name="skeleton" parent="3DWorld/Encounter3" instance=ExtResource("30_k76k2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.986755, 0)
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 1.94328, -0.986755, 0.933398)
 visible = false
+activate_delay = 0.3
 
 [node name="skeleton2" parent="3DWorld/Encounter3" instance=ExtResource("30_k76k2")]
-transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -4.21738, -0.986755, 1.34877)
+transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -0.469625, -0.986755, 3.1489)
+visible = false
+
+[node name="skeleton3" parent="3DWorld/Encounter3" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0.240393, -0.986755, -9.03819)
+visible = false
+activate_delay = 4.0
+
+[node name="skeleton4" parent="3DWorld/Encounter3" instance=ExtResource("30_k76k2")]
+transform = Transform3D(0.61716, 0, -0.786838, 0, 1, 0, 0.786838, 0, 0.61716, 9.16236, -0.986755, -1.23777)
+visible = false
+activate_delay = 3.0
+
+[node name="skeleton5" parent="3DWorld/Encounter3" instance=ExtResource("30_k76k2")]
+transform = Transform3D(0.61716, 0, -0.786838, 0, 1, 0, 0.786838, 0, 0.61716, 6.59017, -0.986755, 4.11738)
 visible = false
 
 [node name="Encounter4" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
-transform = Transform3D(-0.444682, 0, -0.895689, 0, 1, 0, 0.895689, 0, -0.444682, 50.0857, 1.0681, -59.2712)
+transform = Transform3D(-0.444682, 0, -0.895689, 0, 1, 0, 0.895689, 0, -0.444682, 50.1512, 1.0681, -59.3565)
 script = ExtResource("29_2cbbd")
 PathFollow = NodePath("../StartPath/PathFollow3D")
 Next_Path = NodePath("../Path5")
 
 [node name="skeleton" parent="3DWorld/Encounter4" instance=ExtResource("30_k76k2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.986755, 0)
+transform = Transform3D(1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, 1, -2.3644, -0.986755, 6.70387)
 visible = false
+activate_delay = 1.0
 
 [node name="skeleton2" parent="3DWorld/Encounter4" instance=ExtResource("30_k76k2")]
-transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -4.21738, -0.986755, 1.34877)
+transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -5.83691, -0.986755, -1.91335)
+visible = false
+activate_delay = 2.0
+
+[node name="skeleton3" parent="3DWorld/Encounter4" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 1.67789, -0.986755, 5.67289)
+visible = false
+activate_delay = 2.0
+
+[node name="skeleton4" parent="3DWorld/Encounter4" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 4.43651, -0.986755, -2.20259)
+visible = false
+
+[node name="skeleton5" parent="3DWorld/Encounter4" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 8.9407e-08, 0, 1, 0, -8.9407e-08, 0, 1, -3.49821, -0.986755, -7.0462)
+visible = false
+
+[node name="skeleton6" parent="3DWorld/Encounter4" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, 1, -3.76707, -0.662769, 1.56801)
+visible = false
+
+[node name="skeleton7" parent="3DWorld/Encounter4" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, 1, 0.0971527, -0.986755, 0.195677)
 visible = false
 
 [node name="Encounter5" type="Node3D" parent="3DWorld" node_paths=PackedStringArray("PathFollow", "Next_Path")]
-transform = Transform3D(-0.444682, 0, -0.895689, 0, 1, 0, 0.895689, 0, -0.444682, -17.5271, 1.0681, -95.6179)
+transform = Transform3D(-0.444682, 0, -0.895689, 0, 1, 0, 0.895689, 0, -0.444682, -21.2984, 1.0681, -101.174)
 script = ExtResource("29_2cbbd")
 PathFollow = NodePath("../StartPath/PathFollow3D")
 Next_Path = NodePath("../Path6")
 
 [node name="skeleton" parent="3DWorld/Encounter5" instance=ExtResource("30_k76k2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.986755, 0)
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 7.69863, -0.986755, -3.82214)
 visible = false
 
 [node name="skeleton2" parent="3DWorld/Encounter5" instance=ExtResource("30_k76k2")]
-transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -4.21738, -0.986755, 1.34877)
+transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -6.22562, -0.986755, -2.69627)
+visible = false
+
+[node name="skeleton3" parent="3DWorld/Encounter5" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 3.65358, -0.986755, -1.8139)
+visible = false
+
+[node name="skeleton4" parent="3DWorld/Encounter5" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, 1, 2.04602, -0.986755, -9.31081)
+visible = false
+
+[node name="skeleton5" parent="3DWorld/Encounter5" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -3.88691, -0.986755, -7.82911)
+visible = false
+
+[node name="skeleton6" parent="3DWorld/Encounter5" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, 1, 2.32754, -0.986755, 6.32623)
 visible = false
 
 [node name="Path3" type="Path3D" parent="3DWorld" node_paths=PackedStringArray("path_end_encounter")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.166, 1.5, -7.792)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.166, 1.5, -7.89908)
 curve = SubResource("Curve3D_2w8lq")
 script = ExtResource("27_jwmsg")
 path_end_encounter = NodePath("../Encounter3")
@@ -790,15 +865,47 @@ PathFollow = NodePath("../StartPath/PathFollow3D")
 Next_Path = NodePath("../Path7")
 
 [node name="skeleton" parent="3DWorld/Encounter6" instance=ExtResource("30_k76k2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.986755, 0)
+transform = Transform3D(1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, 1, 6.1571, -0.986755, -4.55194)
 visible = false
 
 [node name="skeleton2" parent="3DWorld/Encounter6" instance=ExtResource("30_k76k2")]
-transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, -4.21738, -0.986755, 1.34877)
+transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, 6.67881, -0.986755, -0.461456)
 visible = false
 
+[node name="skeleton3" parent="3DWorld/Encounter6" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, -2.2935, -0.986755, -4.73111)
+visible = false
+
+[node name="skeleton4" parent="3DWorld/Encounter6" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 2.55846, -0.986755, 5.15332)
+visible = false
+
+[node name="skeleton5" parent="3DWorld/Encounter6" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, 1, 8.32619, -0.986755, 4.94781)
+visible = false
+
+[node name="skeleton6" parent="3DWorld/Encounter6" instance=ExtResource("30_k76k2")]
+transform = Transform3D(0.907073, 0, -0.420972, 0, 1, 0, 0.420972, 0, 0.907073, 1.42586, -0.986755, -5.16223)
+visible = false
+activate_delay = 3.0
+
+[node name="skeleton7" parent="3DWorld/Encounter6" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, 1, -7.54644, -0.986755, -9.43188)
+visible = false
+activate_delay = 3.0
+
+[node name="skeleton8" parent="3DWorld/Encounter6" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, 1, -2.69449, -0.986755, 0.452515)
+visible = false
+activate_delay = 3.0
+
+[node name="skeleton9" parent="3DWorld/Encounter6" instance=ExtResource("30_k76k2")]
+transform = Transform3D(1, 0, 1.49012e-07, 0, 1, 0, -1.49012e-07, 0, 1, 3.07326, -0.986755, 0.247009)
+visible = false
+activate_delay = 3.0
+
 [node name="Encounter7" type="Node3D" parent="3DWorld"]
-transform = Transform3D(-0.444682, 0, -0.895689, 0, 1, 0, 0.895689, 0, -0.444682, -98.5968, 1.0681, -217.544)
+transform = Transform3D(-0.444682, 0, -0.895689, 0, 1, 0, 0.895689, 0, -0.444682, -81.7128, 1.0681, -188.74)
 script = ExtResource("31_lrdhh")
 
 [node name="big_skeleton" parent="3DWorld/Encounter7" instance=ExtResource("30_k76k2")]
