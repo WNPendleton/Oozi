@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bmcmxeptbanl4"]
+[gd_scene load_steps=54 format=3 uid="uid://dx67nhwmu0cms"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_rc1k3"]
 [ext_resource type="AudioStream" uid="uid://cpqprvfnh5e5w" path="res://sounds/Wepa.mp3" id="2_xqi3b"]
@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bijyoqiwr2rei" path="res://sounds/reload.wav" id="8_4paea"]
 [ext_resource type="AudioStream" uid="uid://maymrku2km6y" path="res://sounds/enemyhit.wav" id="9_q3ysj"]
 [ext_resource type="AudioStream" uid="uid://monew1aguujw" path="res://sounds/bossdeath.wav" id="10_l2fnw"]
-[ext_resource type="Material" uid="uid://cehsst823bf3x" path="res://materials/ground.tres" id="11_3vmss"]
+[ext_resource type="Material" path="res://materials/ground.tres" id="11_3vmss"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="12_jjahu"]
 [ext_resource type="AudioStream" uid="uid://bkk3s4bkworyl" path="res://sounds/oozihit.wav" id="12_xh8g6"]
 [ext_resource type="PackedScene" uid="uid://obcdwbj6a7wr" path="res://models/LHouse2.gltf" id="13_xxlhi"]
@@ -35,6 +35,8 @@
 [ext_resource type="Script" path="res://scripts/BigSkellyEncounter.gd" id="31_lrdhh"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="32_8ehw3"]
 [ext_resource type="Script" path="res://scripts/big_skeleton.gd" id="34_li4bm"]
+[ext_resource type="Texture2D" uid="uid://bp4it1yhevh3s" path="res://sprites/bullet.png" id="36_m6b8n"]
+[ext_resource type="Texture2D" uid="uid://coty6miylibh1" path="res://sprites/life.png" id="37_i8pt3"]
 [ext_resource type="Script" path="res://scripts/ProjectileParent.gd" id="35_06dyp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x0st1"]
@@ -111,12 +113,15 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="LabelSettings" id="LabelSettings_28rte"]
+font_size = 36
+
 [node name="Level_One" type="Node"]
 
 [node name="3DWorld" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.73913, 0, 0)
 
-[node name="Player" type="CharacterBody3D" parent="3DWorld" node_paths=PackedStringArray("reload_text", "bullet_count", "chosen_path_follow")]
+[node name="Player" type="CharacterBody3D" parent="3DWorld" node_paths=PackedStringArray("reload_text", "UI", "chosen_path_follow")]
 transform = Transform3D(-0.0685799, 0.0375195, -0.99694, -8.73129e-10, 0.999292, 0.0376079, 0.997646, 0.00257913, -0.0685308, -45.596, 2.5, -50.531)
 script = ExtResource("1_rc1k3")
 next_level = "res://scenes/Level02.tscn"
@@ -126,7 +131,7 @@ init_counter = 0.5
 max_ammo = 6
 reload_timer = 2.0
 reload_text = NodePath("../../UI/reload_text")
-bullet_count = NodePath("../../UI/bullet_count")
+UI = NodePath("../../UI")
 chosen_path_follow = NodePath("../StartPath/PathFollow3D")
 music = ExtResource("2_xqi3b")
 
@@ -927,17 +932,74 @@ script = ExtResource("32_8ehw3")
 [node name="reload_text" type="Label" parent="UI"]
 visible = false
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -90.0
-offset_bottom = 26.0
-grow_horizontal = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -13.0
+offset_right = 45.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Reloading..."
+label_settings = SubResource("LabelSettings_28rte")
 
-[node name="bullet_count" type="Label" parent="UI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="HUD" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="Ammo" type="HBoxContainer" parent="UI/HUD"]
+layout_mode = 2
+
+[node name="Bullet1" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("36_m6b8n")
+
+[node name="Bullet2" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("36_m6b8n")
+
+[node name="Bullet3" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("36_m6b8n")
+
+[node name="Bullet4" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("36_m6b8n")
+
+[node name="Bullet5" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("36_m6b8n")
+
+[node name="Bullet6" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("36_m6b8n")
+
+[node name="Health" type="HBoxContainer" parent="UI/HUD"]
+layout_mode = 2
+
+[node name="Heart1" type="TextureRect" parent="UI/HUD/Health"]
+layout_mode = 2
+texture = ExtResource("37_i8pt3")
+
+[node name="Heart2" type="TextureRect" parent="UI/HUD/Health"]
+layout_mode = 2
+texture = ExtResource("37_i8pt3")
+
+[node name="Heart3" type="TextureRect" parent="UI/HUD/Health"]
+layout_mode = 2
+texture = ExtResource("37_i8pt3")
+
+[node name="Heart4" type="TextureRect" parent="UI/HUD/Health"]
+layout_mode = 2
+texture = ExtResource("37_i8pt3")
+
+[node name="Heart5" type="TextureRect" parent="UI/HUD/Health"]
+layout_mode = 2
+texture = ExtResource("37_i8pt3")
 
 [connection signal="finished" from="3DWorld/Player/BossDeathSound" to="3DWorld/Player" method="_on_boss_death_sound_finished"]

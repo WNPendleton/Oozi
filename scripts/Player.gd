@@ -6,11 +6,11 @@ extends CharacterBody3D
 @export var init_counter = 0.2
 @export_category("Combat")
 @export var max_ammo : int
-@export var max_health : int = 3
+@export var max_health : int = 5
 @export var gun_damage : int = 1
 @export var reload_timer : float
 @export var reload_text : Label
-@export var bullet_count : Label
+@export var UI : Control
 @export_category("Path Following")
 @export var chosen_path_follow : PathFollow3D
 @export var path_follow_offset : Vector3
@@ -33,7 +33,7 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	current_reload_timer.connect("timeout", (Callable(self, "finish_reload")))
 	current_reload_timer.one_shot = true
-	bullet_count.text = str(current_ammo)
+	UI.set_bullet_count(current_ammo)
 	PlayerPathGetter.player_path = self.get_path()
 
 func _physics_process(delta):
@@ -69,7 +69,7 @@ func _physics_process(delta):
 					collider.get_hit(gun_damage)
 			current_ammo -= 1
 			$ShootSound.play()
-			bullet_count.text = str(current_ammo)
+			UI.set_bullet_count(current_ammo)
 		else :
 			$ClickSound.play()
 			
@@ -98,12 +98,13 @@ func raycast_from_mouse(mouse_pos):
 func finish_reload():
 	reloading = false
 	reload_text.hide()
-	current_ammo = max_ammo	
-	bullet_count.text = str(current_ammo)
+	current_ammo = max_ammo
+	UI.set_bullet_count(current_ammo)
 	
 func player_get_hit(dmg):
 	$HurtSound.play()
 	current_health -= dmg
+	UI.set_current_health(current_health)
 	if current_health <= 0:
 		game_over()
 		
