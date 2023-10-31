@@ -30,17 +30,17 @@
 [ext_resource type="Texture2D" uid="uid://bp4it1yhevh3s" path="res://sprites/bullet.png" id="28_o4xsn"]
 [ext_resource type="Texture2D" uid="uid://coty6miylibh1" path="res://sprites/life.png" id="29_yyoky"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fb0bb"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lbfpr"]
-size = Vector3(3, 2, 4)
-
 [sub_resource type="Curve3D" id="Curve3D_bk1xm"]
 _data = {
 "points": PackedVector3Array(0, 0.6605, 14.5064, 0, -0.6605, -14.5064, 0, 100, 0, -3.71038, 8.83683, 22.4634, 3.71038, -8.83683, -22.4634, -4.7942, 90, -53.0817, -24.7489, 10.3872, 1.44312, 24.7489, -10.3872, -1.44312, 33.8636, 70, -92.7843, -13.858, 8.66698, -38.0034, 13.858, -8.66698, 38.0034, 77.223, 50, -45.768, -17.8811, 15.7903, -35.001, 17.8811, -15.7903, 35.001, 111.179, 20, 48.7868, -31.8665, 3.18262, 5.22402, 31.8665, -3.18262, -5.22402, 182.748, -10, 78.5638, -6.7348, 6.10498, 51.473, 6.7348, -6.10498, -51.473, 233.421, -20, 18.4875, 12.6789, -0.978273, -6.79115, -12.6789, 0.978273, 6.79115, 163.942, -20, -13.9015),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fb0bb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lbfpr"]
+size = Vector3(3, 2, 4)
 
 [sub_resource type="MultiMesh" id="MultiMesh_ylktl"]
 transform_format = 1
@@ -98,84 +98,92 @@ font_size = 36
 
 [node name="3DWorld" type="Node3D" parent="."]
 
-[node name="Player" type="CharacterBody3D" parent="3DWorld" node_paths=PackedStringArray("reload_text", "UI", "chosen_path_follow")]
-transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 102.601, 0)
+[node name="RailPath" type="Path3D" parent="3DWorld"]
+curve = SubResource("Curve3D_bk1xm")
+script = ExtResource("5_i61dg")
+
+[node name="PlayerPathFollow" type="PathFollow3D" parent="3DWorld/RailPath" node_paths=PackedStringArray("EncounterNode")]
+transform = Transform3D(0.999996, 0, 0, 0, 0.998961, 0.0454842, 0, -0.0454843, 0.99896, 0, 101.998, -0.090969)
+v_offset = 2.0
+loop = false
+script = ExtResource("11_fe5d0")
+Path_Speed = 10.0
+EncounterNode = NodePath("../../../BossCave/railturntable")
+
+[node name="Player" type="CharacterBody3D" parent="3DWorld/RailPath/PlayerPathFollow" node_paths=PackedStringArray("reload_text", "UI", "chosen_path_follow")]
+transform = Transform3D(1, 0, 0, 0, 0.998968, -0.0454847, 0, 0.0454847, 0.99897, 0, 0.598312, 0.118305)
 script = ExtResource("1_6j2kd")
 next_level = "res://scenes/Level03.tscn"
 arm_range = Vector2(1.25, 0.625)
 arm_base = Vector2(-0.5, 0)
 max_ammo = 6
 reload_timer = 2.0
-reload_text = NodePath("../../UI/reload_text")
-UI = NodePath("../../UI")
-chosen_path_follow = NodePath("../RailPath/PlayerPathFollow")
+reload_text = NodePath("../../../../UI/reload_text")
+UI = NodePath("../../../../UI")
+chosen_path_follow = NodePath("..")
 follow_speed = 2
 music = ExtResource("13_hn5ly")
 
-[node name="ArmAnchor" type="Node3D" parent="3DWorld/Player"]
+[node name="ArmAnchor" type="Node3D" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, -0.56492)
 
-[node name="Viewmodel" type="MeshInstance3D" parent="3DWorld/Player/ArmAnchor"]
+[node name="Viewmodel" type="MeshInstance3D" parent="3DWorld/RailPath/PlayerPathFollow/Player/ArmAnchor"]
 transform = Transform3D(0.990662, 0.0103129, 0.135948, 0.0154018, 0.982287, -0.186751, -0.135465, 0.187101, 0.972956, 0.0981827, -0.219468, 0.296215)
 material_override = ExtResource("2_tsx1f")
 mesh = ExtResource("3_vu7th")
-skeleton = NodePath("../../../..")
+skeleton = NodePath("../../../../../..")
 
-[node name="Uzi" type="MeshInstance3D" parent="3DWorld/Player/ArmAnchor"]
+[node name="Uzi" type="MeshInstance3D" parent="3DWorld/RailPath/PlayerPathFollow/Player/ArmAnchor"]
 transform = Transform3D(-2.98023e-08, 0, -1, 0, 1, 0, 1, 0, -2.98023e-08, 0, -0.0460963, -0.25)
 material_override = ExtResource("4_5fqlv")
 mesh = ExtResource("4_wvmum")
 
-[node name="Camera" type="Camera3D" parent="3DWorld/Player"]
+[node name="Camera" type="Camera3D" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 current = true
 fov = 90.0
 
-[node name="Collider" type="CollisionShape3D" parent="3DWorld/Player"]
+[node name="Collider" type="CollisionShape3D" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 shape = SubResource("CapsuleShape3D_fb0bb")
 
-[node name="reload_timer" type="Timer" parent="3DWorld/Player"]
+[node name="reload_timer" type="Timer" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="3DWorld/Player"]
+[node name="StaticBody3D" type="StaticBody3D" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 
-[node name="cart" parent="3DWorld/Player/StaticBody3D" instance=ExtResource("5_pyqr6")]
+[node name="cart" parent="3DWorld/RailPath/PlayerPathFollow/Player/StaticBody3D" instance=ExtResource("5_pyqr6")]
 transform = Transform3D(1, 9.31323e-10, 0, -9.31323e-09, 1, 0, 2.98023e-08, 1.30385e-08, 1, -1.33659e-08, -2.35345, 0.512654)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="3DWorld/Player/StaticBody3D/cart"]
+[node name="SpotLight3D" type="SpotLight3D" parent="3DWorld/RailPath/PlayerPathFollow/Player/StaticBody3D/cart"]
 transform = Transform3D(1, 8.3819e-09, -2.98023e-08, 0, 1, -1.30385e-08, -1.42109e-14, -8.88178e-16, 1, -1.15153e-09, 1.23642, -1.74593)
 light_energy = 16.0
 light_indirect_energy = 16.0
 light_volumetric_fog_energy = 16.0
 spot_range = 14.905
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/Player/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3DWorld/RailPath/PlayerPathFollow/Player/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3149, 0.557618)
 shape = SubResource("BoxShape3D_lbfpr")
 
-[node name="ShootSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+[node name="ShootSound" type="AudioStreamPlayer" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 stream = ExtResource("7_gswhr")
 
-[node name="ClickSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+[node name="ClickSound" type="AudioStreamPlayer" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 stream = ExtResource("8_slji7")
 
-[node name="ReloadSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+[node name="ReloadSound" type="AudioStreamPlayer" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 stream = ExtResource("10_8fg7j")
 
-[node name="HurtSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+[node name="HurtSound" type="AudioStreamPlayer" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 stream = ExtResource("12_278kf")
 
-[node name="EnemyHitSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+[node name="EnemyHitSound" type="AudioStreamPlayer" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 stream = ExtResource("11_nw2ao")
 
-[node name="BossDeathSound" type="AudioStreamPlayer" parent="3DWorld/Player"]
+[node name="BossDeathSound" type="AudioStreamPlayer" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 stream = ExtResource("12_dbxwb")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="3DWorld/Player"]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="3DWorld/RailPath/PlayerPathFollow/Player"]
 volume_db = -10.0
-
-[node name="RailPath" type="Path3D" parent="3DWorld"]
-curve = SubResource("Curve3D_bk1xm")
-script = ExtResource("5_i61dg")
 
 [node name="Cave" type="Node3D" parent="3DWorld/RailPath"]
 
@@ -291,14 +299,6 @@ path_joined = false
 [node name="Planks" type="MultiMeshInstance3D" parent="3DWorld/RailPath/Tracks/RightTrack"]
 multimesh = SubResource("MultiMesh_40atv")
 
-[node name="PlayerPathFollow" type="PathFollow3D" parent="3DWorld/RailPath" node_paths=PackedStringArray("EncounterNode")]
-transform = Transform3D(0.999996, 0, 0, 0, 0.998961, 0.0454842, 0, -0.0454843, 0.99896, 0, 101.998, -0.090969)
-v_offset = 2.0
-loop = false
-script = ExtResource("11_fe5d0")
-Path_Speed = 10.0
-EncounterNode = NodePath("../../../BossCave/railturntable")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="3DWorld"]
 environment = SubResource("Environment_e10ty")
 
@@ -326,7 +326,7 @@ curve = SubResource("Curve3D_uorln")
 rotation_mode = 0
 script = ExtResource("20_b3uwg")
 path_speed = 10
-player_reference = NodePath("../../../3DWorld/Player")
+player_reference = NodePath("../../../3DWorld/RailPath/PlayerPathFollow/Player")
 attack_delay = 1.0
 
 [node name="skeleviathan" parent="BossCave/BossPath/SkeleviathanPathFollow" node_paths=PackedStringArray("work_zone") instance=ExtResource("19_qow61")]
@@ -434,5 +434,5 @@ texture = ExtResource("29_yyoky")
 layout_mode = 2
 texture = ExtResource("29_yyoky")
 
-[connection signal="finished" from="3DWorld/Player/BossDeathSound" to="3DWorld/Player" method="_on_boss_death_sound_finished"]
 [connection signal="curve_changed" from="3DWorld/RailPath" to="3DWorld/RailPath" method="_on_curve_changed"]
+[connection signal="finished" from="3DWorld/RailPath/PlayerPathFollow/Player/BossDeathSound" to="3DWorld/RailPath/PlayerPathFollow/Player" method="_on_boss_death_sound_finished"]

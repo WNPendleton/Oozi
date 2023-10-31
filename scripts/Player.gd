@@ -8,7 +8,7 @@ extends CharacterBody3D
 @export var max_ammo : int
 @export var max_health : int = 5
 @export var gun_damage : int = 1
-@export var reload_timer : float
+@export var reload_timer : float = 2
 @export var reload_text : Label
 @export var UI : Control
 @export_category("Path Following")
@@ -55,9 +55,10 @@ func _physics_process(delta):
 	
 	if init_counter <= 0:
 		if chosen_path_follow != null:
-			global_transform.origin = global_transform.origin.lerp(chosen_path_follow.global_transform.origin + path_follow_offset, delta * follow_speed)
+			pass
+			#global_transform.origin = global_transform.origin.lerp(chosen_path_follow.global_transform.origin + path_follow_offset, delta * follow_speed)
 			#global_transform.origin = global_transform.origin.move_toward(chosen_path_follow.global_transform.origin, delta * follow_speed)
-			global_rotation = global_rotation.lerp(chosen_path_follow.global_rotation, delta * follow_speed)
+			#global_rotation = global_rotation.lerp(chosen_path_follow.global_rotation, delta * follow_speed)
 			#global_rotation = global_rotation.move_toward(chosen_path_follow.global_rotation, delta * rotation_follow_speed)
 	
 	if Input.is_action_just_pressed("shoot"):

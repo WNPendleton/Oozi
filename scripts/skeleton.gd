@@ -4,7 +4,8 @@ extends Enemy
 @onready var activate_delay_timer = $activate_delay_timer
 @export var spawn_animation : String = "Spawn"
 @export var attack_animation : String = "Throw"
-@export var projectile_speed : float = 1.0
+@export var projectile_speed : float = 2.0
+@export var face_player: bool = true
 
 @onready var projectile_prefab = preload("res://prefabs/corrected_bone_projectile.tscn")
 
@@ -51,7 +52,8 @@ func activate():
 	activate_delay_timer.start(activate_delay)
 	
 func spawn():
-	look_at(player.global_transform.origin)
-	show()
+	if face_player:
+		look_at(player.global_transform.origin)
 	if not anim.is_playing():
 		anim.play(spawn_animation)
+	show()

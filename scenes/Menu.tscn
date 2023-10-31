@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://jbad4dsttsmf"]
+[gd_scene load_steps=33 format=3 uid="uid://bfdg2s0msot3b"]
 
 [ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_4ci7d"]
 [ext_resource type="Shader" path="res://shaders/sky.gdshader" id="1_be173"]
@@ -67,34 +67,169 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4ci7d")
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Credits" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Credits"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -15.5
-offset_right = 48.0
-offset_bottom = 15.5
+offset_left = -216.5
+offset_top = -26.5
+offset_right = 216.5
+offset_bottom = 26.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "Oozi"
+label_settings = SubResource("LabelSettings_rb3ps")
+horizontal_alignment = 1
+
+[node name="BlankLine" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="MadeBy" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "Made By:"
+horizontal_alignment = 1
+
+[node name="Trevor" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "Trevor Burton - Lead Gameplay Programmer"
+horizontal_alignment = 1
+
+[node name="Walker" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "Walker Pendleton - Lead Artist, Additional Programming"
+horizontal_alignment = 1
+
+[node name="Cade" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "Cade Wolcott - Lead Level Design, Additional Programming"
+horizontal_alignment = 1
+
+[node name="BlankLine2" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="MusicBy" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "Music:
+"
+horizontal_alignment = 1
+
+[node name="Music1" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "\"Bleeping Demo\" Kevin MacLeod (incompetech.com)"
+horizontal_alignment = 1
+
+[node name="Music2" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "\"Wepa\" Kevin MacLeod (incompetech.com)"
+horizontal_alignment = 1
+
+[node name="Music3" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "\"Wretched Destroyer\" Kevin MacLeod (incompetech.com)"
+horizontal_alignment = 1
+
+[node name="Music4" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "\"All This\" Kevin MacLeod (incompetech.com)"
+horizontal_alignment = 1
+
+[node name="Music5" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+horizontal_alignment = 1
+
+[node name="BlankLine3" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Special" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "Special Thanks To:"
+horizontal_alignment = 1
+
+[node name="Special2" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "Godot Engine"
+horizontal_alignment = 1
+
+[node name="Special3" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "The Blender Foundation"
+horizontal_alignment = 1
+
+[node name="Special4" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "jsfxr"
+horizontal_alignment = 1
+
+[node name="Special5" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "The University of Nebraska Omaha"
+horizontal_alignment = 1
+
+[node name="BlankLine4" type="Label" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Control/Credits/VBoxContainer"]
+layout_mode = 2
+text = "Return
+"
+
+[node name="Main" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Main"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.5
+offset_top = -78.0
+offset_right = 84.5
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control/Main/VBoxContainer"]
+layout_mode = 2
+text = "Oozi"
+label_settings = SubResource("LabelSettings_rb3ps")
+
+[node name="Button" type="Button" parent="Control/Main/VBoxContainer"]
+layout_mode = 2
 text = "Start Game
 "
 
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -84.5
-offset_top = 143.0
-offset_right = 84.5
-offset_bottom = 245.0
-grow_horizontal = 2
-text = "Oozi"
-label_settings = SubResource("LabelSettings_rb3ps")
+[node name="Button2" type="Button" parent="Control/Main/VBoxContainer"]
+layout_mode = 2
+text = "Credits
+"
 
 [node name="3DWorld" type="Node3D" parent="."]
 
@@ -203,4 +338,6 @@ stream = ExtResource("25_k7y5j")
 volume_db = -10.0
 autoplay = true
 
-[connection signal="pressed" from="Control/Button" to="Control" method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Credits/VBoxContainer/Button" to="Control" method="_on_return_button_pressed"]
+[connection signal="pressed" from="Control/Main/VBoxContainer/Button" to="Control" method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Main/VBoxContainer/Button2" to="Control" method="_on_credits_button_pressed"]
