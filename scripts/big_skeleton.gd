@@ -48,5 +48,6 @@ func activate():
 	
 func spawn():
 	print("spawning")
+	look_at(player.global_transform.origin)
 	show()
 	anim.play(spawn_animation)
