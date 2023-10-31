@@ -3,13 +3,18 @@ class_name Enemy
 
 @export var max_health : int = 1
 @export var activate_delay : float
+@export var work_zone : Node3D
 
 @onready var current_health = max_health
 @onready var player = get_tree().get_root().get_node(PlayerPathGetter.player_path)
-
-@onready var anim = $AnimationPlayer
+@onready var anim : AnimationPlayer = $AnimationPlayer
+@onready var goo = preload("res://prefabs/goo_splash.tscn")
 
 func get_hit(dmg = 1):
+	if work_zone:
+		work_zone.add_child(goo.instantiate())
+	else:
+		add_child(goo.instantiate())
 	player.get_node("EnemyHitSound").play()
 	current_health -= dmg
 	if current_health <= 0:
@@ -27,4 +32,4 @@ func _process(delta):
 	pass
 
 func activate():
-	print("activating")
+	pass

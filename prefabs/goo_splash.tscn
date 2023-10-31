@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1ufd0isym84f"]
+
+[ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="1_siypt"]
+[ext_resource type="Script" path="res://scripts/smoke_puff.gd" id="2_a6lxm"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_l73eg"]
+material = ExtResource("1_siypt")
+
+[sub_resource type="Curve" id="Curve_32o03"]
+_data = [Vector2(0, 0.536842), 0.0, 0.0, 0, 0, Vector2(1, 0.505263), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_pawds"]
+_data = [Vector2(0, 0.505263), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="GooSplash" type="CPUParticles3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+emitting = false
+amount = 32
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.99
+mesh = SubResource("SphereMesh_l73eg")
+direction = Vector3(0, 1, 0)
+spread = 180.0
+flatness = 0.89
+gravity = Vector3(0, -15, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 6.0
+linear_accel_min = -20.0
+linear_accel_max = -20.0
+split_scale = true
+scale_curve_x = SubResource("Curve_32o03")
+scale_curve_y = SubResource("Curve_pawds")
+scale_curve_z = SubResource("Curve_32o03")
+script = ExtResource("2_a6lxm")

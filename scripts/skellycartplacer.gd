@@ -23,4 +23,5 @@ func update_skeletons():
 		new_skellycart.delay = delay_time
 		rail_path.add_child(new_skellycart)
 		new_skellycart.get_node("skeleton").activate_delay = delay_time
+		new_skellycart.get_node("skeleton").projectile_speed = 2
 		new_skellycart.get_node("skeleton").activate()

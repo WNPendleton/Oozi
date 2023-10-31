@@ -4,20 +4,20 @@
 [ext_resource type="ArrayMesh" uid="uid://cnb0jsea733p6" path="res://models/blob.obj" id="2_12f10"]
 [ext_resource type="Script" path="res://scripts/cutscenes/CutsceneOozi.gd" id="2_c4nsj"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="2_ogr3q"]
-[ext_resource type="Texture2D" uid="uid://2bd3legnqgjo" path="res://sprites/oozi_chathead.png" id="3_0skpp"]
 [ext_resource type="Material" uid="uid://b6w0r648pnjxx" path="res://materials/black.tres" id="4_vdl50"]
-[ext_resource type="Texture2D" uid="uid://dijykcvhjfqvp" path="res://sprites/scientist_chathead.png" id="8_wilgr"]
+[ext_resource type="Texture2D" uid="uid://2bd3legnqgjo" path="res://sprites/oozi_chathead.png" id="7_khq6c"]
 [ext_resource type="Texture2D" uid="uid://c3e6i8awlcdm0" path="res://sprites/Chatbox.png" id="9_lis40"]
 [ext_resource type="PackedScene" uid="uid://dtlcljf2di7hg" path="res://models/scientist.gltf" id="9_s300x"]
 [ext_resource type="Script" path="res://scripts/cutscenes/ScriptEvent.gd" id="10_7eljy"]
 [ext_resource type="Script" path="res://scripts/cutscenes/Actor3D.gd" id="10_ttwu0"]
 [ext_resource type="PackedScene" uid="uid://ccqgj44hdrmuc" path="res://models/skeleton.gltf" id="11_md2qg"]
 [ext_resource type="Script" path="res://scripts/cutscenes/CutsceneSkeleton.gd" id="12_4x4lv"]
-[ext_resource type="Texture2D" uid="uid://cxx82mi8cueeb" path="res://sprites/skeleton_chathead.png" id="12_6ffdt"]
 [ext_resource type="PackedScene" uid="uid://c4v5vsi71tc5e" path="res://models/monopoly_man.gltf" id="13_8eses"]
-[ext_resource type="Texture2D" uid="uid://iv7knd1ebo23" path="res://sprites/monopoly_chathead.png" id="14_y1ffs"]
+[ext_resource type="Texture2D" uid="uid://dijykcvhjfqvp" path="res://sprites/scientist_chathead.png" id="14_e2iej"]
+[ext_resource type="Texture2D" uid="uid://cxx82mi8cueeb" path="res://sprites/skeleton_chathead.png" id="17_3njir"]
 [ext_resource type="PackedScene" uid="uid://obcdwbj6a7wr" path="res://models/LHouse2.gltf" id="18_n0vsg"]
 [ext_resource type="PackedScene" uid="uid://c484luve2wx5f" path="res://models/House2.gltf" id="19_b3und"]
+[ext_resource type="Texture2D" uid="uid://iv7knd1ebo23" path="res://sprites/monopoly_chathead.png" id="19_lj7by"]
 [ext_resource type="PackedScene" uid="uid://brce3jyu3cmov" path="res://models/WillowTreeGreen.gltf" id="20_c37ck"]
 [ext_resource type="AudioStream" uid="uid://biroeunns7fyp" path="res://sounds/Bleeping Demo.mp3" id="20_h4r2n"]
 [ext_resource type="PackedScene" uid="uid://ci15c358od2n6" path="res://models/PineTree.gltf" id="21_tfbt8"]
@@ -330,7 +330,7 @@ script = ExtResource("2_c4nsj")
 chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
 chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
 chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
-chat_head_image = ExtResource("3_0skpp")
+chat_head_image = ExtResource("7_khq6c")
 eventList = Array[ExtResource("10_7eljy")]([SubResource("Resource_e0okk")])
 
 [node name="Core" type="Node3D" parent="World/Actors/Oozi"]
@@ -365,7 +365,7 @@ script = ExtResource("10_ttwu0")
 chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
 chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
 chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
-chat_head_image = ExtResource("8_wilgr")
+chat_head_image = ExtResource("14_e2iej")
 eventList = Array[ExtResource("10_7eljy")]([SubResource("Resource_vyg3e"), SubResource("Resource_qwb0a"), SubResource("Resource_oyigs")])
 
 [node name="skeleton" parent="World/Actors" node_paths=PackedStringArray("chat_box", "chat_text_box", "chat_head_box") instance=ExtResource("11_md2qg")]
@@ -374,7 +374,7 @@ script = ExtResource("12_4x4lv")
 chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
 chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
 chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
-chat_head_image = ExtResource("12_6ffdt")
+chat_head_image = ExtResource("17_3njir")
 eventList = Array[ExtResource("10_7eljy")]([SubResource("Resource_r7ncg"), SubResource("Resource_ito2o"), SubResource("Resource_r7kp4"), SubResource("Resource_4ijji")])
 
 [node name="skeleton2" parent="World/Actors" node_paths=PackedStringArray("chat_box", "chat_text_box", "chat_head_box") instance=ExtResource("11_md2qg")]
@@ -383,7 +383,7 @@ script = ExtResource("12_4x4lv")
 chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
 chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
 chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
-chat_head_image = ExtResource("12_6ffdt")
+chat_head_image = ExtResource("17_3njir")
 eventList = Array[ExtResource("10_7eljy")]([SubResource("Resource_wlx8o"), SubResource("Resource_n0ln4"), SubResource("Resource_fe5o6"), SubResource("Resource_5mu2f")])
 
 [node name="monopoly_man" parent="World/Actors" node_paths=PackedStringArray("chat_box", "chat_text_box", "chat_head_box") instance=ExtResource("13_8eses")]
@@ -392,7 +392,7 @@ script = ExtResource("10_ttwu0")
 chat_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox")
 chat_text_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Text")
 chat_head_box = NodePath("../../../UI/VBoxContainer/MarginContainer/Chatbox/Chathead")
-chat_head_image = ExtResource("14_y1ffs")
+chat_head_image = ExtResource("19_lj7by")
 eventList = Array[ExtResource("10_7eljy")]([SubResource("Resource_20you"), SubResource("Resource_ej1eo"), SubResource("Resource_gwhgx"), SubResource("Resource_86ry4")])
 next_scene = "res://scenes/level01.tscn"
 

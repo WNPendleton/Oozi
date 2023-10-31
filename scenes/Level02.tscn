@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cernwdlsei81b"]
+[gd_scene load_steps=43 format=3 uid="uid://dyu61khirx64j"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_6j2kd"]
 [ext_resource type="Material" uid="uid://d1xcswmqy0up4" path="res://materials/goo.tres" id="2_tsx1f"]
@@ -14,7 +14,7 @@
 [ext_resource type="ArrayMesh" uid="uid://du1rbwfgy0361" path="res://models/RailPlankPlus.obj" id="8_krelq"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="8_nsrkm"]
 [ext_resource type="AudioStream" uid="uid://bo1oj7nb3i4m1" path="res://sounds/click.wav" id="8_slji7"]
-[ext_resource type="Material" uid="uid://bj1a4c1u1tviw" path="res://materials/cave.tres" id="8_wewtq"]
+[ext_resource type="Material" uid="uid://dxx87p8q8dm0m" path="res://materials/cave.tres" id="8_wewtq"]
 [ext_resource type="AudioStream" uid="uid://bijyoqiwr2rei" path="res://sounds/reload.wav" id="10_8fg7j"]
 [ext_resource type="Script" path="res://scripts/PathFollow3D.gd" id="11_fe5d0"]
 [ext_resource type="AudioStream" uid="uid://maymrku2km6y" path="res://sounds/enemyhit.wav" id="11_nw2ao"]
@@ -27,6 +27,8 @@
 [ext_resource type="Script" path="res://scripts/skeleviathan_encounter.gd" id="18_rl0bk"]
 [ext_resource type="PackedScene" uid="uid://dvgemsbqgc22m" path="res://models/skeleviathan.gltf" id="19_qow61"]
 [ext_resource type="Script" path="res://scripts/skeleviathan_boss.gd" id="20_b3uwg"]
+[ext_resource type="Texture2D" uid="uid://bp4it1yhevh3s" path="res://sprites/bullet.png" id="28_o4xsn"]
+[ext_resource type="Texture2D" uid="uid://coty6miylibh1" path="res://sprites/life.png" id="29_yyoky"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fb0bb"]
 
@@ -89,11 +91,14 @@ _data = {
 point_count = 2
 up_vector_enabled = false
 
+[sub_resource type="LabelSettings" id="LabelSettings_adulw"]
+font_size = 36
+
 [node name="Game2" type="Node"]
 
 [node name="3DWorld" type="Node3D" parent="."]
 
-[node name="Player" type="CharacterBody3D" parent="3DWorld" node_paths=PackedStringArray("reload_text", "bullet_count", "chosen_path_follow")]
+[node name="Player" type="CharacterBody3D" parent="3DWorld" node_paths=PackedStringArray("reload_text", "UI", "chosen_path_follow")]
 transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 0, 102.601, 0)
 script = ExtResource("1_6j2kd")
 next_level = "res://scenes/Level03.tscn"
@@ -102,7 +107,7 @@ arm_base = Vector2(-0.5, 0)
 max_ammo = 6
 reload_timer = 2.0
 reload_text = NodePath("../../UI/reload_text")
-bullet_count = NodePath("../../UI/bullet_count")
+UI = NodePath("../../UI")
 chosen_path_follow = NodePath("../RailPath/PlayerPathFollow")
 follow_speed = 2
 music = ExtResource("13_hn5ly")
@@ -305,32 +310,6 @@ script = ExtResource("14_4uavf")
 rail_path = NodePath("../RailPath")
 skelly_seed = 9
 
-[node name="UI" type="Control" parent="."]
-process_mode = 3
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("8_nsrkm")
-
-[node name="reload_text" type="Label" parent="UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -90.0
-offset_bottom = 26.0
-grow_horizontal = 0
-text = "Reloading..."
-
-[node name="bullet_count" type="Label" parent="UI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
 [node name="BossCave" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 153.875, -15.9246, -8.56977)
 flip_faces = true
@@ -350,12 +329,16 @@ path_speed = 10
 player_reference = NodePath("../../../3DWorld/Player")
 attack_delay = 1.0
 
-[node name="skeleviathan" parent="BossCave/BossPath/SkeleviathanPathFollow" instance=ExtResource("19_qow61")]
+[node name="skeleviathan" parent="BossCave/BossPath/SkeleviathanPathFollow" node_paths=PackedStringArray("work_zone") instance=ExtResource("19_qow61")]
 script = ExtResource("18_k8fso")
 max_health = 30
+work_zone = NodePath("work_zone")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BossCave/BossPath/SkeleviathanPathFollow/skeleviathan"]
 shape = SubResource("ConvexPolygonShape3D_45x7o")
+
+[node name="work_zone" type="Node3D" parent="BossCave/BossPath/SkeleviathanPathFollow/skeleviathan"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.129154, 0, -1.69666)
 
 [node name="railturntable" parent="BossCave" node_paths=PackedStringArray("PathFollow", "Next_Path", "skeleviathan") instance=ExtResource("17_h7i3p")]
 transform = Transform3D(0.398514, 0, -0.900784, 0, 0.985, 0, 0.900784, 0, 0.398514, 4.31384, -4.1922, -2.69783)
@@ -367,6 +350,89 @@ skeleviathan = NodePath("../BossPath/SkeleviathanPathFollow")
 [node name="Path3D" type="Path3D" parent="BossCave/railturntable"]
 transform = Transform3D(1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0, 0, 0)
 curve = SubResource("Curve3D_cha8q")
+
+[node name="UI" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_nsrkm")
+
+[node name="reload_text" type="Label" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -13.0
+offset_right = 45.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Reloading..."
+label_settings = SubResource("LabelSettings_adulw")
+
+[node name="HUD" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="Ammo" type="HBoxContainer" parent="UI/HUD"]
+layout_mode = 2
+
+[node name="Bullet1" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("28_o4xsn")
+
+[node name="Bullet2" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("28_o4xsn")
+
+[node name="Bullet3" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("28_o4xsn")
+
+[node name="Bullet4" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("28_o4xsn")
+
+[node name="Bullet5" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("28_o4xsn")
+
+[node name="Bullet6" type="TextureRect" parent="UI/HUD/Ammo"]
+layout_mode = 2
+texture = ExtResource("28_o4xsn")
+
+[node name="Health" type="HBoxContainer" parent="UI/HUD"]
+layout_mode = 2
+
+[node name="Heart1" type="TextureRect" parent="UI/HUD/Health"]
+layout_mode = 2
+texture = ExtResource("29_yyoky")
+
+[node name="Heart2" type="TextureRect" parent="UI/HUD/Health"]
+layout_mode = 2
+texture = ExtResource("29_yyoky")
+
+[node name="Heart3" type="TextureRect" parent="UI/HUD/Health"]
+layout_mode = 2
+texture = ExtResource("29_yyoky")
+
+[node name="Heart4" type="TextureRect" parent="UI/HUD/Health"]
+layout_mode = 2
+texture = ExtResource("29_yyoky")
+
+[node name="Heart5" type="TextureRect" parent="UI/HUD/Health"]
+layout_mode = 2
+texture = ExtResource("29_yyoky")
 
 [connection signal="finished" from="3DWorld/Player/BossDeathSound" to="3DWorld/Player" method="_on_boss_death_sound_finished"]
 [connection signal="curve_changed" from="3DWorld/RailPath" to="3DWorld/RailPath" method="_on_curve_changed"]

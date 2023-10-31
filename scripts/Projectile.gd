@@ -24,7 +24,6 @@ func _physics_process(delta):
 	basis = basis.rotated(Vector3.LEFT, rotation_vector.y * delta * rotation_speed)
 	basis = basis.rotated(Vector3.FORWARD, rotation_vector.z * delta * rotation_speed)
 	if !get_colliding_bodies().is_empty():
-		print("hit something")
 		for _i in get_colliding_bodies():
 			if _i.has_method("player_get_hit"):
 				_i.player_get_hit(projectile_damage)
